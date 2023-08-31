@@ -1,0 +1,53 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/spfx-serve.schema.json",
+  "port": 4321,
+  "https": true,
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://claringtonnet.sharepoint.com/teams/BrandisTestSite/_layouts/15/SPListForm.aspx",
+      "formCustomizer": {
+        "componentId": "bc5454d2-bea9-4a5d-88f5-5e2a21dc2b98",
+        "PageType": 8,
+        "RootFolder": "/teams/BrandisTestSite/Death Register",
+        "properties": {
+          "sampleText": "Value"
+        }
+      }
+    },
+    "deathRegisterForm_NewForm": {
+      "pageUrl": "https://claringtonnet.sharepoint.com/sites/StevensTestSite/_layouts/15/SPListForm.aspx",
+      "formCustomizer": {
+        "componentId": "bc5454d2-bea9-4a5d-88f5-5e2a21dc2b98",
+        "PageType": 8,
+        "RootFolder": "/sites/StevensTestSite/NameTest",
+        "properties": {
+          "sampleText": "Value"
+        }
+      }
+    },
+    "deathRegisterForm_EditForm": {
+      "pageUrl": "https://claringtonnet.sharepoint.com/teams/BrandisTestSite/_layouts/15/SPListForm.aspx",
+      "formCustomizer": {
+        "componentId": "bc5454d2-bea9-4a5d-88f5-5e2a21dc2b98",
+        "PageType": 6,
+        "RootFolder": "/teams/BrandisTestSite/Death Register",
+        "ID": 4,
+        "properties": {
+          "sampleText": "Value"
+        }
+      }
+    },
+    "deathRegisterForm_ViewForm": {
+      "pageUrl": "https://claringtonnet.sharepoint.com/teams/BrandisTestSite/_layouts/15/SPListForm.aspx",
+      "formCustomizer": {
+        "componentId": "bc5454d2-bea9-4a5d-88f5-5e2a21dc2b98",
+        "PageType": 4,
+        "RootFolder": "/teams/BrandisTestSite/Death Register",
+        "ID": 4,
+        "properties": {
+          "sampleText": "Value"
+        }
+      }
+    }
+  }
+}

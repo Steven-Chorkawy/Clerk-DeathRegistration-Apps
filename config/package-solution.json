@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "clerk-death-register-custom-form-client-side-solution",
+    "id": "9bfdc2d4-0927-49c6-bed1-ebc2c4f78690",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.17.2"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "clerk-death-register-custom-form description"
+      },
+      "longDescription": {
+        "default": "clerk-death-register-custom-form description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "clerk-death-register-custom-form Feature",
+        "description": "The feature that activates elements of the clerk-death-register-custom-form solution.",
+        "id": "c045dd4a-7308-49d2-a15e-f0008790037c",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/clerk-death-register-custom-form.sppkg"
+  }
+}
