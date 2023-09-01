@@ -3,7 +3,7 @@ import { IDeathRegisterFormProps } from '../extensions/deathRegisterForm/compone
 import { Field, Form, FormElement, FormRenderProps } from '@progress/kendo-react-form';
 import { DefaultButton, Depths, PrimaryButton, TextField } from '@fluentui/react';
 import { DEATH_REGISTRATION_LIST_TITLE, GetChoiceColumn, GetNextRegistrationNumber, getSP } from '../MyHelperMethods/MyHelperMethods';
-import { DeathRegistrationNumberInput, FormSubTitle, MyDatePicker, MyDropdown, MyLocationPicker } from './MyFormComponents';
+import { DeathRegistrationNumberInput, FormSubTitle, MyDatePicker, MyDropdown, MyLocationPicker, MyToggle } from './MyFormComponents';
 
 export interface IDeathRegisterNewFormProps extends IDeathRegisterFormProps {
 }
@@ -58,10 +58,13 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
     public render(): React.ReactElement<{}> {
         return (
             <div style={{ margin: '10px', padding: '10px', boxShadow: Depths.depth8 }}>
-                <h3>New Death Record</h3>
+                <h1>New Death Record</h1>
                 <hr />
                 <Form
                     onSubmit={this._onSave}
+                    initialValues={{
+                        'WaiveFee': false
+                    }}
                     render={(formRenderProps: FormRenderProps) => (
                         <FormElement>
                             {FormSubTitle("Subject's Information")}
@@ -141,7 +144,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                             <Field
                                 id={"InformantsRelationship"}
                                 name={"InformantsRelationship"}
-                                label={"Informants Relationship"}
+                                label={"Informant's Relationship"}
                                 component={MyDropdown}
                                 options={this.state.InformantsRelationshipOptions ? this.state.InformantsRelationshipOptions.map(f => { return { key: f, text: f }; }) : []}
                             />
@@ -153,11 +156,27 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 component={MyLocationPicker}
                                 context={this.props.context}
                             />
-                            <div className={'k-form-button'} style={{ marginTop: '10px' }}>
-                                <PrimaryButton text="Save" type='submit' />
-                                <DefaultButton text="Clear" onClick={e => {
-                                    formRenderProps.onFormReset();
-                                }} />
+                            <Field
+                                id={'WaiveFee'}
+                                name={'WaiveFee'}
+                                label={'Waive Fee?'}
+                                component={MyToggle}
+                                onText="Yes"
+                                offText="No"
+                            />
+                            <div className={'k-form-button'} style={{ marginTop: '25px' }}>
+                                <PrimaryButton
+                                    text="Save"
+                                    type='submit'
+                                    style={{ marginLeft: '10px', marginRight: '10px' }}
+                                />
+                                <DefaultButton
+                                    text="Clear"
+                                    style={{ marginLeft: '10px', marginRight: '10px' }}
+                                    onClick={e => {
+                                        formRenderProps.onFormReset();
+                                    }}
+                                />
                             </div>
                         </FormElement>
                     )}

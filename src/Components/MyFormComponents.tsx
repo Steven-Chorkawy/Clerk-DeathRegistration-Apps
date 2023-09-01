@@ -28,7 +28,7 @@ import { GetNextRegistrationNumber } from "../MyHelperMethods/MyHelperMethods";
 export const FormSubTitle = (text: string) => {
     return (
         <div>
-            <h4>{text}</h4>
+            <h2>{text}</h2>
         </div>
     );
 }
@@ -63,6 +63,17 @@ export const DeathRegistrationNumberInput = (fieldRenderProps: FieldRenderProps)
             </div>
         </div>
     );
+}
+
+export const MyToggle = (fieldRenderProps: FieldRenderProps) => {
+    return (<div>
+        <Toggle
+            {...fieldRenderProps}
+            onChange={(e, checked) => {
+                fieldRenderProps.onChange({ value: checked })
+            }}
+        />
+    </div>);
 }
 
 export const MyDropdown = (fieldRenderProps: FieldRenderProps) => {
