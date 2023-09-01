@@ -29,4 +29,13 @@ export const GetChoiceColumn = async (listTitle: string, columnName: string): Pr
         return [];
     }
 };
+
+/**
+ * ! Random Number for now...
+ */
+export const GetNextRegistrationNumber = async (): Promise<number> => {
+    delay(5000);
+    return Math.floor(Math.random() * 100);
+}
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 //#endregion

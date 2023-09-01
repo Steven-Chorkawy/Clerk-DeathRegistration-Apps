@@ -2,16 +2,16 @@ import * as React from 'react';
 import { IDeathRegisterFormProps } from '../extensions/deathRegisterForm/components/DeathRegisterForm';
 import { Field, Form, FormElement, FormRenderProps } from '@progress/kendo-react-form';
 import { DefaultButton, Depths, PrimaryButton, TextField } from '@fluentui/react';
-import { DEATH_REGISTRATION_LIST_TITLE, GetChoiceColumn, getSP } from '../MyHelperMethods/MyHelperMethods';
+import { DEATH_REGISTRATION_LIST_TITLE, GetChoiceColumn, GetNextRegistrationNumber, getSP } from '../MyHelperMethods/MyHelperMethods';
 import { DeathRegistrationNumberInput, FormSubTitle, MyDatePicker, MyDropdown, MyLocationPicker } from './MyFormComponents';
 
 export interface IDeathRegisterNewFormProps extends IDeathRegisterFormProps {
 }
 
 export interface IDeathRegisterNewFormState {
-    generateRegistrationNumber: boolean;
     sexOptions?: any[]; // DropDown choices.
     InformantsRelationshipOptions?: any[] // DropDown choices.
+    nextRegistrationNumber?: number;
 }
 
 export default class DeathRegisterNewForm extends React.Component<IDeathRegisterNewFormProps, IDeathRegisterNewFormState> {
@@ -19,7 +19,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
         super(props);
 
         this.state = {
-            generateRegistrationNumber: true
+            nextRegistrationNumber: null
         }
 
         GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Sex").then(value => {
@@ -28,12 +28,19 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
         GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Informants Relationship").then(value => {
             this.setState({ InformantsRelationshipOptions: value });
         })
+        GetNextRegistrationNumber().then(value => {
+            this.setState({ nextRegistrationNumber: value });
+        })
     }
 
     private _sp = getSP(this.props.context);
 
     private _onSave = (input: any) => {
         console.log('my on save...');
+        console.log(input);
+
+        console.log('adding regi number');
+        input.RegistrationNumber = this.state.nextRegistrationNumber;
         console.log(input);
 
         // ! Testing saving...
@@ -99,8 +106,12 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 id={"RegistrationNumber"}
                                 name={"RegistrationNumber"}
                                 label={"Registration Number"}
+                                onChange={(e) => {
+                                    this.setState({ nextRegistrationNumber: e.value });
+                                }}
                                 component={DeathRegistrationNumberInput}
                             />
+                            {this.state.nextRegistrationNumber && <div>next for this year {this.state.nextRegistrationNumber}</div>}
                             <Field
                                 id={"Cause"}
                                 name={"Cause"}

@@ -1,7 +1,8 @@
-import { DatePicker, Dropdown } from "@fluentui/react";
+import { DatePicker, Dropdown, Toggle } from "@fluentui/react";
 import { ILocationPickerItem, LocationPicker } from "@pnp/spfx-controls-react/lib/LocationPicker";
 import { FieldRenderProps } from "@progress/kendo-react-form";
 import * as React from "react";
+import { GetNextRegistrationNumber } from "../MyHelperMethods/MyHelperMethods";
 
 // export const MyTextField = (fieldRenderProps: FieldRenderProps) => {
 //     const { validationMessage, visited, label, id, valid, ...others } =
@@ -33,11 +34,32 @@ export const FormSubTitle = (text: string) => {
 }
 
 export const DeathRegistrationNumberInput = (fieldRenderProps: FieldRenderProps) => {
+    const [numberToggle, setNumberToggle] = React.useState(true);
     return (
         <div>
-            <p>... todo update this field...</p>
+            <Toggle
+                label="Generate Registration Number"
+                defaultChecked
+                onText="Yes"
+                offText="No"
+                onChange={(e, checked) => {
+                    // Set it to null by default.
+                    fieldRenderProps.onChange({ value: null });
+                    setNumberToggle(checked);
+
+                    // Only if checked is true will we generate the next number.
+                    if (checked) {
+                        GetNextRegistrationNumber().then(value => {
+                            fieldRenderProps.onChange({ value: value })
+                        })
+                    }
+                }}
+            />
             <div>
-                {JSON.stringify(fieldRenderProps)}
+                {
+                    (numberToggle === false) &&
+                    <div>No Registration Number Required.</div>
+                }
             </div>
         </div>
     );
