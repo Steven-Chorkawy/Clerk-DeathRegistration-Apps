@@ -1,16 +1,18 @@
 import * as React from 'react';
 import { IDeathRegisterFormProps } from '../extensions/deathRegisterForm/components/DeathRegisterForm';
 import { Field, Form, FormElement, FormRenderProps } from '@progress/kendo-react-form';
-import { DefaultButton, Depths, PrimaryButton, TextField } from '@fluentui/react';
+import { DefaultButton, Depths, Position, PrimaryButton, SpinButton, TextField } from '@fluentui/react';
 import { DEATH_REGISTRATION_LIST_TITLE, GetChoiceColumn, GetColumnDefaultValue, GetNextRegistrationNumber, getSP } from '../MyHelperMethods/MyHelperMethods';
 import { DeathRegistrationNumberInput, FormSubTitle, MyDatePicker, MyDropdown, MyLocationPicker, MyToggle } from './MyFormComponents';
+import IDeathRegisterListItem from '../MyHelperMethods/IDeathRegisterListItem';
 
 export interface IDeathRegisterNewFormProps extends IDeathRegisterFormProps {
 }
 
 export interface IDeathRegisterNewFormState {
     sexOptions?: any[]; // DropDown choices.
-    InformantsRelationshipOptions?: any[] // DropDown choices.
+    informantsRelationshipOptions?: any[] // DropDown choices.
+    deathLocationOptions?: any[];
     nextRegistrationNumber?: number;
     defaultFee: number;
 }
@@ -26,23 +28,18 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
 
 
 
-        GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Sex").then(value => {
-            this.setState({ sexOptions: value });
-        });
-        GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Informants Relationship").then(value => {
-            this.setState({ InformantsRelationshipOptions: value });
-        });
-        GetColumnDefaultValue('DefaultFee').then(v => {
-            this.setState({ defaultFee: Number(v) });
-        })
-        GetNextRegistrationNumber().then(value => {
-            this.setState({ nextRegistrationNumber: value });
-        });
+        GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Sex").then(value => this.setState({ sexOptions: value }));
+        GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Informants Relationship").then(value => this.setState({ informantsRelationshipOptions: value }));
+        GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Death Location").then(value => this.setState({ deathLocationOptions: value }));
+
+        GetColumnDefaultValue('DefaultFee').then(v => this.setState({ defaultFee: Number(v) }));
+
+        GetNextRegistrationNumber().then(value => this.setState({ nextRegistrationNumber: value }));
     }
 
     private _sp = getSP(this.props.context);
 
-    private _onSave = (input: any) => {
+    private _onSave = (input: IDeathRegisterListItem) => {
         console.log('my on save...');
         console.log(input);
 
@@ -55,6 +52,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
             ...input
         }).then(value => {
             alert('Done!');
+            this.props.onSave();
         }).catch(reason => {
             alert('failed to save...');
             console.error(reason);
@@ -64,7 +62,9 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
 
     public render(): React.ReactElement<{}> {
         return (
-            <div style={{ marginLeft: '30px', marginRight: '30px', marginTop: '15px', marginBottom: '15px', padding: '15px', boxShadow: Depths.depth8 }}>
+            <div style={{
+                marginLeft: '30px', marginRight: '30px', marginTop: '15px', marginBottom: '15px', padding: '15px', boxShadow: Depths.depth8
+            }}>
                 <h1>New Death Record</h1>
                 <hr />
                 <Form
@@ -114,6 +114,28 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 component={MyDatePicker}
                             />
                             <Field
+                                id={"Age"}
+                                name={"Age"}
+                                label={"Age"}
+                                component={SpinButton}
+                                min={0}
+                                step={1}
+                                labelPosition={Position.top}
+                            />
+                            <Field
+                                id={'DeathLocation'}
+                                name={'DeathLocation'}
+                                label={'Death Location'}
+                                component={MyDropdown}
+                                options={this.state.deathLocationOptions ? this.state.deathLocationOptions.map(f => { return { key: f, text: f }; }) : []}
+                            />
+                            <Field
+                                id={"RegistrationDate"}
+                                name={"RegistrationDate"}
+                                label={"Registration Date"}
+                                component={MyDatePicker}
+                            />
+                            <Field
                                 id={"RegistrationNumber"}
                                 name={"RegistrationNumber"}
                                 label={"Registration Number"}
@@ -154,7 +176,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 name={"InformantsRelationship"}
                                 label={"Informant's Relationship"}
                                 component={MyDropdown}
-                                options={this.state.InformantsRelationshipOptions ? this.state.InformantsRelationshipOptions.map(f => { return { key: f, text: f }; }) : []}
+                                options={this.state.informantsRelationshipOptions ? this.state.informantsRelationshipOptions.map(f => { return { key: f, text: f }; }) : []}
                             />
                             {FormSubTitle("Funeral Home Information")}
                             <Field
@@ -163,6 +185,12 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 label={"Funeral Home"}
                                 component={MyLocationPicker}
                                 context={this.props.context}
+                            />
+                            <Field
+                                id={'FuneralDirectorName'}
+                                name={'FuneralDirectorName'}
+                                label={'Funeral Director Name'}
+                                component={TextField}
                             />
                             <Field
                                 id={'WaiveFee'}
