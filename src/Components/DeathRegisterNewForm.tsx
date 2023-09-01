@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IDeathRegisterFormProps } from '../extensions/deathRegisterForm/components/DeathRegisterForm';
 import { Field, Form, FormElement, FormRenderProps } from '@progress/kendo-react-form';
 import { DefaultButton, Depths, PrimaryButton, TextField } from '@fluentui/react';
-import { DEATH_REGISTRATION_LIST_TITLE, GetChoiceColumn, GetNextRegistrationNumber, getSP } from '../MyHelperMethods/MyHelperMethods';
+import { DEATH_REGISTRATION_LIST_TITLE, GetChoiceColumn, GetColumnDefaultValue, GetNextRegistrationNumber, getSP } from '../MyHelperMethods/MyHelperMethods';
 import { DeathRegistrationNumberInput, FormSubTitle, MyDatePicker, MyDropdown, MyLocationPicker, MyToggle } from './MyFormComponents';
 
 export interface IDeathRegisterNewFormProps extends IDeathRegisterFormProps {
@@ -12,6 +12,7 @@ export interface IDeathRegisterNewFormState {
     sexOptions?: any[]; // DropDown choices.
     InformantsRelationshipOptions?: any[] // DropDown choices.
     nextRegistrationNumber?: number;
+    defaultFee: number;
 }
 
 export default class DeathRegisterNewForm extends React.Component<IDeathRegisterNewFormProps, IDeathRegisterNewFormState> {
@@ -19,18 +20,24 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
         super(props);
 
         this.state = {
-            nextRegistrationNumber: null
+            nextRegistrationNumber: null,
+            defaultFee: 25 // Hard code as 25 but the default value from SharePoint will override this. 
         }
+
+
 
         GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Sex").then(value => {
             this.setState({ sexOptions: value });
         });
         GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Informants Relationship").then(value => {
             this.setState({ InformantsRelationshipOptions: value });
+        });
+        GetColumnDefaultValue('DefaultFee').then(v => {
+            this.setState({ defaultFee: Number(v) });
         })
         GetNextRegistrationNumber().then(value => {
             this.setState({ nextRegistrationNumber: value });
-        })
+        });
     }
 
     private _sp = getSP(this.props.context);
@@ -72,6 +79,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 id={"Title"}
                                 name={"Title"}
                                 label={"Title"}
+                                required={true}
                                 component={TextField}
                             />
                             <Field
@@ -164,7 +172,15 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 onText="Yes"
                                 offText="No"
                             />
-                            <div className={'k-form-button'} style={{ marginTop: '25px' }}>
+                            <div>
+                                {
+                                    !formRenderProps.valueGetter('WaiveFee')
+                                        ? <div>Fee: {(this.state.defaultFee).toLocaleString('en-US', { style: 'currency', currency: 'USD', })}</div>
+                                        : <div>Fee: $0.00</div>
+                                }
+                            </div>
+
+                            <div className={'k-form-button'} style={{ marginTop: '45px', marginBottom: '20px' }}>
                                 <PrimaryButton
                                     text="Save"
                                     type='submit'

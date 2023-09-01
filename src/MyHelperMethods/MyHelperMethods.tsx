@@ -1,6 +1,8 @@
 import { SPFI, SPFx, spfi } from "@pnp/sp";
+import "@pnp/sp/column-defaults";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { FormCustomizerContext, ListViewCommandSetContext } from "@microsoft/sp-listview-extensibility";
+import { IFieldInfo } from "@pnp/sp/fields";
 
 //#region CONST
 export const DEATH_REGISTRATION_CONTENT_TYPE_ID = "0x0100DA81DCD717B72D499724C0023271F50C00D36BB2C588D851418CF8CEDFA4ED7036";
@@ -30,12 +32,16 @@ export const GetChoiceColumn = async (listTitle: string, columnName: string): Pr
     }
 };
 
+export const GetColumnDefaultValue = async (columnName:string) => {
+    const field: IFieldInfo = await _sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).fields.getByInternalNameOrTitle(columnName)();
+    return field.DefaultValue;
+}
+
 /**
  * ! Random Number for now...
  */
 export const GetNextRegistrationNumber = async (): Promise<number> => {
-    delay(5000);
     return Math.floor(Math.random() * 100);
 }
-const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+
 //#endregion
