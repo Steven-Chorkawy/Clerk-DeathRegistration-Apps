@@ -32,7 +32,7 @@ export const GetChoiceColumn = async (listTitle: string, columnName: string): Pr
     }
 };
 
-export const GetColumnDefaultValue = async (columnName:string) => {
+export const GetColumnDefaultValue = async (columnName: string) => {
     const field: IFieldInfo = await _sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).fields.getByInternalNameOrTitle(columnName)();
     return field.DefaultValue;
 }
@@ -41,7 +41,42 @@ export const GetColumnDefaultValue = async (columnName:string) => {
  * ! Random Number for now...
  */
 export const GetNextRegistrationNumber = async (): Promise<number> => {
-    return Math.floor(Math.random() * 100);
-}
+    let nextRegistrationNumber = 1;
 
+    // Get all the current death regs from this year. 
+    const camlQuery = `
+    <View>
+        <Query>
+            <Where>
+                <Eq>
+                    <FieldRef Name="Year"/>
+                    <Value Type="Text">${new Date().getFullYear()}</Value>
+                </Eq>
+            </Where>
+            <OrderBy>
+                <FieldRef Name='RegistrationNumber' Ascending='False' />
+            </OrderBy>
+        </Query>
+        <RowLimit>1</RowLimit>
+    </View>`;
+
+    const currentDeathRegistrations = await _sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).getItemsByCAMLQuery({
+        ViewXml: camlQuery,
+    });
+
+    console.log('current death reg res');
+    console.log(currentDeathRegistrations);
+
+    if (!currentDeathRegistrations)
+        throw Error("Could not fetch next registration number.");
+
+    if (currentDeathRegistrations.length === 0)
+        throw Error("Could not fetch next registration number.");
+
+
+    // add 1 to the last highest number.
+    nextRegistrationNumber += currentDeathRegistrations[0].RegistrationNumber;
+
+    return nextRegistrationNumber;
+}
 //#endregion
