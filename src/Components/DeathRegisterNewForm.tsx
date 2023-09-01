@@ -64,7 +64,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
 
     public render(): React.ReactElement<{}> {
         return (
-            <div style={{ margin: '10px', padding: '10px', boxShadow: Depths.depth8 }}>
+            <div style={{ marginLeft: '30px', marginRight: '30px', marginTop: '15px', marginBottom: '15px', padding: '15px', boxShadow: Depths.depth8 }}>
                 <h1>New Death Record</h1>
                 <hr />
                 <Form
