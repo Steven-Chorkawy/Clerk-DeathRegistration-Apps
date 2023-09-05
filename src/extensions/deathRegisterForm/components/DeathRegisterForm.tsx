@@ -34,7 +34,7 @@ export default class DeathRegisterForm extends React.Component<IDeathRegisterFor
       return <DeathRegisterNewForm {...this.props} />
     }
     if (this.props.displayMode === FormDisplayMode.Display) {
-      return <div>hello world... display form.</div>;
+      return <DeathRegisterNewForm {...this.props} />
     }
 
     return <div>hello world default!</div>;
