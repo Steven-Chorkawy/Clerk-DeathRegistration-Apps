@@ -40,24 +40,24 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
     private _sp = getSP(this.props.context);
 
     private _onSave = (input: IDeathRegisterListItem) => {
-        console.log('my on save...');
-        console.log(input);
+        // Before we submit this form double check that the Registration Number is still valid. 
+        GetNextRegistrationNumber().then((newRegNumber: number) => {
+            input.RegistrationNumber = this.state.nextRegistrationNumber;
 
-        console.log('adding regi number');
-        input.RegistrationNumber = this.state.nextRegistrationNumber;
-        console.log(input);
-
-        // ! Testing saving...
-        this._sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).items.add({
-            ...input
-        }).then(value => {
-            alert('Done!');
-            this.props.onSave();
-        }).catch(reason => {
-            alert('failed to save...');
-            console.error(reason);
+            if (newRegNumber !== this.state.nextRegistrationNumber && this.state.nextRegistrationNumber !== null) {
+                alert(`The Registration Number ${this.state.nextRegistrationNumber} has been taken.  ${newRegNumber} is the next valid number available and will automatically be applied.`);
+                input.RegistrationNumber = newRegNumber;
+            }
+            
+            this._sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).items.add({
+                ...input
+            }).then(value => {
+                this.props.onSave();
+            }).catch(reason => {
+                alert('failed to save...');
+                console.error(reason);
+            });
         });
-        //this.props.onSave(); // Must be called at the end of my save method.
     }
 
     public render(): React.ReactElement<{}> {
@@ -144,7 +144,13 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 }}
                                 component={DeathRegistrationNumberInput}
                             />
-                            {this.state.nextRegistrationNumber && <div>next for this year {this.state.nextRegistrationNumber}</div>}
+                            {
+                                this.state.nextRegistrationNumber &&
+                                <div>Next for this year: {this.state.nextRegistrationNumber}</div>
+                            }
+                            {
+                                <a href={`https://claringtonnet.sharepoint.com/sites/Clerk/Lists/DeathRegistration?FilterField1=Year&FilterValue1=${new Date().getFullYear()}&FilterType1=Text&sortField=RegistrationNumber&isAscending=false`} target='_blank'>Click to View {new Date().getFullYear()} Death Registrations</a>
+                            }
                             <Field
                                 id={"Cause"}
                                 name={"Cause"}
@@ -218,7 +224,18 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                     text="Clear"
                                     style={{ marginLeft: '10px', marginRight: '10px' }}
                                     onClick={e => {
-                                        formRenderProps.onFormReset();
+                                        if (confirm("Are you sure you want to clear this form? Any unsaved information will be lost.")) {
+                                            formRenderProps.onFormReset();
+                                        }
+                                    }}
+                                />
+                                <DefaultButton
+                                    text="Close"
+                                    style={{ marginLeft: '10px', marginRight: '10px' }}
+                                    onClick={e => {
+                                        if (confirm("Are you sure you want to close this form? Any unsaved information will be lost.")) {
+                                            this.props.onClose();
+                                        }
                                     }}
                                 />
                             </div>
