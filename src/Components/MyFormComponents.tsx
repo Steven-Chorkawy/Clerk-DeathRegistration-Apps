@@ -4,27 +4,6 @@ import { FieldRenderProps } from "@progress/kendo-react-form";
 import * as React from "react";
 import { GetNextRegistrationNumber } from "../MyHelperMethods/MyHelperMethods";
 
-// export const MyTextField = (fieldRenderProps: FieldRenderProps) => {
-//     const { validationMessage, visited, label, id, valid, ...others } =
-//         fieldRenderProps;
-//     const showValidationMessage: string | false | null =
-//         visited && validationMessage;
-//     return (
-//         <FieldWrapper>
-//             <div className={"k-form-field-wrap"}>
-//                 <Label editorId={id} editorValid={valid}>
-//                     {label}
-//                 </Label>
-//                 <TextField id={id} {...others} />
-//                 {!showValidationMessage && (
-//                     <Hint>...Validation Message Here...</Hint>
-//                 )}
-//                 {showValidationMessage && <Error>{validationMessage}</Error>}
-//             </div>
-//         </FieldWrapper>
-//     );
-// };
-
 export const FormSubTitle = (text: string) => {
     return (
         <div>
