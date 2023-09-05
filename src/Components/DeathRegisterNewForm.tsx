@@ -28,18 +28,18 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
 
 
 
-        GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Sex").then(value => this.setState({ sexOptions: value }));
-        GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Informants Relationship").then(value => this.setState({ informantsRelationshipOptions: value }));
-        GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Death Location").then(value => this.setState({ deathLocationOptions: value }));
+        GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Sex").then(value => this.setState({ sexOptions: value })).catch(reason => alert('Failed to get Sex options.'));
+        GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Informants Relationship").then(value => this.setState({ informantsRelationshipOptions: value })).catch(reason => alert('Failed to get Informants Relationship options.'));
+        GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Death Location").then(value => this.setState({ deathLocationOptions: value })).catch(reason => alert('Failed to get Death Location options.'));
 
-        GetColumnDefaultValue('DefaultFee').then(v => this.setState({ defaultFee: Number(v) }));
+        GetColumnDefaultValue('DefaultFee').then(v => this.setState({ defaultFee: Number(v) })).catch(reason => alert('Failed to get Fees default value.'));
 
-        GetNextRegistrationNumber().then(value => this.setState({ nextRegistrationNumber: value }));
+        GetNextRegistrationNumber().then(value => this.setState({ nextRegistrationNumber: value })).catch(reason => alert('Failed to get next registration number'));
     }
 
     private _sp = getSP(this.props.context);
 
-    private _onSave = (input: IDeathRegisterListItem) => {
+    private _onSave = (input: IDeathRegisterListItem): void => {
         // Before we submit this form double check that the Registration Number is still valid. 
         GetNextRegistrationNumber().then((newRegNumber: number) => {
             input.RegistrationNumber = this.state.nextRegistrationNumber;
@@ -48,7 +48,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                 alert(`The Registration Number ${this.state.nextRegistrationNumber} has been taken.  ${newRegNumber} is the next valid number available and will automatically be applied.`);
                 input.RegistrationNumber = newRegNumber;
             }
-            
+
             this._sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).items.add({
                 ...input
             }).then(value => {
@@ -57,7 +57,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                 alert('failed to save...');
                 console.error(reason);
             });
-        });
+        }).catch(reason => alert('Failed to get next registration number.'));
     }
 
     public render(): React.ReactElement<{}> {
@@ -149,7 +149,9 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 <div>Next for this year: {this.state.nextRegistrationNumber}</div>
                             }
                             {
-                                <a href={`https://claringtonnet.sharepoint.com/sites/Clerk/Lists/DeathRegistration?FilterField1=Year&FilterValue1=${new Date().getFullYear()}&FilterType1=Text&sortField=RegistrationNumber&isAscending=false`} target='_blank'>Click to View {new Date().getFullYear()} Death Registrations</a>
+                                <a href={`https://claringtonnet.sharepoint.com/sites/Clerk/Lists/DeathRegistration?FilterField1=Year&FilterValue1=${new Date().getFullYear()}&FilterType1=Text&sortField=RegistrationNumber&isAscending=false`} target='_blank' rel="noreferrer">
+                                    Click to View {new Date().getFullYear()} Death Registrations
+                                </a>
                             }
                             <Field
                                 id={"Cause"}

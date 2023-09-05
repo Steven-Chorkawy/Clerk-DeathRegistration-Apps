@@ -32,7 +32,7 @@ export const GetChoiceColumn = async (listTitle: string, columnName: string): Pr
     }
 };
 
-export const GetColumnDefaultValue = async (columnName: string) => {
+export const GetColumnDefaultValue = async (columnName: string): Promise<string> => {
     const field: IFieldInfo = await _sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).fields.getByInternalNameOrTitle(columnName)();
     return field.DefaultValue;
 }

@@ -4,7 +4,7 @@ import { FieldRenderProps } from "@progress/kendo-react-form";
 import * as React from "react";
 import { GetNextRegistrationNumber } from "../MyHelperMethods/MyHelperMethods";
 
-export const FormSubTitle = (text: string) => {
+export const FormSubTitle = (text: string): any => {
     return (
         <div>
             <h2>{text}</h2>
@@ -12,7 +12,7 @@ export const FormSubTitle = (text: string) => {
     );
 }
 
-export const DeathRegistrationNumberInput = (fieldRenderProps: FieldRenderProps) => {
+export const DeathRegistrationNumberInput = (fieldRenderProps: FieldRenderProps): any => {
     const [numberToggle, setNumberToggle] = React.useState(true);
     return (
         <div>
@@ -30,6 +30,9 @@ export const DeathRegistrationNumberInput = (fieldRenderProps: FieldRenderProps)
                     if (checked) {
                         GetNextRegistrationNumber().then(value => {
                             fieldRenderProps.onChange({ value: value })
+                        }).catch(reason => {
+                            alert('Failed to get next registration number!');
+                            console.error(reason);
                         })
                     }
                 }}
@@ -44,7 +47,7 @@ export const DeathRegistrationNumberInput = (fieldRenderProps: FieldRenderProps)
     );
 }
 
-export const MyToggle = (fieldRenderProps: FieldRenderProps) => {
+export const MyToggle = (fieldRenderProps: FieldRenderProps): any => {
     return (<div>
         <Toggle
             {...fieldRenderProps}
@@ -55,7 +58,7 @@ export const MyToggle = (fieldRenderProps: FieldRenderProps) => {
     </div>);
 }
 
-export const MyDropdown = (fieldRenderProps: FieldRenderProps) => {
+export const MyDropdown = (fieldRenderProps: FieldRenderProps): any => {
     const {
         options,
         onChange,
@@ -73,7 +76,7 @@ export const MyDropdown = (fieldRenderProps: FieldRenderProps) => {
     );
 }
 
-export const MyDatePicker = (fieldRenderProps: FieldRenderProps) => {
+export const MyDatePicker = (fieldRenderProps: FieldRenderProps): any => {
     return (
         <div>
             <DatePicker
@@ -84,7 +87,7 @@ export const MyDatePicker = (fieldRenderProps: FieldRenderProps) => {
     );
 }
 
-export const MyLocationPicker = (fieldRenderProps: FieldRenderProps) => {
+export const MyLocationPicker = (fieldRenderProps: FieldRenderProps): any => {
     return (
         <div>
             <LocationPicker
