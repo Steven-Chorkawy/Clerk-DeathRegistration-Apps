@@ -27,8 +27,8 @@ export default class DeathRegisterDisplayForm extends React.Component<IDeathRegi
             <div style={{
                 marginLeft: '30px', marginRight: '30px', marginTop: '15px', marginBottom: '15px', padding: '15px', boxShadow: Depths.depth8
             }}>
-                <h2>Viewing Death Record of '{this.props.context._item.LastName}, {this.props.context._item.FirstName} {this.props.context._item.MiddleName}'</h2>
-                <Pivot aria-label="Basic Pivot Example">
+                <h2 className='no-print'>Viewing Death Record of '{this.props.context._item.LastName}, {this.props.context._item.FirstName} {this.props.context._item.MiddleName}'</h2>
+                <Pivot aria-label="Basic Pivot Example" className='no-print-pivot'>
                     <PivotItem
                         headerText="Death Registration"
                         headerButtonProps={{

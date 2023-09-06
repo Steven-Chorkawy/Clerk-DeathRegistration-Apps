@@ -11,6 +11,7 @@ import "@pnp/sp/folders";
 import "@pnp/sp/security";
 import DeathRegisterNewForm from '../../../Components/DeathRegisterNewForm';
 import DeathRegisterDisplayForm from '../../../Components/DeathRegisterDisplayForm';
+import '../../../Components/PrintStyles.css';
 
 export interface IDeathRegisterFormProps {
   context: FormCustomizerContext | any;

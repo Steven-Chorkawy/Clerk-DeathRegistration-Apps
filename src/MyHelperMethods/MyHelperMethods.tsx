@@ -21,17 +21,25 @@ export const getSP = (context?: WebPartContext | ListViewCommandSetContext | For
 
 
 //#region Formaters
+export const printPageArea = (areaID: string) => {
+    var printContent = document.getElementById(areaID).innerHTML;
+    var originalContent = document.body.innerHTML;
+    document.body.innerHTML = printContent;
+    window.print();
+    document.body.innerHTML = originalContent;
+}
+
 // Copied from here: https://stackoverflow.com/a/13627586
 export const ordinal_suffix_of = (i: number): string => {
     var j = i % 10,
         k = i % 100;
-    if (j == 1 && k != 11) {
+    if (j === 1 && k !== 11) {
         return i + "st";
     }
-    if (j == 2 && k != 12) {
+    if (j === 2 && k !== 12) {
         return i + "nd";
     }
-    if (j == 3 && k != 13) {
+    if (j === 3 && k !== 13) {
         return i + "rd";
     }
     return i + "th";
