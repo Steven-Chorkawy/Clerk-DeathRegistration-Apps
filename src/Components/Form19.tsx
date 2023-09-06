@@ -1,28 +1,72 @@
 import * as React from 'react';
 import IDeathRegisterFormProps from '../MyHelperMethods/IDeathRegisterFormProps';
+import { Stack, Text } from '@fluentui/react';
+import { ordinal_suffix_of } from '../MyHelperMethods/MyHelperMethods';
 // import { getSP } from '../MyHelperMethods/MyHelperMethods';
 
-export default class Form19 extends React.Component<IDeathRegisterFormProps, any> {
+export interface IForm19State {
+    dayOfDeath: string;
+    monthOfDeath: string;
+    yearOfDeath: number;
+    formattedRegistrationDate: string
+}
+
+export default class Form19 extends React.Component<IDeathRegisterFormProps, IForm19State> {
     constructor(props: any) {
         super(props);
+        this.state = {
+            dayOfDeath: ordinal_suffix_of(new Date(this.props.deathRegisterItem.DateOfDeath).getDay()),
+            monthOfDeath: new Date(this.props.deathRegisterItem.DateOfDeath).toLocaleString('default', { month: 'long' }),
+            yearOfDeath: new Date(this.props.deathRegisterItem.DateOfDeath).getFullYear(),
+            formattedRegistrationDate: `${new Date(this.props.deathRegisterItem.RegistrationDate).toLocaleString('default', { month: 'long' })} ${new Date(this.props.deathRegisterItem.RegistrationDate).getDay()}, ${new Date(this.props.deathRegisterItem.RegistrationDate).getFullYear()}`
+        }
     }
 
     //private _sp = getSP(this.props.context);
 
     public render(): React.ReactElement<{}> {
+        const bold_font_style = { fontWeight: 'bold' };
         return (
             <div>
-                <h1>Form 19</h1>
-                <h3><em>Vital Statistics Act</em></h3>
-                <h2>BURIAL PERMIT</h2>
-                <p>Under the Vital Statistics Act and the regulations, and subject to the limitations thereof, this permit is granted to</p>
-                <div>{this.props.deathRegisterItem.FuneralDirectorName}</div>
-                <div>... real data here...</div>
-                <p>for the Purpose of the Burial or other Disposition of the Body of</p>
-                <div>{this.props.deathRegisterItem.LastName}, {this.props.deathRegisterItem.FirstName} {this.props.deathRegisterItem.MiddleName}</div>
-                <p>who died at</p>
-                <div>... real data here...</div>
-                <div>on the ...FORMAT DATE HERE...</div>
+                <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
+                    <Text variant='xxLarge'>Form 19</Text>
+                    <Text variant='mediumPlus'><i>Vital Statistics Act</i></Text>
+                    <Text variant='xLargePlus'>BURIAL PERMIT</Text>
+                    <br />
+                    <Text variant='small'>Under the Vital Statistics Act and the regulations, and subject to the limitations thereof, this permit is granted to</Text>
+                    <br />
+                    <Text variant='mediumPlus' style={bold_font_style}>{this.props.deathRegisterItem.FuneralDirectorName}</Text>
+                    <Text variant='mediumPlus' style={bold_font_style}>{JSON.parse(this.props.deathRegisterItem.FuneralHome).DisplayName}</Text>
+                    <Text variant='mediumPlus' style={bold_font_style}>{JSON.parse(this.props.deathRegisterItem.FuneralHome).Address.Street}</Text>
+                    <Text variant='mediumPlus' style={bold_font_style}>{JSON.parse(this.props.deathRegisterItem.FuneralHome).Address.City}, {JSON.parse(this.props.deathRegisterItem.FuneralHome).Address.State}  {JSON.parse(this.props.deathRegisterItem.FuneralHome).Address.PostalCode}</Text>
+                </Stack>
+                <Stack>
+                    <br />
+                    <Text variant='small'>for the Purpose of the Burial or other Disposition of the Body of</Text>
+                    <br />
+                </Stack>
+                <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
+                    <Text variant='large' style={bold_font_style}>{this.props.deathRegisterItem.LastName}, {this.props.deathRegisterItem.FirstName}</Text>
+                </Stack>
+                <Stack>
+                    <br />
+                    <Text variant='small'>who died at</Text>
+                    <br />
+                </Stack>
+                <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
+                    <Text variant='mediumPlus' style={bold_font_style}>{this.props.deathRegisterItem.DeathLocation}</Text>
+                </Stack>
+                <br />
+                <Stack>
+                    <Text>on the <Text variant='mediumPlus' style={bold_font_style}>{this.state.dayOfDeath}</Text> day of <Text variant='mediumPlus' style={bold_font_style}>{this.state.monthOfDeath}, {this.state.yearOfDeath}</Text></Text>
+                </Stack>
+                <br />
+                <br />
+                <Stack horizontalAlign='end' style={{ textAlign: 'right' }}>
+                    <Text variant='small' style={{ borderTop: 'solid' }}>(signature of division registrar)</Text>
+                    <Text variant='small'>Registration Division: <b>1811</b></Text>
+                    <Text variant='small'><b>{this.state.formattedRegistrationDate}</b></Text>
+                </Stack>
             </div>
         );
     }
