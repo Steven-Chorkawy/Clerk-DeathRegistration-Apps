@@ -38,13 +38,13 @@ export default class DeathRegisterDisplayForm extends React.Component<IDeathRegi
                     >
                         <DeathRegisterListItemDetails deathRegisterItem={this.props.context._item} />
                     </PivotItem>
-                    <PivotItem headerText="Burial Permit">
+                    <PivotItem headerText="Burial Permit" className='no-print-pivot'>
                         <Form19 deathRegisterItem={this.props.context._item} />
                     </PivotItem>
-                    <PivotItem headerText="Acknowledgement of Death">
+                    <PivotItem headerText="Acknowledgement of Death" className='no-print-pivot'>
                         <Form18 deathRegisterItem={this.props.context._item} />
                     </PivotItem>
-                    <PivotItem headerText="Notice of Registration of Death">
+                    <PivotItem headerText="Notice of Registration of Death" className='no-print-pivot'>
                         <Form17 deathRegisterItem={this.props.context._item} />
                     </PivotItem>
                 </Pivot>
