@@ -10,3 +10,8 @@ export interface IForm18State extends IDeathFormState {
     monthOfRegistrationDate: string;
     yearOfRegistrationDate: string | number;
 }
+
+export interface IForm17State {
+    registrationDivision?: string;
+    addressOfDeceased?: string;
+}
