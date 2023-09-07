@@ -44,6 +44,26 @@ export const ordinal_suffix_of = (i: number): string => {
     }
     return i + "th";
 }
+
+/**
+ * Format date as full month name, date, and full year. 
+ * EX: January 1, 2024
+ * @param i Date as string
+ * @returns Formatted date as a string.
+ */
+export const MyDateFormat1 = (i: string): string => {
+    return new Date(i).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+/**
+ * Format date as yyyy-mm-dd
+ * EX: 2024-01-01
+ * @param i Date as string
+ * @returns Formatted date as a string.
+ */
+export const MyDateFormat2 = (i: string): string => {
+    return new Date(i).toISOString().slice(0, 10);
+}
 //#endregion
 
 //#region Read Methods

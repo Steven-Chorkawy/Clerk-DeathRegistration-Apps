@@ -1,6 +1,7 @@
 import * as React from 'react';
 import IDeathRegisterFormProps from '../MyHelperMethods/IDeathRegisterFormProps';
 import { Stack, Text } from '@fluentui/react';
+import { MyDateFormat2 } from '../MyHelperMethods/MyHelperMethods';
 // import { getSP } from '../MyHelperMethods/MyHelperMethods';
 
 export default class DeathRegisterListItemDetails extends React.Component<IDeathRegisterFormProps, any> {
@@ -27,12 +28,12 @@ export default class DeathRegisterListItemDetails extends React.Component<IDeath
                     {this.MyStack('First Name', this.props.deathRegisterItem.FirstName)}
                     {this.MyStack('Middle Name', this.props.deathRegisterItem.MiddleName)}
                     {this.MyStack('Sex', this.props.deathRegisterItem.Sex)}
-                    {this.MyStack('Date of Death', this.props.deathRegisterItem.DateOfDeath)}
+                    {this.MyStack('Date of Death', MyDateFormat2(this.props.deathRegisterItem.DateOfDeath))}
                     {this.MyStack('Age', this.props.deathRegisterItem.Age)}
                     {this.MyStack('Death Location', this.props.deathRegisterItem.DeathLocation)}
-                    {this.MyStack('Registration Date', this.props.deathRegisterItem.RegistrationDate)}
+                    {this.MyStack('Registration Date', MyDateFormat2(this.props.deathRegisterItem.RegistrationDate))}
                     {this.MyStack('Registration Number', this.props.deathRegisterItem.RegistrationNumber)}
-                    {this.MyStack('Correction Date', '???')}
+                    {this.MyStack('Correction Date', '??? what field is this from ???')}
                     {this.MyStack('Cause', this.props.deathRegisterItem.Cause)}
                 </Stack>
 

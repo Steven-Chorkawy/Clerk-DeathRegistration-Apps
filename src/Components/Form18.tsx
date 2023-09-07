@@ -7,7 +7,7 @@ import { ordinal_suffix_of } from '../MyHelperMethods/MyHelperMethods';
 export default class Form18 extends React.Component<IDeathRegisterFormProps, IForm18State> {
     constructor(props: any) {
         super(props);
-        console.log(this.props);
+
         this.state = {
             dayOfDeath: ordinal_suffix_of(new Date(this.props.deathRegisterItem.DateOfDeath).getDay()),
             monthOfDeath: new Date(this.props.deathRegisterItem.DateOfDeath).toLocaleString('default', { month: 'long' }),
@@ -56,10 +56,10 @@ export default class Form18 extends React.Component<IDeathRegisterFormProps, IFo
                 <br />
                 <br />
                 <Stack horizontal horizontalAlign="space-evenly">
-                    <span style={itemStyles}>
-                        <Text variant='small' style={{ marginBottom: '10px', textAlign: 'right' }}>Registration Division: <b>1811</b></Text>
+                    <span style={{ ...itemStyles }}>
+                        <Text variant='small' style={{ marginBottom: '10px' }}>Registration Division: <b>1811</b></Text>
                     </span>
-                    <span style={itemStyles}>
+                    <span style={{ ...itemStyles, textAlign: 'right' }}>
                         <Text variant='small' style={{ borderTop: 'solid', marginBottom: '10px', width: '200px' }}>(signature of division registrar)</Text>
                     </span>
                 </Stack>
