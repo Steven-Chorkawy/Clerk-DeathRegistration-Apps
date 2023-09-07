@@ -3,7 +3,6 @@ import IDeathRegisterFormProps from '../MyHelperMethods/IDeathRegisterFormProps'
 import { Stack, Text } from '@fluentui/react';
 import { ordinal_suffix_of } from '../MyHelperMethods/MyHelperMethods';
 import IDeathFormState from '../MyHelperMethods/IDeathFormState';
-// import { getSP } from '../MyHelperMethods/MyHelperMethods';
 
 export default class Form19 extends React.Component<IDeathRegisterFormProps, IDeathFormState> {
     constructor(props: any) {
@@ -15,8 +14,6 @@ export default class Form19 extends React.Component<IDeathRegisterFormProps, IDe
             formattedRegistrationDate: `${new Date(this.props.deathRegisterItem.RegistrationDate).toLocaleString('default', { month: 'long' })} ${new Date(this.props.deathRegisterItem.RegistrationDate).getDay()}, ${new Date(this.props.deathRegisterItem.RegistrationDate).getFullYear()}`
         }
     }
-
-    //private _sp = getSP(this.props.context);
 
     public render(): React.ReactElement<{}> {
         const bold_font_style = { fontWeight: 'bold' };
