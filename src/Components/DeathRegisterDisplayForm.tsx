@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IDeathRegisterFormProps } from '../extensions/deathRegisterForm/components/DeathRegisterForm';
-import { Pivot, PivotItem } from '@fluentui/react';
+import { CommandBar, Pivot, PivotItem } from '@fluentui/react';
 import Form19 from './Form19';
 import Form18 from './Form18';
 import Form17 from './Form17';
@@ -33,7 +33,7 @@ export default class DeathRegisterDisplayForm extends React.Component<IDeathRegi
             }}>
                 <h2 className='no-print'>Viewing Death Record of '{this.props.context._item.LastName}, {this.props.context._item.FirstName} {this.props.context._item.MiddleName}'</h2>
 
-                {/* <CommandBar
+                <CommandBar
                     className='no-print'
                     items={[
                         {
@@ -46,10 +46,16 @@ export default class DeathRegisterDisplayForm extends React.Component<IDeathRegi
                             key: 'convertToPDF',
                             text: 'Convert to PDF',
                             iconProps: { iconName: 'PDF' },
-                            onClick: (e, item) => window.print()
+                            onClick: (e, item) => { alert('Not programmed yet :)'); }
+                        },
+                        {
+                            key: 'convertToWord',
+                            text: 'Convert to Word',
+                            iconProps: { iconName: 'WordDocument' },
+                            onClick: (e, item) => { alert('Not programmed yet :)'); }
                         },
                     ]}
-                /> */}
+                />
 
                 <Pivot aria-label="Basic Pivot Example" className='no-print-pivot'>
                     <PivotItem

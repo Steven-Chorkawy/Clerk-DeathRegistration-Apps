@@ -2,16 +2,10 @@ import * as React from 'react';
 import IDeathRegisterFormProps from '../MyHelperMethods/IDeathRegisterFormProps';
 import { Stack, Text } from '@fluentui/react';
 import { ordinal_suffix_of } from '../MyHelperMethods/MyHelperMethods';
+import IDeathFormState from '../MyHelperMethods/IDeathFormState';
 // import { getSP } from '../MyHelperMethods/MyHelperMethods';
 
-export interface IForm19State {
-    dayOfDeath: string;
-    monthOfDeath: string;
-    yearOfDeath: number;
-    formattedRegistrationDate: string
-}
-
-export default class Form19 extends React.Component<IDeathRegisterFormProps, IForm19State> {
+export default class Form19 extends React.Component<IDeathRegisterFormProps, IDeathFormState> {
     constructor(props: any) {
         super(props);
         this.state = {
