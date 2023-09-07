@@ -10,9 +10,11 @@ import "@pnp/sp/files";
 import "@pnp/sp/folders";
 import "@pnp/sp/security";
 import DeathRegisterNewForm from '../../../Components/DeathRegisterNewForm';
+import DeathRegisterDisplayForm from '../../../Components/DeathRegisterDisplayForm';
+import '../../../Components/PrintStyles.css';
 
 export interface IDeathRegisterFormProps {
-  context: FormCustomizerContext;
+  context: FormCustomizerContext | any;
   displayMode: FormDisplayMode;
   onSave: () => void;
   onClose: () => void;
@@ -34,7 +36,7 @@ export default class DeathRegisterForm extends React.Component<IDeathRegisterFor
       return <DeathRegisterNewForm {...this.props} />
     }
     if (this.props.displayMode === FormDisplayMode.Display) {
-      return <div>hello world... display form.</div>;
+      return <DeathRegisterDisplayForm {...this.props} />
     }
 
     return <div>hello world default!</div>;

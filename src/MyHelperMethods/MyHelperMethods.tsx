@@ -19,6 +19,53 @@ export const getSP = (context?: WebPartContext | ListViewCommandSetContext | For
     return _sp;
 };
 
+
+//#region Formaters
+export const printPageArea = (areaID: string): void => {
+    const printContent = document.getElementById(areaID).innerHTML;
+    const originalContent = document.body.innerHTML;
+    document.body.innerHTML = printContent;
+    window.print();
+    document.body.innerHTML = originalContent;
+}
+
+// Copied from here: https://stackoverflow.com/a/13627586
+export const ordinal_suffix_of = (i: number): string => {
+    const j = i % 10,
+        k = i % 100;
+    if (j === 1 && k !== 11) {
+        return i + "st";
+    }
+    if (j === 2 && k !== 12) {
+        return i + "nd";
+    }
+    if (j === 3 && k !== 13) {
+        return i + "rd";
+    }
+    return i + "th";
+}
+
+/**
+ * Format date as full month name, date, and full year. 
+ * EX: January 1, 2024
+ * @param i Date as string
+ * @returns Formatted date as a string.
+ */
+export const MyDateFormat1 = (i: string): string => {
+    return new Date(i).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+/**
+ * Format date as yyyy-mm-dd
+ * EX: 2024-01-01
+ * @param i Date as string
+ * @returns Formatted date as a string.
+ */
+export const MyDateFormat2 = (i: string): string => {
+    return new Date(i).toISOString().slice(0, 10);
+}
+//#endregion
+
 //#region Read Methods
 export const GetChoiceColumn = async (listTitle: string, columnName: string): Promise<string[]> => {
     const sp = getSP();
