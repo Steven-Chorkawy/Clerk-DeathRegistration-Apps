@@ -79,8 +79,8 @@ export default class Form17 extends React.Component<IDeathRegisterFormProps, IFo
                 <Stack style={borderStackStyle}>
                     <Text><b>9. Name and Address of Funeral Director</b></Text>
                     <Text>{this.props.deathRegisterItem.FuneralDirectorName}</Text>
-                    <Text>{JSON.parse(this.props.deathRegisterItem.FuneralHome).DisplayName}</Text>
-                    <Text>{JSON.parse(this.props.deathRegisterItem.FuneralHome).Address.Street}, {JSON.parse(this.props.deathRegisterItem.FuneralHome).Address.City}, {JSON.parse(this.props.deathRegisterItem.FuneralHome).Address.State}  {JSON.parse(this.props.deathRegisterItem.FuneralHome).Address.PostalCode}</Text>
+                    <Text>{JSON.parse(this.props.deathRegisterItem.FuneralHome)?.DisplayName}</Text>
+                    <Text>{JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.Street}, {JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.City}, {JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.State}  {JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.PostalCode}</Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
                     <Text><b>10. Date of Registration:</b> {MyDateFormat1(this.props.deathRegisterItem.RegistrationDate)}</Text>
