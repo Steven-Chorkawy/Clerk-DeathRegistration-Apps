@@ -8,7 +8,7 @@ export default class DeathRegisterListItemDetails extends React.Component<IDeath
         super(props);
         console.log(this.props);
     }
-    private MyStack = (label: string, value: string | number | Date) => {
+    private MyStack = (label: string, value: string | number | Date): React.ReactElement<{}> => {
         return (
             <Stack horizontal tokens={{ childrenGap: '2.5%' }}>
                 <Text variant='large' style={{ width: '20%', textAlign: 'right' }}>{label}:</Text>
