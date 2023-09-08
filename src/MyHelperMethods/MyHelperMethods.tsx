@@ -124,9 +124,6 @@ export const GetNextRegistrationNumber = async (): Promise<number> => {
         ViewXml: camlQuery,
     });
 
-    console.log('current death reg res');
-    console.log(currentDeathRegistrations);
-
     if (!currentDeathRegistrations)
         throw Error("Could not fetch next registration number.");
 

@@ -9,6 +9,7 @@ import {
 import DeathRegisterForm, { IDeathRegisterFormProps } from './components/DeathRegisterForm';
 import { getSP } from '../../MyHelperMethods/MyHelperMethods';
 
+
 /**
  * If your form customizer uses the ClientSideComponentProperties JSON input,
  * it will be deserialized into the BaseExtension.properties object.
@@ -24,7 +25,7 @@ const LOG_SOURCE: string = 'DeathRegisterFormFormCustomizer';
 export default class DeathRegisterFormFormCustomizer
   extends BaseFormCustomizer<IDeathRegisterFormFormCustomizerProperties> {
 
-  public onInit(): Promise<void> {    
+  public onInit(): Promise<void> {
     // Add your custom initialization to this method. The framework will wait
     // for the returned promise to resolve before rendering the form.
     Log.info(LOG_SOURCE, 'Activated DeathRegisterFormFormCustomizer with properties:');
@@ -35,7 +36,7 @@ export default class DeathRegisterFormFormCustomizer
     return Promise.resolve();
   }
 
-  public render(): void {    
+  public render(): void {
     // Use this method to perform your custom rendering.
 
     const deathRegisterForm: React.ReactElement<{}> =
@@ -44,7 +45,7 @@ export default class DeathRegisterFormFormCustomizer
         displayMode: this.displayMode,
         onSave: this._onSave,
         onClose: this._onClose
-       } as IDeathRegisterFormProps);
+      } as IDeathRegisterFormProps);   
 
     ReactDOM.render(deathRegisterForm, this.domElement);
   }
@@ -61,7 +62,7 @@ export default class DeathRegisterFormFormCustomizer
     this.formSaved();
   }
 
-  private _onClose =  (): void => {
+  private _onClose = (): void => {
     // You MUST call this.formClosed() after you close the form.
     this.formClosed();
   }

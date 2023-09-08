@@ -7,7 +7,6 @@ import { MyDateFormat2 } from '../MyHelperMethods/MyHelperMethods';
 export default class DeathRegisterListItemDetails extends React.Component<IDeathRegisterFormProps, any> {
     constructor(props: any) {
         super(props);
-        console.log(this.props);
     }
     private MyStack = (label: string, value: string | number | Date): React.ReactElement<{}> => {
         return (
