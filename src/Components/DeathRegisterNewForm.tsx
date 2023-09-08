@@ -3,7 +3,7 @@ import { IDeathRegisterFormProps } from '../extensions/deathRegisterForm/compone
 import { Field, Form, FormElement, FormRenderProps } from '@progress/kendo-react-form';
 import { DefaultButton, Depths, Position, PrimaryButton, SpinButton, TextField } from '@fluentui/react';
 import { DEATH_REGISTRATION_LIST_TITLE, FormatTitle, GetChoiceColumn, GetColumnDefaultValue, GetNextRegistrationNumber, getSP } from '../MyHelperMethods/MyHelperMethods';
-import { DeathRegistrationNumberInput, FormSubTitle, MyDatePicker, MyDropdown, MyLocationPicker, MyTextField, MyToggle } from './MyFormComponents';
+import { DeathRegistrationNumberInput, FormSubTitle, MyComboBox, MyDatePicker, MyDropdown, MyLocationPicker, MyTextField, MyToggle } from './MyFormComponents';
 import IDeathRegisterListItem from '../MyHelperMethods/IDeathRegisterListItem';
 import PackageSolutionVersion from './PackageSolutionVersion';
 
@@ -130,7 +130,8 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 id={'DeathLocation'}
                                 name={'DeathLocation'}
                                 label={'Death Location'}
-                                component={MyDropdown}
+                                component={MyComboBox}
+                                allowFreeInput={true}
                                 options={this.state.deathLocationOptions ? this.state.deathLocationOptions.map(f => { return { key: f, text: f }; }) : []}
                             />
                             <Field
@@ -187,7 +188,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 id={"InformantsRelationship"}
                                 name={"InformantsRelationship"}
                                 label={"Informant's Relationship"}
-                                component={MyDropdown}
+                                component={MyComboBox}
                                 options={this.state.informantsRelationshipOptions ? this.state.informantsRelationshipOptions.map(f => { return { key: f, text: f }; }) : []}
                             />
                             {FormSubTitle("Funeral Home Information")}

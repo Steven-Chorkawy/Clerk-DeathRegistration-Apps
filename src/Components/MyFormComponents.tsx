@@ -1,4 +1,4 @@
-import { DatePicker, Dropdown, TextField, Toggle } from "@fluentui/react";
+import { ComboBox, DatePicker, Dropdown, TextField, Toggle } from "@fluentui/react";
 import { ILocationPickerItem, LocationPicker } from "@pnp/spfx-controls-react/lib/LocationPicker";
 import { FieldRenderProps } from "@progress/kendo-react-form";
 import * as React from "react";
@@ -85,6 +85,20 @@ export const MyDropdown = (fieldRenderProps: FieldRenderProps): any => {
                 onChange={(e, opts) => {
                     onChange({ value: opts.text });
                 }}
+            />
+        </div>
+    );
+}
+
+export const MyComboBox = (fieldRenderProps: FieldRenderProps): any => {
+    return (
+        <div>
+            <ComboBox
+                {...fieldRenderProps}
+                options={fieldRenderProps.options}
+                autoComplete="on"
+                allowFreeInput={true}
+                onChange={(e, option) => fieldRenderProps.onChange({ value: option.text })}
             />
         </div>
     );
