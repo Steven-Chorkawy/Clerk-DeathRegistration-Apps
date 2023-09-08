@@ -26,8 +26,6 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
             defaultFee: 25 // Hard code as 25 but the default value from SharePoint will override this. 
         }
 
-
-
         GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Sex").then(value => this.setState({ sexOptions: value })).catch(reason => alert('Failed to get Sex options.'));
         GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Informants Relationship").then(value => this.setState({ informantsRelationshipOptions: value })).catch(reason => alert('Failed to get Informants Relationship options.'));
         GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Death Location").then(value => this.setState({ deathLocationOptions: value })).catch(reason => alert('Failed to get Death Location options.'));
@@ -46,8 +44,14 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
             input.RegistrationNumber = this.state.nextRegistrationNumber;
 
             // Format the list items title.  Last, First Middle.  Trim any white spaces for title.
-            input.Title = (`${input.LastName}, ${input.FirstName} ${input.MiddleName}`).trim();
-        
+            input.Title = `${input.LastName.trim()}, ${input.FirstName.trim()}`;
+
+            if (input.MiddleName) {
+                input.Title = `${input.Title} ${input.MiddleName}`;
+            }
+
+            input.Title = input.Title.trim();
+
             // Double check that the forms registration number is still valid.
             if (newRegNumber !== this.state.nextRegistrationNumber && this.state.nextRegistrationNumber !== null) {
                 alert(`The Registration Number ${this.state.nextRegistrationNumber} has been taken.  ${newRegNumber} is the next valid number available and will automatically be applied.`);
