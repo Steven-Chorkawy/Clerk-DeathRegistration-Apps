@@ -28,7 +28,7 @@ export default class Form18 extends React.Component<IDeathRegisterFormProps, IFo
             justifyContent: 'center',
         };
         return (
-            <div>
+            <div className='printable-page'>
                 <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
                     <Text variant='xxLarge' style={{ marginTop: '20px' }}>Form 18</Text>
                     <Text variant='mediumPlus' style={{ marginTop: '20px' }}><i>Vital Statistics Act</i></Text>

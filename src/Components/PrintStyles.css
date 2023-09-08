@@ -21,4 +21,11 @@
     .yes-print * {
         display: block !important;
     }
+
+    div.printable-page {
+        margin-top: 5em;
+        margin-bottom: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

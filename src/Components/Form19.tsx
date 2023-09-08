@@ -19,7 +19,7 @@ export default class Form19 extends React.Component<IDeathRegisterFormProps, IDe
     public render(): React.ReactElement<{}> {
         const bold_font_style = { fontWeight: 'bold' };
         return (
-            <div>
+            <div className='printable-page'>
                 <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
                     <Text variant='xxLarge' style={{ marginTop: '20px' }}>Form 19</Text>
                     <Text variant='mediumPlus' style={{ marginTop: '20px' }}><i>Vital Statistics Act</i></Text>
