@@ -25,7 +25,7 @@ export default class Form19 extends React.Component<IDeathRegisterFormProps, IDe
                     <Text variant='mediumPlus' style={{ marginTop: '20px' }}><i>Vital Statistics Act</i></Text>
                     <Text variant='xLargePlus' style={{ marginTop: '20px' }}>BURIAL PERMIT</Text>
                     <br />
-                    <Text variant='small' style={{ marginTop: '10px', marginBottom: '10px' }}>Under the Vital Statistics Act and the regulations, and subject to the limitations thereof, this permit is granted to</Text>
+                    <Text variant='small' style={{ marginTop: '10px', marginBottom: '10px' }}>Under the <i>Vital Statistics Act</i> and the regulations, and subject to the limitations thereof, this permit is granted to</Text>
                     <br />
                     <Text variant='mediumPlus' style={bold_font_style}>{this.props.deathRegisterItem.FuneralDirectorName}</Text>
                     <Text variant='mediumPlus' style={bold_font_style}>{JSON.parse(this.props.deathRegisterItem.FuneralHome)?.DisplayName}</Text>
