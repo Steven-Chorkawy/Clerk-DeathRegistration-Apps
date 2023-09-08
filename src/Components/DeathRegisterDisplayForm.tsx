@@ -5,6 +5,7 @@ import Form19 from './Form19';
 import Form18 from './Form18';
 import Form17 from './Form17';
 import DeathRegisterListItemDetails from './DeathRegisterListItemDetails';
+import PackageSolutionVersion from './PackageSolutionVersion';
 // import { getSP } from '../MyHelperMethods/MyHelperMethods';
 
 export interface IDeathRegisterDisplayFormProps extends IDeathRegisterFormProps {
@@ -17,7 +18,6 @@ export interface IDeathRegisterDisplayFormState {
 export default class DeathRegisterDisplayForm extends React.Component<IDeathRegisterDisplayFormProps, IDeathRegisterDisplayFormState> {
     constructor(props: any) {
         super(props);
-        console.log(this.props);
     }
 
     //private _sp = getSP(this.props.context);
@@ -77,6 +77,7 @@ export default class DeathRegisterDisplayForm extends React.Component<IDeathRegi
                         <Form17 deathRegisterItem={this.props.context._item} />
                     </PivotItem>
                 </Pivot>
+                <PackageSolutionVersion />
             </div >
         );
     }

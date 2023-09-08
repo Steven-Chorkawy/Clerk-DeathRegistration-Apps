@@ -5,6 +5,7 @@ import { DefaultButton, Depths, Position, PrimaryButton, SpinButton, TextField }
 import { DEATH_REGISTRATION_LIST_TITLE, FormatTitle, GetChoiceColumn, GetColumnDefaultValue, GetNextRegistrationNumber, getSP } from '../MyHelperMethods/MyHelperMethods';
 import { DeathRegistrationNumberInput, FormSubTitle, MyDatePicker, MyDropdown, MyLocationPicker, MyTextField, MyToggle } from './MyFormComponents';
 import IDeathRegisterListItem from '../MyHelperMethods/IDeathRegisterListItem';
+import PackageSolutionVersion from './PackageSolutionVersion';
 
 export interface IDeathRegisterNewFormProps extends IDeathRegisterFormProps {
 }
@@ -245,6 +246,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                         </FormElement>
                     )}
                 />
+                <PackageSolutionVersion />
             </div >
         );
     }
