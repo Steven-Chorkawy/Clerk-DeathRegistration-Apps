@@ -77,7 +77,8 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                 <Form
                     onSubmit={this._onSave}
                     initialValues={{
-                        'WaiveFee': false
+                        'WaiveFee': false,
+                        'RegistrationDate': new Date()
                     }}
                     render={(formRenderProps: FormRenderProps) => (
                         <FormElement>
@@ -121,6 +122,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 label={"Age"}
                                 component={SpinButton}
                                 min={0}
+                                max={999}
                                 step={1}
                                 labelPosition={Position.top}
                             />
