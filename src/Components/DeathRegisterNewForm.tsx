@@ -3,7 +3,7 @@ import { IDeathRegisterFormProps } from '../extensions/deathRegisterForm/compone
 import { Field, Form, FormElement, FormRenderProps } from '@progress/kendo-react-form';
 import { DefaultButton, Depths, Position, PrimaryButton, SpinButton, TextField } from '@fluentui/react';
 import { DEATH_REGISTRATION_LIST_TITLE, GetChoiceColumn, GetColumnDefaultValue, GetNextRegistrationNumber, getSP } from '../MyHelperMethods/MyHelperMethods';
-import { DeathRegistrationNumberInput, FormSubTitle, MyDatePicker, MyDropdown, MyLocationPicker, MyToggle } from './MyFormComponents';
+import { DeathRegistrationNumberInput, FormSubTitle, MyDatePicker, MyDropdown, MyLocationPicker, MyTextField, MyToggle } from './MyFormComponents';
 import IDeathRegisterListItem from '../MyHelperMethods/IDeathRegisterListItem';
 
 export interface IDeathRegisterNewFormProps extends IDeathRegisterFormProps {
@@ -92,20 +92,20 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 name={"LastName"}
                                 label={"Last Name"}
                                 required={true}
-                                component={TextField}
+                                component={MyTextField}
                             />
                             <Field
                                 id={"FirstName"}
                                 name={"FirstName"}
                                 label={"First Name"}
                                 required={true}
-                                component={TextField}
+                                component={MyTextField}
                             />
                             <Field
                                 id={"MiddleName"}
                                 name={"MiddleName"}
                                 label={"Middle Name"}
-                                component={TextField}
+                                component={MyTextField}
                             />
                             <Field
                                 id={"Sex"}

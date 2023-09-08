@@ -1,4 +1,4 @@
-import { DatePicker, Dropdown, Toggle } from "@fluentui/react";
+import { DatePicker, Dropdown, TextField, Toggle } from "@fluentui/react";
 import { ILocationPickerItem, LocationPicker } from "@pnp/spfx-controls-react/lib/LocationPicker";
 import { FieldRenderProps } from "@progress/kendo-react-form";
 import * as React from "react";
@@ -9,6 +9,20 @@ export const FormSubTitle = (text: string): any => {
         <div>
             <h2>{text}</h2>
         </div>
+    );
+}
+
+export const MyTextField = (fieldRenderProps: FieldRenderProps): any => {
+    return (
+        <TextField
+            {...fieldRenderProps}
+            onBlur={(e) => {
+                // Automatically correct blank spaces.
+                if (fieldRenderProps.value) {
+                    fieldRenderProps.onChange({ value: fieldRenderProps.value.trim() });
+                }
+            }}
+        />
     );
 }
 
