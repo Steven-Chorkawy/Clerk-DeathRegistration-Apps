@@ -7,11 +7,12 @@ import IDeathFormState from '../MyHelperMethods/IDeathFormState';
 export default class Form19 extends React.Component<IDeathRegisterFormProps, IDeathFormState> {
     constructor(props: any) {
         super(props);
+
         this.state = {
-            dayOfDeath: ordinal_suffix_of(new Date(this.props.deathRegisterItem.DateOfDeath).getDay()),
+            dayOfDeath: ordinal_suffix_of(new Date(this.props.deathRegisterItem.DateOfDeath).getDate()),
             monthOfDeath: new Date(this.props.deathRegisterItem.DateOfDeath).toLocaleString('default', { month: 'long' }),
             yearOfDeath: new Date(this.props.deathRegisterItem.DateOfDeath).getFullYear(),
-            formattedRegistrationDate: `${new Date(this.props.deathRegisterItem.RegistrationDate).toLocaleString('default', { month: 'long' })} ${new Date(this.props.deathRegisterItem.RegistrationDate).getDay()}, ${new Date(this.props.deathRegisterItem.RegistrationDate).getFullYear()}`
+            formattedRegistrationDate: `${new Date(this.props.deathRegisterItem.RegistrationDate).toLocaleString('default', { month: 'long' })} ${new Date(this.props.deathRegisterItem.RegistrationDate).getDate()}, ${new Date(this.props.deathRegisterItem.RegistrationDate).getFullYear()}`
         }
     }
 
@@ -37,7 +38,7 @@ export default class Form19 extends React.Component<IDeathRegisterFormProps, IDe
                     <br />
                 </Stack>
                 <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
-                    <Text variant='xLargePlus' style={bold_font_style}>{FormatTitle(this.props.deathRegisterItem)}</Text>
+                    <Text variant='xLargePlus'>{FormatTitle(this.props.deathRegisterItem)}</Text>
                 </Stack>
                 <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
                     <br />

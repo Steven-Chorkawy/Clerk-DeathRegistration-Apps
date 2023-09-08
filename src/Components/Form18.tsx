@@ -9,12 +9,12 @@ export default class Form18 extends React.Component<IDeathRegisterFormProps, IFo
         super(props);
 
         this.state = {
-            dayOfDeath: ordinal_suffix_of(new Date(this.props.deathRegisterItem.DateOfDeath).getDay()),
+            dayOfDeath: ordinal_suffix_of(new Date(this.props.deathRegisterItem.DateOfDeath).getDate()),
             monthOfDeath: new Date(this.props.deathRegisterItem.DateOfDeath).toLocaleString('default', { month: 'long' }),
             yearOfDeath: new Date(this.props.deathRegisterItem.DateOfDeath).getFullYear(),
-            formattedRegistrationDate: `${new Date(this.props.deathRegisterItem.RegistrationDate).toLocaleString('default', { month: 'long' })} ${new Date(this.props.deathRegisterItem.RegistrationDate).getDay()}, ${new Date(this.props.deathRegisterItem.RegistrationDate).getFullYear()}`,
+            formattedRegistrationDate: `${new Date(this.props.deathRegisterItem.RegistrationDate).toLocaleString('default', { month: 'long' })} ${new Date(this.props.deathRegisterItem.RegistrationDate).getDate()}, ${new Date(this.props.deathRegisterItem.RegistrationDate).getFullYear()}`,
 
-            dayOfRegistrationDate: ordinal_suffix_of(new Date(this.props.deathRegisterItem.RegistrationDate).getDay()),
+            dayOfRegistrationDate: ordinal_suffix_of(new Date(this.props.deathRegisterItem.RegistrationDate).getDate()),
             monthOfRegistrationDate: new Date(this.props.deathRegisterItem.RegistrationDate).toLocaleString('default', { month: 'long' }),
             yearOfRegistrationDate: new Date(this.props.deathRegisterItem.RegistrationDate).getFullYear()
         };
