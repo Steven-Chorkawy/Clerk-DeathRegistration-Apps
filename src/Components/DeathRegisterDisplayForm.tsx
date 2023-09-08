@@ -42,18 +42,18 @@ export default class DeathRegisterDisplayForm extends React.Component<IDeathRegi
                             iconProps: { iconName: 'Print' },
                             onClick: (e, item) => window.print()
                         },
-                        {
-                            key: 'convertToPDF',
-                            text: 'Convert to PDF',
-                            iconProps: { iconName: 'PDF' },
-                            onClick: (e, item) => { alert('Not programmed yet :)'); }
-                        },
-                        {
-                            key: 'convertToWord',
-                            text: 'Convert to Word',
-                            iconProps: { iconName: 'WordDocument' },
-                            onClick: (e, item) => { alert('Not programmed yet :)'); }
-                        },
+                        // {
+                        //     key: 'convertToPDF',
+                        //     text: 'Convert to PDF',
+                        //     iconProps: { iconName: 'PDF' },
+                        //     onClick: (e, item) => { alert('Not programmed yet :)'); }
+                        // },
+                        // {
+                        //     key: 'convertToWord',
+                        //     text: 'Convert to Word',
+                        //     iconProps: { iconName: 'WordDocument' },
+                        //     onClick: (e, item) => { alert('Not programmed yet :)'); }
+                        // },
                     ]}
                 />
 
