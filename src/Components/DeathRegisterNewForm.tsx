@@ -42,21 +42,29 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
     private _onSave = (input: IDeathRegisterListItem): void => {
         // Before we submit this form double check that the Registration Number is still valid. 
         GetNextRegistrationNumber().then((newRegNumber: number) => {
+            // Set the current registration number.  This will be double checked later.
             input.RegistrationNumber = this.state.nextRegistrationNumber;
 
+            // Format the list items title.  Last, First Middle.  Trim any white spaces for title.
+            input.Title = (`${input.LastName}, ${input.FirstName} ${input.MiddleName}`).trim();
+        
+            // Double check that the forms registration number is still valid.
             if (newRegNumber !== this.state.nextRegistrationNumber && this.state.nextRegistrationNumber !== null) {
                 alert(`The Registration Number ${this.state.nextRegistrationNumber} has been taken.  ${newRegNumber} is the next valid number available and will automatically be applied.`);
                 input.RegistrationNumber = newRegNumber;
             }
 
-            this._sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).items.add({
-                ...input
-            }).then(value => {
-                this.props.onSave();
-            }).catch(reason => {
-                alert('failed to save...');
-                console.error(reason);
-            });
+            this._sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).items
+                .add({
+                    ...input
+                })
+                .then(value => {
+                    this.props.onSave();
+                })
+                .catch(reason => {
+                    alert('failed to save...');
+                    console.error(reason);
+                });
         }).catch(reason => alert('Failed to get next registration number.'));
     }
 
@@ -76,22 +84,17 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                         <FormElement>
                             {FormSubTitle("Subject's Information")}
                             <Field
-                                id={"Title"}
-                                name={"Title"}
-                                label={"Title"}
-                                required={true}
-                                component={TextField}
-                            />
-                            <Field
                                 id={"LastName"}
                                 name={"LastName"}
                                 label={"Last Name"}
+                                required={true}
                                 component={TextField}
                             />
                             <Field
                                 id={"FirstName"}
                                 name={"FirstName"}
                                 label={"First Name"}
+                                required={true}
                                 component={TextField}
                             />
                             <Field
