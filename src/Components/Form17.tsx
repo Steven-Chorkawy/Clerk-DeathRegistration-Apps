@@ -2,7 +2,7 @@ import * as React from 'react';
 import IDeathRegisterFormProps from '../MyHelperMethods/IDeathRegisterFormProps';
 import { Stack, Text, TextField } from '@fluentui/react';
 import { IForm17State } from '../MyHelperMethods/IDeathFormState';
-import { MyDateFormat1 } from '../MyHelperMethods/MyHelperMethods';
+import { FormatTitle, MyDateFormat1 } from '../MyHelperMethods/MyHelperMethods';
 
 export default class Form17 extends React.Component<IDeathRegisterFormProps, IForm17State> {
     constructor(props: any) {
@@ -46,7 +46,7 @@ export default class Form17 extends React.Component<IDeathRegisterFormProps, IFo
                     <Text variant='small' style={{ marginTop: '1em', marginBottom: '1em' }}>The following are the particulars of a death or stillbirth that occurred in your division but that has been registered by this office:</Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
-                    <Text><b>1. Name of Deceased:</b> {this.props.deathRegisterItem.LastName}, {this.props.deathRegisterItem.FirstName} {this.props.deathRegisterItem.MiddleName}</Text>
+                    <Text><b>1. Name of Deceased:</b> {FormatTitle(this.props.deathRegisterItem)}</Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
                     <Text><b>or Name of Stillborn Child:</b></Text>

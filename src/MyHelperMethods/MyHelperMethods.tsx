@@ -3,6 +3,7 @@ import "@pnp/sp/column-defaults";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { FormCustomizerContext, ListViewCommandSetContext } from "@microsoft/sp-listview-extensibility";
 import { IFieldInfo } from "@pnp/sp/fields";
+import IDeathRegisterListItem from "./IDeathRegisterListItem";
 
 //#region CONST
 export const DEATH_REGISTRATION_CONTENT_TYPE_ID = "0x0100DA81DCD717B72D499724C0023271F50C00D36BB2C588D851418CF8CEDFA4ED7036";
@@ -21,6 +22,18 @@ export const getSP = (context?: WebPartContext | ListViewCommandSetContext | For
 
 
 //#region Formaters
+export const FormatTitle = (dr: IDeathRegisterListItem): string => {
+    // Default format: Last, First
+    let output = `${dr.LastName.trim()}, ${dr.FirstName.trim()}`;
+
+    // Only if Middle Name is present will the format be: Last, First Middle.
+    if (dr.MiddleName) {
+        output = `${output} ${dr.MiddleName.trim()}`;
+    }
+
+    return output.trim();
+}
+
 export const printPageArea = (areaID: string): void => {
     const printContent = document.getElementById(areaID).innerHTML;
     const originalContent = document.body.innerHTML;

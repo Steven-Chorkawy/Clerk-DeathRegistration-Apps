@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IDeathRegisterFormProps } from '../extensions/deathRegisterForm/components/DeathRegisterForm';
 import { Field, Form, FormElement, FormRenderProps } from '@progress/kendo-react-form';
 import { DefaultButton, Depths, Position, PrimaryButton, SpinButton, TextField } from '@fluentui/react';
-import { DEATH_REGISTRATION_LIST_TITLE, GetChoiceColumn, GetColumnDefaultValue, GetNextRegistrationNumber, getSP } from '../MyHelperMethods/MyHelperMethods';
+import { DEATH_REGISTRATION_LIST_TITLE, FormatTitle, GetChoiceColumn, GetColumnDefaultValue, GetNextRegistrationNumber, getSP } from '../MyHelperMethods/MyHelperMethods';
 import { DeathRegistrationNumberInput, FormSubTitle, MyDatePicker, MyDropdown, MyLocationPicker, MyTextField, MyToggle } from './MyFormComponents';
 import IDeathRegisterListItem from '../MyHelperMethods/IDeathRegisterListItem';
 
@@ -44,13 +44,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
             input.RegistrationNumber = this.state.nextRegistrationNumber;
 
             // Format the list items title.  Last, First Middle.  Trim any white spaces for title.
-            input.Title = `${input.LastName.trim()}, ${input.FirstName.trim()}`;
-
-            if (input.MiddleName) {
-                input.Title = `${input.Title} ${input.MiddleName}`;
-            }
-
-            input.Title = input.Title.trim();
+            input.Title = FormatTitle(input);
 
             // Double check that the forms registration number is still valid.
             if (newRegNumber !== this.state.nextRegistrationNumber && this.state.nextRegistrationNumber !== null) {
