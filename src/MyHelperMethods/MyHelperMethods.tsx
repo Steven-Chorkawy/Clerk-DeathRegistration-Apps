@@ -123,16 +123,13 @@ export const GetNextRegistrationNumber = async (): Promise<number> => {
     const currentDeathRegistrations = await _sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).getItemsByCAMLQuery({
         ViewXml: camlQuery,
     });
+    debugger;
 
     if (!currentDeathRegistrations)
         throw Error("Could not fetch next registration number.");
 
-    if (currentDeathRegistrations.length === 0)
-        throw Error("Could not fetch next registration number.");
-
-
-    // add 1 to the last highest number.
-    nextRegistrationNumber += currentDeathRegistrations[0].RegistrationNumber;
+    if (currentDeathRegistrations.length > 0)
+        nextRegistrationNumber += currentDeathRegistrations[0].RegistrationNumber;
 
     return nextRegistrationNumber;
 }
