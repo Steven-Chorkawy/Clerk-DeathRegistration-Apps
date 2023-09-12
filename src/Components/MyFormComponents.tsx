@@ -4,6 +4,12 @@ import { FieldRenderProps } from "@progress/kendo-react-form";
 import * as React from "react";
 import { GetNextRegistrationNumber } from "../MyHelperMethods/MyHelperMethods";
 
+
+//#region 
+const DROPDOWN_WRAPPER_STYLE: React.CSSProperties = {
+    maxWidth: '500px'
+}
+
 export const FormSubTitle = (text: string): any => {
     return (
         <div>
@@ -78,7 +84,7 @@ export const MyDropdown = (fieldRenderProps: FieldRenderProps): any => {
         onChange,
     } = fieldRenderProps;
     return (
-        <div>
+        <div style={DROPDOWN_WRAPPER_STYLE}>
             <Dropdown
                 {...fieldRenderProps}
                 options={options}
@@ -92,12 +98,13 @@ export const MyDropdown = (fieldRenderProps: FieldRenderProps): any => {
 
 export const MyComboBox = (fieldRenderProps: FieldRenderProps): any => {
     return (
-        <div>
+        <div style={DROPDOWN_WRAPPER_STYLE}>
             <ComboBox
                 {...fieldRenderProps}
                 options={fieldRenderProps.options}
                 autoComplete="on"
                 allowFreeInput={true}
+                useComboBoxAsMenuWidth
                 onChange={(e, option) => fieldRenderProps.onChange({ value: option.text })}
             />
         </div>
