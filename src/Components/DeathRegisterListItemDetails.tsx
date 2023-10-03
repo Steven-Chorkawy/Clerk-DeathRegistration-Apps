@@ -32,7 +32,6 @@ export default class DeathRegisterListItemDetails extends React.Component<IDeath
                     {this.MyStack('Death Location', this.props.deathRegisterItem.DeathLocation)}
                     {this.MyStack('Registration Date', MyDateFormat2(this.props.deathRegisterItem.RegistrationDate))}
                     {this.MyStack('Registration Number', this.props.deathRegisterItem.RegistrationNumber)}
-                    {this.MyStack('Correction Date', '??? what field is this from ???')}
                     {this.MyStack('Cause', this.props.deathRegisterItem.Cause)}
                 </Stack>
 
@@ -49,11 +48,11 @@ export default class DeathRegisterListItemDetails extends React.Component<IDeath
                 <Stack>
                     {this.MyStack('Director Name', this.props.deathRegisterItem.FuneralDirectorName)}
                     {this.MyStack('Home Name', JSON.parse(this.props.deathRegisterItem.FuneralHome)?.DisplayName)}
-                    {this.MyStack('Street Address', JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.Street)}
-                    {this.MyStack('City', JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.City)}
-                    {this.MyStack('Province', JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.State)}
-                    {this.MyStack('Postal', JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.PostalCode)}
-                    {this.MyStack('Country', JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.CountryOrRegion)}
+                    {this.MyStack('Street Address', JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address?.Street)}
+                    {this.MyStack('City', JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address?.City)}
+                    {this.MyStack('Province', JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address?.State)}
+                    {this.MyStack('Postal', JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address?.PostalCode)}
+                    {this.MyStack('Country', JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address?.CountryOrRegion)}
                 </Stack>
             </div>
         );
