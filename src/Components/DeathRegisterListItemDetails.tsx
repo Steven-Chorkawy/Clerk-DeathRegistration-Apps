@@ -32,7 +32,6 @@ export default class DeathRegisterListItemDetails extends React.Component<IDeath
                     {this.MyStack('Death Location', this.props.deathRegisterItem.DeathLocation)}
                     {this.MyStack('Registration Date', MyDateFormat2(this.props.deathRegisterItem.RegistrationDate))}
                     {this.MyStack('Registration Number', this.props.deathRegisterItem.RegistrationNumber)}
-                    {this.MyStack('Correction Date', '??? what field is this from ???')}
                     {this.MyStack('Cause', this.props.deathRegisterItem.Cause)}
                 </Stack>
 
