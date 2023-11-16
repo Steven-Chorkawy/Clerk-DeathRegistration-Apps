@@ -4,6 +4,7 @@ import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { FormCustomizerContext, ListViewCommandSetContext } from "@microsoft/sp-listview-extensibility";
 import { IFieldInfo } from "@pnp/sp/fields";
 import IDeathRegisterListItem from "./IDeathRegisterListItem";
+import { VitalStatsContentTypes } from "./VitalStatsContentTypes";
 
 //#region CONST
 export const DEATH_REGISTRATION_CONTENT_TYPE_ID = "0x0100DA81DCD717B72D499724C0023271F50C00D36BB2C588D851418CF8CEDFA4ED7036";
@@ -19,7 +20,6 @@ export const getSP = (context?: WebPartContext | ListViewCommandSetContext | For
     }
     return _sp;
 };
-
 
 //#region Formaters
 export const FormatTitle = (dr: IDeathRegisterListItem): string => {
@@ -98,9 +98,11 @@ export const GetColumnDefaultValue = async (columnName: string): Promise<string>
 }
 
 /**
- * ! Random Number for now...
+ * Generate the next valid Registration Number for Death Registrations or Still Births.
+ * @param contentType VitalStatsContentTypes enum.
+ * @returns The next valid Registration Number for the current year as a number type.
  */
-export const GetNextRegistrationNumber = async (): Promise<number> => {
+export const GetNextRegistrationNumber = async (contentType: VitalStatsContentTypes): Promise<number> => {
     let nextRegistrationNumber = 1;
 
     // Get all the current death regs from this year. 
@@ -108,10 +110,16 @@ export const GetNextRegistrationNumber = async (): Promise<number> => {
     <View>
         <Query>
             <Where>
-                <Eq>
-                    <FieldRef Name="Year"/>
-                    <Value Type="Text">${new Date().getFullYear()}</Value>
-                </Eq>
+                <And>
+                    <Eq>
+                        <FieldRef Name="Year"/>
+                        <Value Type="Text">${new Date().getFullYear()}</Value>
+                    </Eq>
+                    <Eq>
+                        <FieldRef Name="ContentTypeId"/>
+                        <Value Type="Text">${contentType}</Value>
+                    </Eq>
+                </And>
             </Where>
             <OrderBy>
                 <FieldRef Name='RegistrationNumber' Ascending='False' />

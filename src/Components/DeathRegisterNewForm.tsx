@@ -6,6 +6,7 @@ import { DEATH_REGISTRATION_LIST_TITLE, FormatTitle, GetChoiceColumn, GetColumnD
 import { DeathRegistrationNumberInput, FormSubTitle, MyComboBox, MyDatePicker, MyDropdown, MyLocationPicker, MyTextField, MyToggle } from './MyFormComponents';
 import IDeathRegisterListItem from '../MyHelperMethods/IDeathRegisterListItem';
 import PackageSolutionVersion from './PackageSolutionVersion';
+import { VitalStatsContentTypes } from '../MyHelperMethods/VitalStatsContentTypes';
 
 export interface IDeathRegisterNewFormProps extends IDeathRegisterFormProps {
 }
@@ -33,14 +34,14 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
 
         GetColumnDefaultValue('DefaultFee').then(v => this.setState({ defaultFee: Number(v) })).catch(reason => alert('Failed to get Fees default value.'));
 
-        GetNextRegistrationNumber().then(value => this.setState({ nextRegistrationNumber: value })).catch(reason => alert('Failed to get next registration number'));
+        GetNextRegistrationNumber(VitalStatsContentTypes.DeathRegistration).then(value => this.setState({ nextRegistrationNumber: value })).catch(reason => alert('Failed to get next registration number'));
     }
 
     private _sp = getSP(this.props.context);
 
     private _onSave = (input: IDeathRegisterListItem): void => {
         // Before we submit this form double check that the Registration Number is still valid. 
-        GetNextRegistrationNumber().then((newRegNumber: number) => {
+        GetNextRegistrationNumber(VitalStatsContentTypes.DeathRegistration).then((newRegNumber: number) => {
             // Set the current registration number.  This will be double checked later.
             input.RegistrationNumber = this.state.nextRegistrationNumber;
 
