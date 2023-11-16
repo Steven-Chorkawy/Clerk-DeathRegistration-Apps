@@ -48,6 +48,41 @@
           "sampleText": "Value"
         }
       }
+    },
+    "stillBirthForm_NewForm": {
+      "pageUrl": "https://{tenantDomain}/_layouts/15/SPListForm.aspx",
+      "formCustomizer": {
+        "componentId": "6f582ea6-50cb-4792-995d-86b9badd7f21",
+        "PageType": 8,
+        "RootFolder": "/sites/mySite/Lists/MyList",
+        "properties": {
+          "sampleText": "Value"
+        }
+      }
+    },
+    "stillBirthForm_EditForm": {
+      "pageUrl": "https://{tenantDomain}/_layouts/15/SPListForm.aspx",
+      "formCustomizer": {
+        "componentId": "6f582ea6-50cb-4792-995d-86b9badd7f21",
+        "PageType": 6,
+        "RootFolder": "/sites/mySite/Lists/MyList",
+        "ID": 1,
+        "properties": {
+          "sampleText": "Value"
+        }
+      }
+    },
+    "stillBirthForm_ViewForm": {
+      "pageUrl": "https://{tenantDomain}/_layouts/15/SPListForm.aspx",
+      "formCustomizer": {
+        "componentId": "6f582ea6-50cb-4792-995d-86b9badd7f21",
+        "PageType": 4,
+        "RootFolder": "/sites/mySite/Lists/MyList",
+        "ID": 1,
+        "properties": {
+          "sampleText": "Value"
+        }
+      }
     }
   }
 }
