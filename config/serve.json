@@ -6,7 +6,7 @@
     "default": {
       "pageUrl": "https://claringtonnet.sharepoint.com/sites/StevensTestSite/_layouts/15/SPListForm.aspx",
       "formCustomizer": {
-        "componentId": "bc5454d2-bea9-4a5d-88f5-5e2a21dc2b98",
+        "componentId": "6f582ea6-50cb-4792-995d-86b9badd7f21",
         "PageType": 8,
         "RootFolder": "/sites/StevensTestSite/NameTest",
         "properties": {
