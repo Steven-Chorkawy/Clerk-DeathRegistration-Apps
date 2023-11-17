@@ -1,21 +1,21 @@
 import * as React from 'react';
-import { IDeathRegisterFormProps } from '../extensions/deathRegisterForm/components/DeathRegisterForm';
+import { IStillBirthFormProps } from '../extensions/stillBirthForm/components/StillBirthForm';
 import { CommandBar, Pivot, PivotItem } from '@fluentui/react';
 import Form19 from './Form19';
 import Form18 from './Form18';
 import Form17 from './Form17';
-import DeathRegisterListItemDetails from './DeathRegisterListItemDetails';
+//import StillBirthListItemDetails from './StillBirthListItemDetails';
 import PackageSolutionVersion from './PackageSolutionVersion';
 // import { getSP } from '../MyHelperMethods/MyHelperMethods';
 
-export interface IDeathRegisterDisplayFormProps extends IDeathRegisterFormProps {
+export interface IStillBirthDisplayFormProps extends IStillBirthFormProps {
 }
 
-export interface IDeathRegisterDisplayFormState {
+export interface IStillBirthDisplayFormState {
 
 }
 
-export default class DeathRegisterDisplayForm extends React.Component<IDeathRegisterDisplayFormProps, IDeathRegisterDisplayFormState> {
+export default class StillBirthDisplayForm extends React.Component<IStillBirthDisplayFormProps, IStillBirthDisplayFormState> {
     constructor(props: any) {
         super(props);
     }
@@ -51,7 +51,8 @@ export default class DeathRegisterDisplayForm extends React.Component<IDeathRegi
                             'data-title': 'My Files Title',
                         }}
                     >
-                        <DeathRegisterListItemDetails deathRegisterItem={this.props.context._item} />
+                        <div>still birth registration list item details here...</div>
+                        {/* <DeathRegisterListItemDetails deathRegisterItem={this.props.context._item} /> */}
                     </PivotItem>
                     <PivotItem headerText="Burial Permit" className='no-print-pivot'>
                         <Form19 deathRegisterItem={this.props.context._item} />
