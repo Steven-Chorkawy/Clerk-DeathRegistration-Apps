@@ -3,8 +3,6 @@ import { ILocationPickerItem, LocationPicker } from "@pnp/spfx-controls-react/li
 import { FieldRenderProps } from "@progress/kendo-react-form";
 import * as React from "react";
 import { GetNextRegistrationNumber } from "../MyHelperMethods/MyHelperMethods";
-import { VitalStatsContentTypes } from "../MyHelperMethods/VitalStatsContentTypes";
-
 
 //#region 
 const DROPDOWN_WRAPPER_STYLE: React.CSSProperties = {
@@ -49,7 +47,7 @@ export const DeathRegistrationNumberInput = (fieldRenderProps: FieldRenderProps)
 
                     // Only if checked is true will we generate the next number.
                     if (checked) {
-                        GetNextRegistrationNumber(VitalStatsContentTypes.DeathRegistration).then(value => {
+                        GetNextRegistrationNumber(fieldRenderProps.contentTypeId).then(value => {
                             fieldRenderProps.onChange({ value: value })
                         }).catch(reason => {
                             alert('Failed to get next registration number!');

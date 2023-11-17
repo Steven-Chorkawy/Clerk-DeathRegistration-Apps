@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Log, FormDisplayMode } from '@microsoft/sp-core-library';
 import { FormCustomizerContext } from '@microsoft/sp-listview-extensibility';
-
-import styles from './StillBirthForm.module.scss';
+import StillBirthRegistrationNewForm from '../../../Components/StillBirthRegistrationNewForm';
 
 export interface IStillBirthFormProps {
   context: FormCustomizerContext;
@@ -23,6 +22,13 @@ export default class StillBirthForm extends React.Component<IStillBirthFormProps
   }
 
   public render(): React.ReactElement<{}> {
-    return <div className={styles.stillBirthForm}>hello world.</div>;
+    if (this.props.displayMode === FormDisplayMode.New) {
+      return <StillBirthRegistrationNewForm {...this.props} />
+    }
+    if (this.props.displayMode === FormDisplayMode.Display) {
+      return <div>Still Birth Display Form... Work in Progress.</div>
+    }
+
+    return <div>hello world default!</div>;
   }
 }

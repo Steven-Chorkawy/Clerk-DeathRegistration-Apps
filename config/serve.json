@@ -53,6 +53,7 @@
       "pageUrl": "https://claringtonnet.sharepoint.com/sites/Clerk/_layouts/15/SPListForm.aspx",
       "formCustomizer": {
         "componentId": "6f582ea6-50cb-4792-995d-86b9badd7f21",
+        "ContentTypeID": "0x0100DA81DCD717B72D499724C0023271F50C0100CFF0CD01ECE5A34F919731D221086B1C",
         "PageType": 8,
         "RootFolder": "/sites/Clerk/Lists/DeathRegistration",
         "properties": {
