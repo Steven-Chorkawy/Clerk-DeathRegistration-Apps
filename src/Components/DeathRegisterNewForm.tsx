@@ -56,7 +56,8 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
 
             this._sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).items
                 .add({
-                    ...input
+                    ...input,
+                    ContentTypeId: VitalStatsContentTypes.DeathRegistration
                 })
                 .then(value => {
                     this.props.onSave();

@@ -55,7 +55,8 @@ export default class StillBirthRegistrationNewForm extends React.Component<IStil
 
             this._sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).items
                 .add({
-                    ...input
+                    ...input,
+                    ContentTypeId: VitalStatsContentTypes.StillBirth
                 })
                 .then(value => {
                     this.props.onSave();
@@ -78,7 +79,8 @@ export default class StillBirthRegistrationNewForm extends React.Component<IStil
                     onSubmit={this._onSave}
                     initialValues={{
                         'WaiveFee': false,
-                        'RegistrationDate': new Date()
+                        'RegistrationDate': new Date(),
+                        'DateOfDeath': new Date()
                     }}
                     render={(formRenderProps: FormRenderProps) => (
                         <FormElement>
@@ -146,7 +148,7 @@ export default class StillBirthRegistrationNewForm extends React.Component<IStil
                             }
                             {
                                 <a href={`https://claringtonnet.sharepoint.com/sites/Clerk/Lists/DeathRegistration?FilterField1=Year&FilterValue1=${new Date().getFullYear()}&FilterType1=Text&sortField=RegistrationNumber&isAscending=false`} target='_blank' rel="noreferrer">
-                                    Click to View {new Date().getFullYear()} Death Registrations
+                                    Click to View {new Date().getFullYear()} Still Birth Registrations
                                 </a>
                             }
                             <Field
