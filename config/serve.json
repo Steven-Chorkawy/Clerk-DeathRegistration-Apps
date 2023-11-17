@@ -74,12 +74,12 @@
       }
     },
     "stillBirthForm_ViewForm": {
-      "pageUrl": "https://{tenantDomain}/_layouts/15/SPListForm.aspx",
+      "pageUrl": "https://claringtonnet.sharepoint.com/sites/Clerk/_layouts/15/SPListForm.aspx",
       "formCustomizer": {
         "componentId": "6f582ea6-50cb-4792-995d-86b9badd7f21",
         "PageType": 4,
-        "RootFolder": "/sites/mySite/Lists/MyList",
-        "ID": 1,
+        "RootFolder": "/sites/Clerk/Lists/DeathRegistration",
+        "ID": 85,
         "properties": {
           "sampleText": "Value"
         }
