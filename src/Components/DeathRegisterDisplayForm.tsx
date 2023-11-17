@@ -6,7 +6,6 @@ import Form18 from './Form18';
 import Form17 from './Form17';
 import DeathRegisterListItemDetails from './DeathRegisterListItemDetails';
 import PackageSolutionVersion from './PackageSolutionVersion';
-// import { getSP } from '../MyHelperMethods/MyHelperMethods';
 
 export interface IDeathRegisterDisplayFormProps extends IDeathRegisterFormProps {
 }

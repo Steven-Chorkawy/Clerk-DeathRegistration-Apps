@@ -3,16 +3,13 @@ import { IStillBirthFormProps } from '../extensions/stillBirthForm/components/St
 import { CommandBar, Pivot, PivotItem } from '@fluentui/react';
 import Form19 from './Form19';
 import Form17 from './Form17';
-//import StillBirthListItemDetails from './StillBirthListItemDetails';
 import PackageSolutionVersion from './PackageSolutionVersion';
 import Form3 from './Form3';
-// import { getSP } from '../MyHelperMethods/MyHelperMethods';
 
 export interface IStillBirthDisplayFormProps extends IStillBirthFormProps {
 }
 
 export interface IStillBirthDisplayFormState {
-
 }
 
 export default class StillBirthDisplayForm extends React.Component<IStillBirthDisplayFormProps, IStillBirthDisplayFormState> {
@@ -60,7 +57,7 @@ export default class StillBirthDisplayForm extends React.Component<IStillBirthDi
                     <PivotItem headerText="Acknowledgement of Still Birth" className='no-print-pivot'>
                         <Form3 deathRegisterItem={this.props.context._item} />
                     </PivotItem>
-                    <PivotItem headerText="Notice of Registration of Death" className='no-print-pivot'>
+                    <PivotItem headerText="Notice of Still Birth" className='no-print-pivot'>
                         <Form17 deathRegisterItem={this.props.context._item} />
                     </PivotItem>
                 </Pivot>
