@@ -23,6 +23,6 @@ export default class StillBirthForm extends React.Component<IStillBirthFormProps
   }
 
   public render(): React.ReactElement<{}> {
-    return <div className={styles.stillBirthForm} />;
+    return <div className={styles.stillBirthForm}>hello world.</div>;
   }
 }
