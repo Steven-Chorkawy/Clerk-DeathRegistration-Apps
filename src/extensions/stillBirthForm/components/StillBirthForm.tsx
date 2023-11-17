@@ -4,7 +4,7 @@ import { FormCustomizerContext } from '@microsoft/sp-listview-extensibility';
 import StillBirthRegistrationNewForm from '../../../Components/StillBirthRegistrationNewForm';
 
 export interface IStillBirthFormProps {
-  context: FormCustomizerContext;
+  context: FormCustomizerContext | any;
   displayMode: FormDisplayMode;
   onSave: () => void;
   onClose: () => void;
