@@ -1,4 +1,4 @@
-export default interface IDeathRegisterListItem {
+export default interface IStillBirthListItem {
     Title: string;
     LastName?: string;
     FirstName?: string;

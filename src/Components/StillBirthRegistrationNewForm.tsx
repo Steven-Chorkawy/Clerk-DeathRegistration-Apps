@@ -7,7 +7,7 @@ import { DeathRegistrationNumberInput, FormSubTitle, MyComboBox, MyDatePicker, M
 
 import PackageSolutionVersion from './PackageSolutionVersion';
 import { VitalStatsContentTypes } from '../MyHelperMethods/VitalStatsContentTypes';
-import IStillBirthRegisterListItem from '../MyHelperMethods/IStillBirthRegisterListItem';
+import IStillBirthListItem from '../MyHelperMethods/IStillBirthListItem';
 
 export interface IStillBirthRegistrationNewFormProps extends IDeathRegisterFormProps {
 }
@@ -38,7 +38,7 @@ export default class StillBirthRegistrationNewForm extends React.Component<IStil
 
     private _sp = getSP(this.props.context);
 
-    private _onSave = (input: IStillBirthRegisterListItem): void => {
+    private _onSave = (input: IStillBirthListItem): void => {
         // Before we submit this form double check that the Registration Number is still valid. 
         GetNextRegistrationNumber(VitalStatsContentTypes.StillBirth).then((newRegNumber: number) => {
             // Set the current registration number.  This will be double checked later.
