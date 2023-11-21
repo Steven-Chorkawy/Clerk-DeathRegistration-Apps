@@ -15,18 +15,17 @@ export default class StillBirthrListItemDetails extends React.Component<IStillBi
             </Stack>
         );
     }
-    //private _sp = getSP(this.props.context);
 
     public render(): React.ReactElement<{}> {
         return (
             <div>
-                <h2>Subject's Information</h2>
+                <h2>Child's Information</h2>
                 <Stack>
                     {this.MyStack('Last Name', this.props.stillBirthItem.LastName)}
                     {this.MyStack('First Name', this.props.stillBirthItem.FirstName)}
                     {this.MyStack('Middle Name', this.props.stillBirthItem.MiddleName)}
                     {this.MyStack('Sex', this.props.stillBirthItem.Sex)}
-                    {this.MyStack('Date of Death', MyDateFormat2(this.props.stillBirthItem.DateOfDeath))}
+                    {this.MyStack('Date of Birth', MyDateFormat2(this.props.stillBirthItem.DateOfDeath))}
                     {this.MyStack('Death Location', this.props.stillBirthItem.DeathLocation)}
                     {this.MyStack('Registration Date', MyDateFormat2(this.props.stillBirthItem.RegistrationDate))}
                     {this.MyStack('Registration Number', this.props.stillBirthItem.RegistrationNumber)}
@@ -50,6 +49,10 @@ export default class StillBirthrListItemDetails extends React.Component<IStillBi
                     {this.MyStack('Postal', JSON.parse(this.props.stillBirthItem.FuneralHome)?.Address?.PostalCode)}
                     {this.MyStack('Country', JSON.parse(this.props.stillBirthItem.FuneralHome)?.Address?.CountryOrRegion)}
                 </Stack>
+                <h2>Burial Permit Information (if not issued by Clarington)</h2>
+                <Stack>
+                    {this.MyStack('Burial Permit Information', this.props.stillBirthItem.BurialPermitInformation)}
+                </Stack> 
             </div>
         );
     }

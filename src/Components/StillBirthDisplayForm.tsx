@@ -5,6 +5,7 @@ import Form19 from './Form19';
 import Form17 from './Form17';
 import PackageSolutionVersion from './PackageSolutionVersion';
 import Form3 from './Form3';
+import StillBirthrListItemDetails from './StillBirthListItemDetails';
 
 export interface IStillBirthDisplayFormProps extends IStillBirthFormProps {
 }
@@ -26,7 +27,7 @@ export default class StillBirthDisplayForm extends React.Component<IStillBirthDi
                 marginBottom: '15px',
                 padding: '15px'
             }}>
-                <h2 className='no-print'>Viewing Death Record of '{this.props.context._item.LastName}, {this.props.context._item.FirstName} {this.props.context._item.MiddleName}'</h2>
+                <h2 className='no-print'>Viewing Still Birth Record of '{this.props.context._item.LastName}, {this.props.context._item.FirstName} {this.props.context._item.MiddleName}'</h2>
 
                 <CommandBar
                     className='no-print'
@@ -42,14 +43,13 @@ export default class StillBirthDisplayForm extends React.Component<IStillBirthDi
 
                 <Pivot aria-label="Basic Pivot Example" className='no-print-pivot'>
                     <PivotItem
-                        headerText="Death Registration"
+                        headerText="Still Birth"
                         headerButtonProps={{
                             'data-order': 1,
                             'data-title': 'My Files Title',
                         }}
                     >
-                        <div>still birth registration list item details here...</div>
-                        {/* <DeathRegisterListItemDetails deathRegisterItem={this.props.context._item} /> */}
+                        <StillBirthrListItemDetails stillBirthItem={this.props.context._item} />
                     </PivotItem>
                     <PivotItem headerText="Burial Permit" className='no-print-pivot'>
                         <Form19 deathRegisterItem={this.props.context._item} />
