@@ -11,6 +11,7 @@ export default interface IStillBirthListItem {
     Cause?: string;
     DoctorsInformation?: string;
     MotherInformation?: string;
+    MotherAddress?: string;
     BurialPermitInformation?: string;
     FuneralHome?: string;
     FuneralDirectorName?: string;

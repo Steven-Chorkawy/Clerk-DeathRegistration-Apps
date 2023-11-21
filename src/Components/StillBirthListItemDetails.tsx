@@ -34,6 +34,11 @@ export default class StillBirthrListItemDetails extends React.Component<IStillBi
                 <h2>Mother's Information</h2>
                 <Stack>
                     {this.MyStack('Mothers Information', this.props.registerItem.MotherInformation)}
+                    {this.MyStack('Street Address', JSON.parse(this.props.registerItem.MotherAddress)?.Address?.Street)}
+                    {this.MyStack('City', JSON.parse(this.props.registerItem.MotherAddress)?.Address?.City)}
+                    {this.MyStack('Province', JSON.parse(this.props.registerItem.MotherAddress)?.Address?.State)}
+                    {this.MyStack('Postal', JSON.parse(this.props.registerItem.MotherAddress)?.Address?.PostalCode)}
+                    {this.MyStack('Country', JSON.parse(this.props.registerItem.MotherAddress)?.Address?.CountryOrRegion)}
                 </Stack>
                 <h2>Doctor's Information</h2>
                 <Stack>

@@ -168,6 +168,13 @@ export default class StillBirthRegistrationNewForm extends React.Component<IStil
                                 multiline={true}
                                 rows={3}
                             />
+                            <Field
+                                id={"MotherAddress"}
+                                name={"MotherAddress"}
+                                label={"Mothers Address"}
+                                component={MyLocationPicker}
+                                context={this.props.context}
+                            />
                             {FormSubTitle("Doctor's Information")}
                             <Field
                                 id={"DoctorsInformation"}
