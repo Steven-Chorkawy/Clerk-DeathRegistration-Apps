@@ -6,8 +6,8 @@ import { DEATH_REGISTRATION_LIST_TITLE, FormatTitle, GetChoiceColumn, GetColumnD
 import { DeathRegistrationNumberInput, FormSubTitle, MyComboBox, MyDatePicker, MyDropdown, MyLocationPicker, MyTextField, MyToggle } from './MyFormComponents';
 
 import PackageSolutionVersion from './PackageSolutionVersion';
-import { VitalStatsContentTypes } from '../MyHelperMethods/VitalStatsContentTypes';
-import IStillBirthListItem from '../MyHelperMethods/IStillBirthListItem';
+import { VitalStatsContentTypeIDs } from '../MyHelperMethods/VitalStatsContentTypes';
+import IStillAndDeathRegisterListItem from '../MyHelperMethods/IStillAndDeathRegisterListItem';
 
 export interface IStillBirthRegistrationNewFormProps extends IDeathRegisterFormProps {
 }
@@ -33,14 +33,14 @@ export default class StillBirthRegistrationNewForm extends React.Component<IStil
 
         GetColumnDefaultValue('DefaultFee').then(v => this.setState({ defaultFee: Number(v) })).catch(reason => alert('Failed to get Fees default value.'));
 
-        GetNextRegistrationNumber(VitalStatsContentTypes.StillBirth).then(value => this.setState({ nextRegistrationNumber: value })).catch(reason => alert('Failed to get next registration number'));
+        GetNextRegistrationNumber(VitalStatsContentTypeIDs.StillBirth).then(value => this.setState({ nextRegistrationNumber: value })).catch(reason => alert('Failed to get next registration number'));
     }
 
     private _sp = getSP(this.props.context);
 
-    private _onSave = (input: IStillBirthListItem): void => {
+    private _onSave = (input: IStillAndDeathRegisterListItem): void => {
         // Before we submit this form double check that the Registration Number is still valid. 
-        GetNextRegistrationNumber(VitalStatsContentTypes.StillBirth).then((newRegNumber: number) => {
+        GetNextRegistrationNumber(VitalStatsContentTypeIDs.StillBirth).then((newRegNumber: number) => {
             // Set the current registration number.  This will be double checked later.
             input.RegistrationNumber = this.state.nextRegistrationNumber;
 
@@ -56,7 +56,7 @@ export default class StillBirthRegistrationNewForm extends React.Component<IStil
             this._sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).items
                 .add({
                     ...input,
-                    ContentTypeId: VitalStatsContentTypes.StillBirth
+                    ContentTypeId: VitalStatsContentTypeIDs.StillBirth
                 })
                 .then(value => {
                     this.props.onSave();
@@ -139,7 +139,7 @@ export default class StillBirthRegistrationNewForm extends React.Component<IStil
                                 onChange={(e) => {
                                     this.setState({ nextRegistrationNumber: e.value });
                                 }}
-                                contentTypeId={VitalStatsContentTypes.StillBirth}
+                                contentTypeId={VitalStatsContentTypeIDs.StillBirth}
                                 component={DeathRegistrationNumberInput}
                             />
                             {
@@ -161,12 +161,10 @@ export default class StillBirthRegistrationNewForm extends React.Component<IStil
                             />
                             {FormSubTitle("Mother's Information")}
                             <Field
-                                id={"MotherInformation"}
-                                name={"MotherInformation"}
-                                label={"Mother's Information"}
-                                component={TextField}
-                                multiline={true}
-                                rows={3}
+                                id={"MotherName"}
+                                name={"MotherName"}
+                                label={"Mother's Name"}
+                                component={MyTextField}
                             />
                             <Field
                                 id={"MotherAddress"}

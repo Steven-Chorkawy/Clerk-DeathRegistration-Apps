@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Stack, Text } from '@fluentui/react';
 import { MyDateFormat2 } from '../MyHelperMethods/MyHelperMethods';
-import IStillBirthFormProps from '../MyHelperMethods/IStillBirthFormProps';
+import IRegisterFormProps from '../MyHelperMethods/IRegisterFormProps';
 
-export default class StillBirthrListItemDetails extends React.Component<IStillBirthFormProps, any> {
+export default class StillBirthrListItemDetails extends React.Component<IRegisterFormProps, any> {
     constructor(props: any) {
         super(props);
     }
@@ -33,7 +33,7 @@ export default class StillBirthrListItemDetails extends React.Component<IStillBi
                 </Stack>
                 <h2>Mother's Information</h2>
                 <Stack>
-                    {this.MyStack('Mothers Information', this.props.registerItem.MotherInformation)}
+                    {this.MyStack("Mother's Name", this.props.registerItem.MotherName)}
                     {this.MyStack('Street Address', JSON.parse(this.props.registerItem.MotherAddress)?.Address?.Street)}
                     {this.MyStack('City', JSON.parse(this.props.registerItem.MotherAddress)?.Address?.City)}
                     {this.MyStack('Province', JSON.parse(this.props.registerItem.MotherAddress)?.Address?.State)}

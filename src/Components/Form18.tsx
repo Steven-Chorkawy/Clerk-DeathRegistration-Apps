@@ -1,5 +1,5 @@
 import * as React from 'react';
-import IDeathRegisterFormProps from '../MyHelperMethods/IDeathRegisterFormProps';
+import IDeathRegisterFormProps from '../MyHelperMethods/IRegisterFormProps';
 import { Stack, Text } from '@fluentui/react';
 import { IForm18State } from '../MyHelperMethods/IDeathFormState';
 import { ordinal_suffix_of } from '../MyHelperMethods/MyHelperMethods';

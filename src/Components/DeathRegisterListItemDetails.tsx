@@ -1,5 +1,5 @@
 import * as React from 'react';
-import IDeathRegisterFormProps from '../MyHelperMethods/IDeathRegisterFormProps';
+import IDeathRegisterFormProps from '../MyHelperMethods/IRegisterFormProps';
 import { Stack, Text } from '@fluentui/react';
 import { MyDateFormat2 } from '../MyHelperMethods/MyHelperMethods';
 // import { getSP } from '../MyHelperMethods/MyHelperMethods';

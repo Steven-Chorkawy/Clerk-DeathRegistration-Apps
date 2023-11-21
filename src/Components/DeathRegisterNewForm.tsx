@@ -4,9 +4,9 @@ import { Field, Form, FormElement, FormRenderProps } from '@progress/kendo-react
 import { DefaultButton, Depths, Position, PrimaryButton, SpinButton, TextField } from '@fluentui/react';
 import { DEATH_REGISTRATION_LIST_TITLE, FormatTitle, GetChoiceColumn, GetColumnDefaultValue, GetNextRegistrationNumber, getSP } from '../MyHelperMethods/MyHelperMethods';
 import { DeathRegistrationNumberInput, FormSubTitle, MyComboBox, MyDatePicker, MyDropdown, MyLocationPicker, MyTextField, MyToggle } from './MyFormComponents';
-import IDeathRegisterListItem from '../MyHelperMethods/IDeathRegisterListItem';
 import PackageSolutionVersion from './PackageSolutionVersion';
-import { VitalStatsContentTypes } from '../MyHelperMethods/VitalStatsContentTypes';
+import { VitalStatsContentTypeIDs } from '../MyHelperMethods/VitalStatsContentTypes';
+import IStillAndDeathRegisterListItem from '../MyHelperMethods/IStillAndDeathRegisterListItem';
 
 export interface IDeathRegisterNewFormProps extends IDeathRegisterFormProps {
 }
@@ -34,14 +34,14 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
 
         GetColumnDefaultValue('DefaultFee').then(v => this.setState({ defaultFee: Number(v) })).catch(reason => alert('Failed to get Fees default value.'));
 
-        GetNextRegistrationNumber(VitalStatsContentTypes.DeathRegistration).then(value => this.setState({ nextRegistrationNumber: value })).catch(reason => alert('Failed to get next registration number'));
+        GetNextRegistrationNumber(VitalStatsContentTypeIDs.DeathRegistration).then(value => this.setState({ nextRegistrationNumber: value })).catch(reason => alert('Failed to get next registration number'));
     }
 
     private _sp = getSP(this.props.context);
 
-    private _onSave = (input: IDeathRegisterListItem): void => {
+    private _onSave = (input: IStillAndDeathRegisterListItem): void => {
         // Before we submit this form double check that the Registration Number is still valid. 
-        GetNextRegistrationNumber(VitalStatsContentTypes.DeathRegistration).then((newRegNumber: number) => {
+        GetNextRegistrationNumber(VitalStatsContentTypeIDs.DeathRegistration).then((newRegNumber: number) => {
             // Set the current registration number.  This will be double checked later.
             input.RegistrationNumber = this.state.nextRegistrationNumber;
 
@@ -57,7 +57,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
             this._sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).items
                 .add({
                     ...input,
-                    ContentTypeId: VitalStatsContentTypes.DeathRegistration
+                    ContentTypeId: VitalStatsContentTypeIDs.DeathRegistration
                 })
                 .then(value => {
                     this.props.onSave();
@@ -149,7 +149,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 onChange={(e) => {
                                     this.setState({ nextRegistrationNumber: e.value });
                                 }}
-                                contentTypeId={VitalStatsContentTypes.DeathRegistration}
+                                contentTypeId={VitalStatsContentTypeIDs.DeathRegistration}
                                 component={DeathRegistrationNumberInput}
                             />
                             {

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import IStillBirthFormProps from '../MyHelperMethods/IStillBirthFormProps';
 import { Stack, Text } from '@fluentui/react';
 import { IForm18State } from '../MyHelperMethods/IDeathFormState';
 import { ordinal_suffix_of } from '../MyHelperMethods/MyHelperMethods';
+import IRegisterFormProps from '../MyHelperMethods/IRegisterFormProps';
 
-export default class Form18 extends React.Component<IStillBirthFormProps, IForm18State> {
+export default class Form18 extends React.Component<IRegisterFormProps, IForm18State> {
     constructor(props: any) {
         super(props);
 
