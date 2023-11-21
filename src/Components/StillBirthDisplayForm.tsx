@@ -55,7 +55,7 @@ export default class StillBirthDisplayForm extends React.Component<IStillBirthDi
                         <Form19 deathRegisterItem={this.props.context._item} />
                     </PivotItem>
                     <PivotItem headerText="Acknowledgement of Still Birth" className='no-print-pivot'>
-                        <Form3 deathRegisterItem={this.props.context._item} />
+                        <Form3 stillBirthItem={this.props.context._item} />
                     </PivotItem>
                     <PivotItem headerText="Notice of Still Birth" className='no-print-pivot'>
                         <Form17 deathRegisterItem={this.props.context._item} />
