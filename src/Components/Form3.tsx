@@ -9,14 +9,14 @@ export default class Form18 extends React.Component<IStillBirthFormProps, IForm1
         super(props);
 
         this.state = {
-            dayOfDeath: ordinal_suffix_of(new Date(this.props.stillBirthItem.DateOfDeath).getDate()),
-            monthOfDeath: new Date(this.props.stillBirthItem.DateOfDeath).toLocaleString('default', { month: 'long' }),
-            yearOfDeath: new Date(this.props.stillBirthItem.DateOfDeath).getFullYear(),
-            formattedRegistrationDate: `${new Date(this.props.stillBirthItem.RegistrationDate).toLocaleString('default', { month: 'long' })} ${new Date(this.props.stillBirthItem.RegistrationDate).getDate()}, ${new Date(this.props.stillBirthItem.RegistrationDate).getFullYear()}`,
+            dayOfDeath: ordinal_suffix_of(new Date(this.props.registerItem.DateOfDeath).getDate()),
+            monthOfDeath: new Date(this.props.registerItem.DateOfDeath).toLocaleString('default', { month: 'long' }),
+            yearOfDeath: new Date(this.props.registerItem.DateOfDeath).getFullYear(),
+            formattedRegistrationDate: `${new Date(this.props.registerItem.RegistrationDate).toLocaleString('default', { month: 'long' })} ${new Date(this.props.registerItem.RegistrationDate).getDate()}, ${new Date(this.props.registerItem.RegistrationDate).getFullYear()}`,
 
-            dayOfRegistrationDate: ordinal_suffix_of(new Date(this.props.stillBirthItem.RegistrationDate).getDate()),
-            monthOfRegistrationDate: new Date(this.props.stillBirthItem.RegistrationDate).toLocaleString('default', { month: 'long' }),
-            yearOfRegistrationDate: new Date(this.props.stillBirthItem.RegistrationDate).getFullYear()
+            dayOfRegistrationDate: ordinal_suffix_of(new Date(this.props.registerItem.RegistrationDate).getDate()),
+            monthOfRegistrationDate: new Date(this.props.registerItem.RegistrationDate).toLocaleString('default', { month: 'long' }),
+            yearOfRegistrationDate: new Date(this.props.registerItem.RegistrationDate).getFullYear()
         };
     }
 
@@ -36,8 +36,8 @@ export default class Form18 extends React.Component<IStillBirthFormProps, IForm1
                     <br />
                     <Text variant='small' style={{ marginTop: '10px', marginBottom: '10px' }}>Under the Vital Statistics Act and the regulations, I acknowledge the registration of the still birth of</Text>
                     <br />
-                    <Text variant='mediumPlus' style={bold_font_style}>{this.props.stillBirthItem.LastName}</Text>
-                    <Text variant='mediumPlus' style={bold_font_style}>{this.props.stillBirthItem.FirstName} {this.props.stillBirthItem.MiddleName}</Text>
+                    <Text variant='mediumPlus' style={bold_font_style}>{this.props.registerItem.LastName}</Text>
+                    <Text variant='mediumPlus' style={bold_font_style}>{this.props.registerItem.FirstName} {this.props.registerItem.MiddleName}</Text>
                 </Stack>
                 <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
                     <br />

@@ -49,16 +49,16 @@ export default class StillBirthDisplayForm extends React.Component<IStillBirthDi
                             'data-title': 'My Files Title',
                         }}
                     >
-                        <StillBirthrListItemDetails stillBirthItem={this.props.context._item} />
+                        <StillBirthrListItemDetails registerItem={this.props.context._item} />
                     </PivotItem>
                     <PivotItem headerText="Burial Permit" className='no-print-pivot'>
-                        <Form19 deathRegisterItem={this.props.context._item} />
+                        <Form19 registerItem={this.props.context._item} />
                     </PivotItem>
                     <PivotItem headerText="Acknowledgement of Still Birth" className='no-print-pivot'>
-                        <Form3 stillBirthItem={this.props.context._item} />
+                        <Form3 registerItem={this.props.context._item} />
                     </PivotItem>
                     <PivotItem headerText="Notice of Still Birth" className='no-print-pivot'>
-                        <Form17 deathRegisterItem={this.props.context._item} />
+                        <Form17 registerItem={this.props.context._item} />
                     </PivotItem>
                 </Pivot>
                 <PackageSolutionVersion />

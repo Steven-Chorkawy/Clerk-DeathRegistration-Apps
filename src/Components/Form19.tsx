@@ -3,16 +3,17 @@ import IDeathRegisterFormProps from '../MyHelperMethods/IDeathRegisterFormProps'
 import { Stack, Text } from '@fluentui/react';
 import { FormatTitle, ordinal_suffix_of } from '../MyHelperMethods/MyHelperMethods';
 import IDeathFormState from '../MyHelperMethods/IDeathFormState';
+import IStillBirthFormProps from '../MyHelperMethods/IStillBirthFormProps';
 
-export default class Form19 extends React.Component<IDeathRegisterFormProps, IDeathFormState> {
+export default class Form19 extends React.Component<IDeathRegisterFormProps | IStillBirthFormProps, IDeathFormState> {
     constructor(props: any) {
         super(props);
 
         this.state = {
-            dayOfDeath: ordinal_suffix_of(new Date(this.props.deathRegisterItem.DateOfDeath).getDate()),
-            monthOfDeath: new Date(this.props.deathRegisterItem.DateOfDeath).toLocaleString('default', { month: 'long' }),
-            yearOfDeath: new Date(this.props.deathRegisterItem.DateOfDeath).getFullYear(),
-            formattedRegistrationDate: `${new Date(this.props.deathRegisterItem.RegistrationDate).toLocaleString('default', { month: 'long' })} ${new Date(this.props.deathRegisterItem.RegistrationDate).getDate()}, ${new Date(this.props.deathRegisterItem.RegistrationDate).getFullYear()}`
+            dayOfDeath: ordinal_suffix_of(new Date(this.props.registerItem.DateOfDeath).getDate()),
+            monthOfDeath: new Date(this.props.registerItem.DateOfDeath).toLocaleString('default', { month: 'long' }),
+            yearOfDeath: new Date(this.props.registerItem.DateOfDeath).getFullYear(),
+            formattedRegistrationDate: `${new Date(this.props.registerItem.RegistrationDate).toLocaleString('default', { month: 'long' })} ${new Date(this.props.registerItem.RegistrationDate).getDate()}, ${new Date(this.props.registerItem.RegistrationDate).getFullYear()}`
         }
     }
 
@@ -27,10 +28,10 @@ export default class Form19 extends React.Component<IDeathRegisterFormProps, IDe
                     <br />
                     <Text variant='small' style={{ marginTop: '10px', marginBottom: '10px' }}>Under the <i>Vital Statistics Act</i> and the regulations, and subject to the limitations thereof, this permit is granted to</Text>
                     <br />
-                    <Text variant='mediumPlus' style={bold_font_style}>{this.props.deathRegisterItem.FuneralDirectorName}</Text>
-                    <Text variant='mediumPlus' style={bold_font_style}>{JSON.parse(this.props.deathRegisterItem.FuneralHome)?.DisplayName}</Text>
-                    <Text variant='mediumPlus' style={bold_font_style}>{JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.Street}</Text>
-                    <Text variant='mediumPlus' style={bold_font_style}>{JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.City}, {JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.State}  {JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.PostalCode}</Text>
+                    <Text variant='mediumPlus' style={bold_font_style}>{this.props.registerItem.FuneralDirectorName}</Text>
+                    <Text variant='mediumPlus' style={bold_font_style}>{JSON.parse(this.props.registerItem.FuneralHome)?.DisplayName}</Text>
+                    <Text variant='mediumPlus' style={bold_font_style}>{JSON.parse(this.props.registerItem.FuneralHome)?.Address.Street}</Text>
+                    <Text variant='mediumPlus' style={bold_font_style}>{JSON.parse(this.props.registerItem.FuneralHome)?.Address.City}, {JSON.parse(this.props.registerItem.FuneralHome)?.Address.State}  {JSON.parse(this.props.registerItem.FuneralHome)?.Address.PostalCode}</Text>
                 </Stack>
                 <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
                     <br />
@@ -38,7 +39,7 @@ export default class Form19 extends React.Component<IDeathRegisterFormProps, IDe
                     <br />
                 </Stack>
                 <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
-                    <Text variant='xLargePlus'>{FormatTitle(this.props.deathRegisterItem)}</Text>
+                    <Text variant='xLargePlus'>{FormatTitle(this.props.registerItem)}</Text>
                 </Stack>
                 <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
                     <br />
@@ -46,7 +47,7 @@ export default class Form19 extends React.Component<IDeathRegisterFormProps, IDe
                     <br />
                 </Stack>
                 <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
-                    <Text variant='mediumPlus' style={bold_font_style}>{this.props.deathRegisterItem.DeathLocation}</Text>
+                    <Text variant='mediumPlus' style={bold_font_style}>{this.props.registerItem.DeathLocation}</Text>
                 </Stack>
                 <br />
                 <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
