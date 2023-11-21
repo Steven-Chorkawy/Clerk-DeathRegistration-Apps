@@ -169,7 +169,7 @@ export default class StillBirthRegistrationNewForm extends React.Component<IStil
                             <Field
                                 id={"MotherAddress"}
                                 name={"MotherAddress"}
-                                label={"Mothers Address"}
+                                label={"Mother's Address"}
                                 component={MyLocationPicker}
                                 context={this.props.context}
                             />
