@@ -46,44 +46,44 @@ export default class Form17 extends React.Component<IDeathRegisterFormProps, IFo
                     <Text variant='small' style={{ marginTop: '1em', marginBottom: '1em' }}>The following are the particulars of a death or stillbirth that occurred in your division but that has been registered by this office:</Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
-                    <Text><b>1. Name of Deceased:</b> {FormatTitle(this.props.deathRegisterItem)}</Text>
+                    <Text><b>1. Name of Deceased:</b> {FormatTitle(this.props.registerItem)}</Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
                     <Text><b>or Name of Stillborn Child:</b></Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
                     <Text>
-                        <b>2. Date of Death:</b> {MyDateFormat1(this.props.deathRegisterItem.DateOfDeath)}
+                        <b>2. Date of Death:</b> {MyDateFormat1(this.props.registerItem.DateOfDeath)}
                     </Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
-                    <Text><b>3. Sex:</b> {this.props.deathRegisterItem.Sex}</Text>
+                    <Text><b>3. Sex:</b> {this.props.registerItem.Sex}</Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
-                    <Text><b>4. Place of Death:</b> {this.props.deathRegisterItem.DeathLocation}</Text>
+                    <Text><b>4. Place of Death:</b> {this.props.registerItem.DeathLocation}</Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
                     <Text><b>5. Address:</b> {this.state.addressOfDeceased}</Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
-                    <Text><b>6. Cause of Death:</b> {this.props.deathRegisterItem.Cause}</Text>
+                    <Text><b>6. Cause of Death:</b> {this.props.registerItem.Cause}</Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
                     <Text><b>7. Name and Address of Informant:</b></Text>
-                    <Text>{this.props.deathRegisterItem.InformantsInformation}</Text>
+                    <Text>{this.props.registerItem.InformantsInformation}</Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
                     <Text><b>8. Name and Address of Doctor:</b></Text>
-                    <Text>{this.props.deathRegisterItem.DoctorsInformation}</Text>
+                    <Text>{this.props.registerItem.DoctorsInformation}</Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
                     <Text><b>9. Name and Address of Funeral Director</b></Text>
-                    <Text>{this.props.deathRegisterItem.FuneralDirectorName}</Text>
-                    <Text>{JSON.parse(this.props.deathRegisterItem.FuneralHome)?.DisplayName}</Text>
-                    <Text>{JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.Street}, {JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.City}, {JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.State}  {JSON.parse(this.props.deathRegisterItem.FuneralHome)?.Address.PostalCode}</Text>
+                    <Text>{this.props.registerItem.FuneralDirectorName}</Text>
+                    <Text>{JSON.parse(this.props.registerItem.FuneralHome)?.DisplayName}</Text>
+                    <Text>{JSON.parse(this.props.registerItem.FuneralHome)?.Address.Street}, {JSON.parse(this.props.registerItem.FuneralHome)?.Address.City}, {JSON.parse(this.props.registerItem.FuneralHome)?.Address.State}  {JSON.parse(this.props.registerItem.FuneralHome)?.Address.PostalCode}</Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
-                    <Text><b>10. Date of Registration:</b> {MyDateFormat1(this.props.deathRegisterItem.RegistrationDate)}</Text>
+                    <Text><b>10. Date of Registration:</b> {MyDateFormat1(this.props.registerItem.RegistrationDate)}</Text>
                 </Stack>
                 <Stack style={borderStackStyle} horizontal horizontalAlign='space-between'>
                     <span style={{ alignItems: 'left', display: 'flex', justifyContent: 'left' }}>
@@ -93,7 +93,7 @@ export default class Form17 extends React.Component<IDeathRegisterFormProps, IFo
                         <Text variant='small'>Registration Division <br /><b>1811</b></Text>
                     </span>
                     <span style={{ alignItems: 'right', display: 'flex', justifyContent: 'right' }}>
-                        <Text variant='small' style={{ textAlign: 'right' }}>(month by name)(day)(year)<br /><b>{MyDateFormat1(this.props.deathRegisterItem.RegistrationDate)}</b></Text>
+                        <Text variant='small' style={{ textAlign: 'right' }}>(month by name)(day)(year)<br /><b>{MyDateFormat1(this.props.registerItem.RegistrationDate)}</b></Text>
                     </span>
                 </Stack>
                 <Stack horizontal>

@@ -50,16 +50,16 @@ export default class DeathRegisterDisplayForm extends React.Component<IDeathRegi
                             'data-title': 'My Files Title',
                         }}
                     >
-                        <DeathRegisterListItemDetails deathRegisterItem={this.props.context._item} />
+                        <DeathRegisterListItemDetails registerItem={this.props.context._item} />
                     </PivotItem>
                     <PivotItem headerText="Burial Permit" className='no-print-pivot'>
-                        <Form19 deathRegisterItem={this.props.context._item} />
+                        <Form19 registerItem={this.props.context._item} />
                     </PivotItem>
                     <PivotItem headerText="Acknowledgement of Death" className='no-print-pivot'>
-                        <Form18 deathRegisterItem={this.props.context._item} />
+                        <Form18 registerItem={this.props.context._item} />
                     </PivotItem>
                     <PivotItem headerText="Notice of Registration of Death" className='no-print-pivot'>
-                        <Form17 deathRegisterItem={this.props.context._item} />
+                        <Form17 registerItem={this.props.context._item} />
                     </PivotItem>
                 </Pivot>
                 <PackageSolutionVersion />
