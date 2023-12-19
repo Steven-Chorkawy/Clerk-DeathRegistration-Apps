@@ -17,12 +17,21 @@
           "manifest": "./src/extensions/stillBirthForm/StillBirthFormFormCustomizer.manifest.json"
         }
       ]
+    },
+    "registration-reports-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/registrationReports/RegistrationReportsWebPart.js",
+          "manifest": "./src/webparts/registrationReports/RegistrationReportsWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
     "DeathRegisterFormFormCustomizerStrings": "lib/extensions/deathRegisterForm/loc/{locale}.js",
     "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js",
-    "StillBirthFormFormCustomizerStrings": "lib/extensions/stillBirthForm/loc/{locale}.js"
+    "StillBirthFormFormCustomizerStrings": "lib/extensions/stillBirthForm/loc/{locale}.js",
+    "RegistrationReportsWebPartStrings": "lib/webparts/registrationReports/loc/{locale}.js"
   }
 }
