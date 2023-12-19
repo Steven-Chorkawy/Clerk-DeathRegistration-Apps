@@ -40,7 +40,6 @@ export default class RegistrationReportsWebPart extends BaseClientSideWebPart<IR
       this.domElement.style.setProperty('--link', semanticColors.link || null);
       this.domElement.style.setProperty('--linkHovered', semanticColors.linkHovered || null);
     }
-
   }
 
   protected onDispose(): void {
