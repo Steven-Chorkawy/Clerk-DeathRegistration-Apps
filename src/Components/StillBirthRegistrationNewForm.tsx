@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { IDeathRegisterFormProps } from '../extensions/deathRegisterForm/components/DeathRegisterForm';
 import { Field, Form, FormElement, FormRenderProps } from '@progress/kendo-react-form';
-import { DefaultButton, Depths, Position, PrimaryButton, SpinButton, TextField } from '@fluentui/react';
+import { DefaultButton, Depths, PrimaryButton, TextField } from '@fluentui/react';
 import { DEATH_REGISTRATION_LIST_TITLE, FormatTitle, GetChoiceColumn, GetColumnDefaultValue, GetNextRegistrationNumber, getSP } from '../MyHelperMethods/MyHelperMethods';
 import { DeathRegistrationNumberInput, FormSubTitle, MyComboBox, MyDatePicker, MyDropdown, MyLocationPicker, MyTextField, MyToggle } from './MyFormComponents';
+
 import PackageSolutionVersion from './PackageSolutionVersion';
 import { VitalStatsContentTypeIDs } from '../MyHelperMethods/VitalStatsContentTypes';
 import IStillAndDeathRegisterListItem from '../MyHelperMethods/IStillAndDeathRegisterListItem';
 
-export interface IDeathRegisterNewFormProps extends IDeathRegisterFormProps {
+export interface IStillBirthRegistrationNewFormProps extends IDeathRegisterFormProps {
 }
 
-export interface IDeathRegisterNewFormState {
+export interface IStillBirthRegistrationNewFormState {
     sexOptions?: any[]; // DropDown choices.
-    informantsRelationshipOptions?: any[] // DropDown choices.
     deathLocationOptions?: any[];
     nextRegistrationNumber?: number;
     defaultFee: number;
 }
 
-export default class DeathRegisterNewForm extends React.Component<IDeathRegisterNewFormProps, IDeathRegisterNewFormState> {
+export default class StillBirthRegistrationNewForm extends React.Component<IStillBirthRegistrationNewFormProps, IStillBirthRegistrationNewFormState> {
     constructor(props: any) {
         super(props);
 
@@ -29,19 +29,18 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
         }
 
         GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Sex").then(value => this.setState({ sexOptions: value })).catch(reason => alert('Failed to get Sex options.'));
-        GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Informants Relationship").then(value => this.setState({ informantsRelationshipOptions: value })).catch(reason => alert('Failed to get Informants Relationship options.'));
         GetChoiceColumn(DEATH_REGISTRATION_LIST_TITLE, "Death Location").then(value => this.setState({ deathLocationOptions: value })).catch(reason => alert('Failed to get Death Location options.'));
 
         GetColumnDefaultValue('DefaultFee').then(v => this.setState({ defaultFee: Number(v) })).catch(reason => alert('Failed to get Fees default value.'));
 
-        GetNextRegistrationNumber(VitalStatsContentTypeIDs.DeathRegistration).then(value => this.setState({ nextRegistrationNumber: value })).catch(reason => alert('Failed to get next registration number'));
+        GetNextRegistrationNumber(VitalStatsContentTypeIDs.StillBirth).then(value => this.setState({ nextRegistrationNumber: value })).catch(reason => alert('Failed to get next registration number'));
     }
 
     private _sp = getSP(this.props.context);
 
     private _onSave = (input: IStillAndDeathRegisterListItem): void => {
         // Before we submit this form double check that the Registration Number is still valid. 
-        GetNextRegistrationNumber(VitalStatsContentTypeIDs.DeathRegistration).then((newRegNumber: number) => {
+        GetNextRegistrationNumber(VitalStatsContentTypeIDs.StillBirth).then((newRegNumber: number) => {
             // Set the current registration number.  This will be double checked later.
             input.RegistrationNumber = this.state.nextRegistrationNumber;
 
@@ -57,7 +56,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
             this._sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).items
                 .add({
                     ...input,
-                    ContentTypeId: VitalStatsContentTypeIDs.DeathRegistration
+                    ContentTypeId: VitalStatsContentTypeIDs.StillBirth
                 })
                 .then(value => {
                     this.props.onSave();
@@ -74,17 +73,18 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
             <div style={{
                 marginLeft: '30px', marginRight: '30px', marginTop: '15px', marginBottom: '15px', padding: '15px', boxShadow: Depths.depth8
             }}>
-                <h1>New Death Record</h1>
+                <h1>New Record of Still Birth</h1>
                 <hr />
                 <Form
                     onSubmit={this._onSave}
                     initialValues={{
                         'WaiveFee': false,
-                        'RegistrationDate': new Date()
+                        'RegistrationDate': new Date(),
+                        'DateOfDeath': new Date()
                     }}
                     render={(formRenderProps: FormRenderProps) => (
                         <FormElement>
-                            {FormSubTitle("Subject's Information")}
+                            {FormSubTitle("Child's Information")}
                             <Field
                                 id={"LastName"}
                                 name={"LastName"}
@@ -115,23 +115,13 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                             <Field
                                 id={"DateOfDeath"}
                                 name={"DateOfDeath"}
-                                label={"Date of Death"}
+                                label={"Date of Birth"}
                                 component={MyDatePicker}
-                            />
-                            <Field
-                                id={"Age"}
-                                name={"Age"}
-                                label={"Age"}
-                                component={SpinButton}
-                                min={0}
-                                max={999}
-                                step={1}
-                                labelPosition={Position.top}
                             />
                             <Field
                                 id={'DeathLocation'}
                                 name={'DeathLocation'}
-                                label={'Death Location'}
+                                label={'Birth Location'}
                                 component={MyComboBox}
                                 allowFreeInput={true}
                                 options={this.state.deathLocationOptions ? this.state.deathLocationOptions.map(f => { return { key: f, text: f }; }) : []}
@@ -149,7 +139,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 onChange={(e) => {
                                     this.setState({ nextRegistrationNumber: e.value });
                                 }}
-                                contentTypeId={VitalStatsContentTypeIDs.DeathRegistration}
+                                contentTypeId={VitalStatsContentTypeIDs.StillBirth}
                                 component={DeathRegistrationNumberInput}
                             />
                             {
@@ -158,7 +148,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                             }
                             {
                                 <a href={`https://claringtonnet.sharepoint.com/sites/Clerk/Lists/DeathRegistration?FilterField1=Year&FilterValue1=${new Date().getFullYear()}&FilterType1=Text&sortField=RegistrationNumber&isAscending=false`} target='_blank' rel="noreferrer">
-                                    Click to View {new Date().getFullYear()} Death Registrations
+                                    Click to View {new Date().getFullYear()} Still Birth Registrations
                                 </a>
                             }
                             <Field
@@ -169,6 +159,20 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 multiline={true}
                                 rows={3}
                             />
+                            {FormSubTitle("Mother's Information")}
+                            <Field
+                                id={"MotherName"}
+                                name={"MotherName"}
+                                label={"Mother's Name"}
+                                component={MyTextField}
+                            />
+                            <Field
+                                id={"MotherAddress"}
+                                name={"MotherAddress"}
+                                label={"Mother's Address"}
+                                component={MyLocationPicker}
+                                context={this.props.context}
+                            />
                             {FormSubTitle("Doctor's Information")}
                             <Field
                                 id={"DoctorsInformation"}
@@ -177,22 +181,6 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 component={TextField}
                                 multiline={true}
                                 rows={3}
-                            />
-                            {FormSubTitle("Informant's Information")}
-                            <Field
-                                id={"InformantsInformation"}
-                                name={"InformantsInformation"}
-                                label={"Informant's Information"}
-                                component={TextField}
-                                multiline={true}
-                                rows={3}
-                            />
-                            <Field
-                                id={"InformantsRelationship"}
-                                name={"InformantsRelationship"}
-                                label={"Informant's Relationship"}
-                                component={MyComboBox}
-                                options={this.state.informantsRelationshipOptions ? this.state.informantsRelationshipOptions.map(f => { return { key: f, text: f }; }) : []}
                             />
                             {FormSubTitle("Funeral Home Information")}
                             <Field
@@ -223,6 +211,16 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                         : <div>Fee: $0.00</div>
                                 }
                             </div>
+
+                            {FormSubTitle("Burial Permit Information (if not issued by Clarington)")}
+                            <Field
+                                id={"BurialPermitInformation"}
+                                name={"BurialPermitInformation"}
+                                label={"Burial Permit Information"}
+                                component={TextField}
+                                multiline={true}
+                                rows={3}
+                            />
 
                             <div className={'k-form-button'} style={{ marginTop: '45px', marginBottom: '20px' }}>
                                 <PrimaryButton

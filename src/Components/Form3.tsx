@@ -1,10 +1,10 @@
 import * as React from 'react';
-import IDeathRegisterFormProps from '../MyHelperMethods/IRegisterFormProps';
 import { Stack, Text } from '@fluentui/react';
 import { IForm18State } from '../MyHelperMethods/IDeathFormState';
 import { ordinal_suffix_of } from '../MyHelperMethods/MyHelperMethods';
+import IRegisterFormProps from '../MyHelperMethods/IRegisterFormProps';
 
-export default class Form18 extends React.Component<IDeathRegisterFormProps, IForm18State> {
+export default class Form18 extends React.Component<IRegisterFormProps, IForm18State> {
     constructor(props: any) {
         super(props);
 
@@ -30,11 +30,11 @@ export default class Form18 extends React.Component<IDeathRegisterFormProps, IFo
         return (
             <div className='printable-page'>
                 <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
-                    <Text variant='xxLarge' style={{ marginTop: '20px' }}>Form 18</Text>
+                    <Text variant='xxLarge' style={{ marginTop: '20px' }}>Form 3</Text>
                     <Text variant='mediumPlus' style={{ marginTop: '20px' }}><i>Vital Statistics Act</i></Text>
-                    <Text variant='xLargePlus' style={{ marginTop: '20px' }}>ACKNOWLEDGEMENT OF REGISTRATION OF DEATH</Text>
+                    <Text variant='xLargePlus' style={{ marginTop: '20px' }}>ACKNOWLEDGEMENT OF REGISTRATION OF STILL BIRTH</Text>
                     <br />
-                    <Text variant='small' style={{ marginTop: '10px', marginBottom: '10px' }}>Under the Vital Statistics Act and the regulations, I acknowledge the registration of the death of</Text>
+                    <Text variant='small' style={{ marginTop: '10px', marginBottom: '10px' }}>Under the Vital Statistics Act and the regulations, I acknowledge the registration of the still birth of</Text>
                     <br />
                     <Text variant='mediumPlus' style={bold_font_style}>{this.props.registerItem.LastName}</Text>
                     <Text variant='mediumPlus' style={bold_font_style}>{this.props.registerItem.FirstName} {this.props.registerItem.MiddleName}</Text>

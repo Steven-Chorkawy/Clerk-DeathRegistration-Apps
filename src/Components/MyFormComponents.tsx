@@ -4,7 +4,6 @@ import { FieldRenderProps } from "@progress/kendo-react-form";
 import * as React from "react";
 import { GetNextRegistrationNumber } from "../MyHelperMethods/MyHelperMethods";
 
-
 //#region 
 const DROPDOWN_WRAPPER_STYLE: React.CSSProperties = {
     maxWidth: '500px'
@@ -48,7 +47,7 @@ export const DeathRegistrationNumberInput = (fieldRenderProps: FieldRenderProps)
 
                     // Only if checked is true will we generate the next number.
                     if (checked) {
-                        GetNextRegistrationNumber().then(value => {
+                        GetNextRegistrationNumber(fieldRenderProps.contentTypeId).then(value => {
                             fieldRenderProps.onChange({ value: value })
                         }).catch(reason => {
                             alert('Failed to get next registration number!');

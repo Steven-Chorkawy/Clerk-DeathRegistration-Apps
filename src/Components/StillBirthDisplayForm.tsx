@@ -1,20 +1,19 @@
 import * as React from 'react';
-import { IDeathRegisterFormProps } from '../extensions/deathRegisterForm/components/DeathRegisterForm';
+import { IStillBirthFormProps } from '../extensions/stillBirthForm/components/StillBirthForm';
 import { CommandBar, Pivot, PivotItem } from '@fluentui/react';
 import Form19 from './Form19';
-import Form18 from './Form18';
 import Form17 from './Form17';
-import DeathRegisterListItemDetails from './DeathRegisterListItemDetails';
 import PackageSolutionVersion from './PackageSolutionVersion';
+import Form3 from './Form3';
+import StillBirthrListItemDetails from './StillBirthListItemDetails';
 
-export interface IDeathRegisterDisplayFormProps extends IDeathRegisterFormProps {
+export interface IStillBirthDisplayFormProps extends IStillBirthFormProps {
 }
 
-export interface IDeathRegisterDisplayFormState {
-
+export interface IStillBirthDisplayFormState {
 }
 
-export default class DeathRegisterDisplayForm extends React.Component<IDeathRegisterDisplayFormProps, IDeathRegisterDisplayFormState> {
+export default class StillBirthDisplayForm extends React.Component<IStillBirthDisplayFormProps, IStillBirthDisplayFormState> {
     constructor(props: any) {
         super(props);
     }
@@ -28,7 +27,7 @@ export default class DeathRegisterDisplayForm extends React.Component<IDeathRegi
                 marginBottom: '15px',
                 padding: '15px'
             }}>
-                <h2 className='no-print'>Viewing Death Record of '{this.props.context._item.LastName}, {this.props.context._item.FirstName} {this.props.context._item.MiddleName}'</h2>
+                <h2 className='no-print'>Viewing Still Birth Record of '{this.props.context._item.LastName}, {this.props.context._item.FirstName} {this.props.context._item.MiddleName}'</h2>
 
                 <CommandBar
                     className='no-print'
@@ -44,21 +43,21 @@ export default class DeathRegisterDisplayForm extends React.Component<IDeathRegi
 
                 <Pivot aria-label="Basic Pivot Example" className='no-print-pivot'>
                     <PivotItem
-                        headerText="Death Registration"
+                        headerText="Still Birth"
                         headerButtonProps={{
                             'data-order': 1,
                             'data-title': 'My Files Title',
                         }}
                     >
-                        <DeathRegisterListItemDetails registerItem={this.props.context._item} />
+                        <StillBirthrListItemDetails registerItem={this.props.context._item} />
                     </PivotItem>
                     <PivotItem headerText="Burial Permit" className='no-print-pivot'>
                         <Form19 registerItem={this.props.context._item} />
                     </PivotItem>
-                    <PivotItem headerText="Acknowledgement of Death" className='no-print-pivot'>
-                        <Form18 registerItem={this.props.context._item} />
+                    <PivotItem headerText="Acknowledgement of Still Birth" className='no-print-pivot'>
+                        <Form3 registerItem={this.props.context._item} />
                     </PivotItem>
-                    <PivotItem headerText="Notice of Registration of Death" className='no-print-pivot'>
+                    <PivotItem headerText="Notice of Still Birth" className='no-print-pivot'>
                         <Form17 registerItem={this.props.context._item} />
                     </PivotItem>
                 </Pivot>

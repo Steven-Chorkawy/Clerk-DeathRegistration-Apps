@@ -12,6 +12,7 @@ module.exports = {
         'sourceType': 'module'
       },
       rules: {
+        'react/no-unescaped-entities': 0,
         // Prevent usage of the JavaScript null value, while allowing code to access existing APIs that may require null. https://www.npmjs.com/package/@rushstack/eslint-plugin
         '@rushstack/no-new-null': 1,
         // Require Jest module mocking APIs to be called before any other statements in their code block. https://www.npmjs.com/package/@rushstack/eslint-plugin
@@ -146,7 +147,7 @@ module.exports = {
         ],
         // Disallows require statements except in import statements.
         // In other words, the use of forms such as var foo = require("foo") are banned. Instead use ES6 style imports or import foo = require("foo") imports.
-        '@typescript-eslint/no-var-requires': 'error',
+        //'@typescript-eslint/no-var-requires': 'error',
         // RATIONALE:         The "module" keyword is deprecated except when describing legacy libraries.
         //
         // STANDARDIZED BY:   @typescript-eslint\eslint-plugin\dist\configs\recommended.json

@@ -6,7 +6,7 @@
     "default": {
       "pageUrl": "https://claringtonnet.sharepoint.com/sites/StevensTestSite/_layouts/15/SPListForm.aspx",
       "formCustomizer": {
-        "componentId": "bc5454d2-bea9-4a5d-88f5-5e2a21dc2b98",
+        "componentId": "6f582ea6-50cb-4792-995d-86b9badd7f21",
         "PageType": 8,
         "RootFolder": "/sites/StevensTestSite/NameTest",
         "properties": {
@@ -44,6 +44,42 @@
         "PageType": 4,
         "RootFolder": "/sites/Clerk/Lists/DeathRegistration",
         "ID": 83,
+        "properties": {
+          "sampleText": "Value"
+        }
+      }
+    },
+    "stillBirthForm_NewForm": {
+      "pageUrl": "https://claringtonnet.sharepoint.com/sites/Clerk/_layouts/15/SPListForm.aspx",
+      "formCustomizer": {
+        "componentId": "6f582ea6-50cb-4792-995d-86b9badd7f21",
+        "ContentTypeID": "0x0100DA81DCD717B72D499724C0023271F50C0100CFF0CD01ECE5A34F919731D221086B1C",
+        "PageType": 8,
+        "RootFolder": "/sites/Clerk/Lists/DeathRegistration",
+        "properties": {
+          "sampleText": "Value"
+        }
+      }
+    },
+    "stillBirthForm_EditForm": {
+      "pageUrl": "https://{tenantDomain}/_layouts/15/SPListForm.aspx",
+      "formCustomizer": {
+        "componentId": "6f582ea6-50cb-4792-995d-86b9badd7f21",
+        "PageType": 6,
+        "RootFolder": "/sites/mySite/Lists/MyList",
+        "ID": 1,
+        "properties": {
+          "sampleText": "Value"
+        }
+      }
+    },
+    "stillBirthForm_ViewForm": {
+      "pageUrl": "https://claringtonnet.sharepoint.com/sites/Clerk/_layouts/15/SPListForm.aspx",
+      "formCustomizer": {
+        "componentId": "6f582ea6-50cb-4792-995d-86b9badd7f21",
+        "PageType": 4,
+        "RootFolder": "/sites/Clerk/Lists/DeathRegistration",
+        "ID": 85,
         "properties": {
           "sampleText": "Value"
         }
