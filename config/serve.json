@@ -4,7 +4,7 @@
   "https": true,
   "serveConfigurations": {
     "default": {
-      "pageUrl": "https://claringtonnet.sharepoint.com/sites/StevensTestSite/_layouts/15/SPListForm.aspx",
+      "pageUrl": "https://claringtonnet.sharepoint.com/sites/Clerk/_layouts/workbench.aspx",
       "formCustomizer": {
         "componentId": "6f582ea6-50cb-4792-995d-86b9badd7f21",
         "PageType": 8,
@@ -86,5 +86,5 @@
       }
     }
   },
-  "initialPage": "https://{tenantDomain}/_layouts/workbench.aspx"
+  "initialPage": "https://claringtonnet.sharepoint.com/sites/Clerk/_layouts/workbench.aspx"
 }
