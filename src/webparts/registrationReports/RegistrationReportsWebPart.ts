@@ -11,6 +11,8 @@ import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import * as strings from 'RegistrationReportsWebPartStrings';
 import RegistrationReports from './components/RegistrationReports';
 
+import { getSP } from '../../MyHelperMethods/MyHelperMethods';
+
 export interface IRegistrationReportsWebPartProps {
   description: string;
 }
@@ -20,7 +22,7 @@ export default class RegistrationReportsWebPart extends BaseClientSideWebPart<IR
     const element: React.ReactElement<any> = React.createElement(
       RegistrationReports,
       {
-        props: 'props'
+        context: this.context
       }
     );
 
@@ -40,6 +42,11 @@ export default class RegistrationReportsWebPart extends BaseClientSideWebPart<IR
       this.domElement.style.setProperty('--link', semanticColors.link || null);
       this.domElement.style.setProperty('--linkHovered', semanticColors.linkHovered || null);
     }
+  }
+
+  protected onInit(): Promise<void> {
+    getSP(this.context);
+    return Promise.resolve();
   }
 
   protected onDispose(): void {

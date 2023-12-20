@@ -140,4 +140,36 @@ export const GetNextRegistrationNumber = async (contentType: VitalStatsContentTy
 
     return nextRegistrationNumber;
 }
+
+export const GetRegistrationReport = async (fromDate: Date, toDate: Date, contentType: VitalStatsContentTypeIDs) => {
+    console.log('Starting:GetRegistrationReport');
+    console.log(contentType);
+    // const camlQuery =
+    //     `<View><Query>
+    //         <Where>
+    //             <And>
+    //                 <Eq>
+    //                     <FieldRef Name="ContentTypeId"/>
+    //                     <Value Type="Text">${contentType}</Value>
+    //                 </Eq>
+    //             </And>
+    //         </Where>
+    //     </Query></View>`;
+
+    //   <Geq>
+    //           <FieldRef Name="RegistrationDate" />
+    //             <Value IncludeTimeValue="TRUE" Type="DateTime">${fromDate}</Value>
+    //         </Geq>
+    //         <Leq>
+    //           <FieldRef Name="RegistrationDate" />
+    //           <Value IncludeTimeValue="TRUE" Type="DateTime">${toDate}</Value>
+    //         </Leq>
+    // let items = await _sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).getItemsByCAMLQuery({ ViewXml: camlQuery });
+    let items = await getSP().web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).items();
+
+    console.log('items found for report');
+    console.log(items);
+
+    return items;
+};
 //#endregion
