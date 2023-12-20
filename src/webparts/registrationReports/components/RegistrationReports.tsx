@@ -18,8 +18,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
   }
 
   private _EnableReportButton(): boolean {
-    return false;
-    //return (this.state?.fromDate && this.state?.toDate && this.state?.selectedReport) ? false : true;
+    return (this.state?.fromDate && this.state?.toDate && this.state?.selectedReport) ? false : true;
   }
 
   public render(): React.ReactElement<any> {
@@ -63,7 +62,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
             style={{ width: '100%' }}
             disabled={this._EnableReportButton()}
             onClick={() => {
-              GetRegistrationReport(new Date(), new Date(), VitalStatsContentTypeIDs.DeathRegistration)
+              GetRegistrationReport(this.state.fromDate, this.state.toDate, this.state.selectedReport)
                 .then(value => {
                   alert(`${value.length} items found!`);
                 });

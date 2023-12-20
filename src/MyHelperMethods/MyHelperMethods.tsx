@@ -1,8 +1,12 @@
 import { SPFI, SPFx, spfi } from "@pnp/sp";
 import "@pnp/sp/column-defaults";
+import "@pnp/sp/webs";
+import "@pnp/sp/lists";
+import "@pnp/sp/items";
+import { IFieldInfo } from "@pnp/sp/fields";
+import "@pnp/sp/items/get-all";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { FormCustomizerContext, ListViewCommandSetContext } from "@microsoft/sp-listview-extensibility";
-import { IFieldInfo } from "@pnp/sp/fields";
 import IStillAndDeathRegisterListItem from "./IStillAndDeathRegisterListItem";
 import { VitalStatsContentTypeIDs } from "./VitalStatsContentTypes";
 
@@ -144,28 +148,33 @@ export const GetNextRegistrationNumber = async (contentType: VitalStatsContentTy
 export const GetRegistrationReport = async (fromDate: Date, toDate: Date, contentType: VitalStatsContentTypeIDs) => {
     console.log('Starting:GetRegistrationReport');
     console.log(contentType);
+    console.log(fromDate);
+    console.log(toDate);
+
     // const camlQuery =
     //     `<View><Query>
     //         <Where>
-    //             <And>
-    //                 <Eq>
-    //                     <FieldRef Name="ContentTypeId"/>
-    //                     <Value Type="Text">${contentType}</Value>
-    //                 </Eq>
+    //             <And>              
+    //     <Eq>
+    //     <FieldRef Name="ContentTypeId"/>
+    //     <Value Type="Text">${contentType}</Value>
+    // </Eq>  
     //             </And>
     //         </Where>
     //     </Query></View>`;
 
-    //   <Geq>
-    //           <FieldRef Name="RegistrationDate" />
-    //             <Value IncludeTimeValue="TRUE" Type="DateTime">${fromDate}</Value>
-    //         </Geq>
-    //         <Leq>
-    //           <FieldRef Name="RegistrationDate" />
-    //           <Value IncludeTimeValue="TRUE" Type="DateTime">${toDate}</Value>
-    //         </Leq>
-    // let items = await _sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).getItemsByCAMLQuery({ ViewXml: camlQuery });
-    let items = await getSP().web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).items();
+    //     <Geq>
+    //     <FieldRef Name="RegistrationDate" />
+    //     <Value Type="DateTime">${fromDate}</Value>
+    // </Geq>
+    // <Leq>
+    //     <FieldRef Name="RegistrationDate" />
+    //     <Value Type="DateTime">${toDate}</Value>
+    // </Leq>
+
+    // let items = await getSP().web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).getItemsByCAMLQuery({ ViewXml: camlQuery });
+
+    let items = await getSP().web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).items.filter(`ContentTypeId eq '${contentType}' and RegistrationDate eq ${new Date()}`).getAll();
 
     console.log('items found for report');
     console.log(items);
