@@ -1,4 +1,4 @@
-import { ActionButton, Dropdown, IDropdownOption, Stack } from '@fluentui/react';
+import { Dropdown, IDropdownOption, Position, SpinButton, Stack } from '@fluentui/react';
 import * as React from 'react';
 import { VitalStatsContentTypeIDs } from '../../../MyHelperMethods/VitalStatsContentTypes';
 import { GetRegistrationReportByMonth, GroupBy, MY_MONTHS } from '../../../MyHelperMethods/MyHelperMethods';
@@ -33,20 +33,27 @@ export default class MonthlyDeathReports extends React.Component<any, IMonthlyDe
   public render(): React.ReactElement<any> {
     return (
       <div>
-        <h1>Deaths by Month for {this.state.selectedYear}</h1>
+        <h1 style={{ marginBottom: '0' }}>{this.state.selectedReport === VitalStatsContentTypeIDs.DeathRegistration ? "Deaths" : "Still Births"} by Month for {this.state.selectedYear}</h1>
         <Stack horizontal tokens={{ childrenGap: 'l1', padding: 'l1' }}>
-          <Stack.Item grow={3}>
-            <ActionButton onClick={() => this.setState({ selectedYear: this.state.selectedYear - 1 }, () => this._runReport())}>Previous Year</ActionButton>
+          <Stack.Item>
+            {/* <ActionButton onClick={() => this.setState({ selectedYear: this.state.selectedYear - 1 }, () => this._runReport())}>Previous Year</ActionButton> */}
+            <SpinButton
+              label="Select Year"
+              labelPosition={Position.top}
+              defaultValue={new Date().getFullYear().toString()}
+              step={1}
+              incrementButtonAriaLabel="Increase value by 1"
+              decrementButtonAriaLabel="Decrease value by 1"
+              onChange={(event, newValue) => { this.setState({ selectedYear: Number(newValue) }, () => { this._runReport() }); }}
+            />
           </Stack.Item>
-          <Stack.Item grow={3}>
-            <ActionButton onClick={() => this.setState({ selectedYear: this.state.selectedYear + 1 }, () => this._runReport())}>Next Year</ActionButton>
-          </Stack.Item>
-          <Stack.Item grow={3}>
+          <Stack.Item>
             <Dropdown
               placeholder="Select a Report"
               label="Select Report"
               id='selectedReport'
               defaultSelectedKey={VitalStatsContentTypeIDs.DeathRegistration}
+              selectedKey={this.state.selectedReport}
               options={[{ key: VitalStatsContentTypeIDs.DeathRegistration, text: 'Death Report' }, { key: VitalStatsContentTypeIDs.StillBirth, text: 'Still Birth Report' }]}
               onChange={(event, option: IDropdownOption) => {
                 this.setState({ selectedReport: option.key as VitalStatsContentTypeIDs }, () => this._runReport());
@@ -66,11 +73,11 @@ export default class MonthlyDeathReports extends React.Component<any, IMonthlyDe
               {
                 MY_MONTHS.map((month: string) => {
                   return <tr>
-                    <td>{month.slice(3)}</td>
-                    <td>{this.state.itemsFoundGroupedByMonth[month] ? this.state.itemsFoundGroupedByMonth[month].length : 0}</td>
+                    <td style={{ textAlign: 'right' }}>{month.slice(3)}</td>
+                    <td style={{ textAlign: 'right' }}>{this.state.itemsFoundGroupedByMonth[month] ? this.state.itemsFoundGroupedByMonth[month].length : 0}</td>
                     {
                       this.state.selectedReport === VitalStatsContentTypeIDs.DeathRegistration &&
-                      <td>{this.state.itemsFoundGroupedByMonth[month] ? this.state.itemsFoundGroupedByMonth[month].filter((obj: any) => obj.WaiveFee === false).length : 0}</td>
+                      <td style={{ textAlign: 'right' }}>{this.state.itemsFoundGroupedByMonth[month] ? this.state.itemsFoundGroupedByMonth[month].filter((obj: any) => obj.WaiveFee === false).length : 0}</td>
                     }
                   </tr>;
                 })
