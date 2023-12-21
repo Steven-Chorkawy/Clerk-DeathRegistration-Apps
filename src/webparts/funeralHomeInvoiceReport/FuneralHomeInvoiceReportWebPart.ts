@@ -7,29 +7,23 @@ import {
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
-
 import * as strings from 'FuneralHomeInvoiceReportWebPartStrings';
 import FuneralHomeInvoiceReport from './components/FuneralHomeInvoiceReport';
-import { IFuneralHomeInvoiceReportProps } from './components/IFuneralHomeInvoiceReportProps';
+import { getSP } from '../../MyHelperMethods/MyHelperMethods';
+
+
 
 export interface IFuneralHomeInvoiceReportWebPartProps {
   description: string;
 }
 
+
 export default class FuneralHomeInvoiceReportWebPart extends BaseClientSideWebPart<IFuneralHomeInvoiceReportWebPartProps> {
-
-  private _isDarkTheme: boolean = false;
-  private _environmentMessage: string = '';
-
   public render(): void {
-    const element: React.ReactElement<IFuneralHomeInvoiceReportProps> = React.createElement(
+    const element: React.ReactElement<any> = React.createElement(
       FuneralHomeInvoiceReport,
       {
-        description: this.properties.description,
-        isDarkTheme: this._isDarkTheme,
-        environmentMessage: this._environmentMessage,
-        hasTeamsContext: !!this.context.sdks.microsoftTeams,
-        userDisplayName: this.context.pageContext.user.displayName
+        props: 'props'
       }
     );
 
@@ -37,38 +31,9 @@ export default class FuneralHomeInvoiceReportWebPart extends BaseClientSideWebPa
   }
 
   protected onInit(): Promise<void> {
-    return this._getEnvironmentMessage().then(message => {
-      this._environmentMessage = message;
-    });
-  }
-
-
-
-  private _getEnvironmentMessage(): Promise<string> {
-    if (!!this.context.sdks.microsoftTeams) { // running in Teams, office.com or Outlook
-      return this.context.sdks.microsoftTeams.teamsJs.app.getContext()
-        .then(context => {
-          let environmentMessage: string = '';
-          switch (context.app.host.name) {
-            case 'Office': // running in Office
-              environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOffice : strings.AppOfficeEnvironment;
-              break;
-            case 'Outlook': // running in Outlook
-              environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOutlook : strings.AppOutlookEnvironment;
-              break;
-            case 'Teams': // running in Teams
-            case 'TeamsModern':
-              environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentTeams : strings.AppTeamsTabEnvironment;
-              break;
-            default:
-              environmentMessage = strings.UnknownEnvironment;
-          }
-
-          return environmentMessage;
-        });
-    }
-
-    return Promise.resolve(this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentSharePoint : strings.AppSharePointEnvironment);
+    super.onInit();
+    getSP(this.context);
+    return Promise.resolve();
   }
 
   protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {
@@ -76,7 +41,6 @@ export default class FuneralHomeInvoiceReportWebPart extends BaseClientSideWebPa
       return;
     }
 
-    this._isDarkTheme = !!currentTheme.isInverted;
     const {
       semanticColors
     } = currentTheme;
