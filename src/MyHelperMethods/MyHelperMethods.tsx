@@ -1,8 +1,12 @@
 import { SPFI, SPFx, spfi } from "@pnp/sp";
 import "@pnp/sp/column-defaults";
+import "@pnp/sp/webs";
+import "@pnp/sp/lists";
+import "@pnp/sp/items";
+import { IFieldInfo } from "@pnp/sp/fields";
+import "@pnp/sp/items/get-all";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { FormCustomizerContext, ListViewCommandSetContext } from "@microsoft/sp-listview-extensibility";
-import { IFieldInfo } from "@pnp/sp/fields";
 import IStillAndDeathRegisterListItem from "./IStillAndDeathRegisterListItem";
 import { VitalStatsContentTypeIDs } from "./VitalStatsContentTypes";
 
@@ -140,4 +144,44 @@ export const GetNextRegistrationNumber = async (contentType: VitalStatsContentTy
 
     return nextRegistrationNumber;
 }
+
+export const GetRegistrationReport = async (fromDate: Date, toDate: Date, contentType: VitalStatsContentTypeIDs) => {
+    const camlQuery =
+        `
+<View>
+    <Query>
+        <Where>
+            <And>
+                <Eq>
+                    <FieldRef Name='ContentTypeId'/>
+                    <Value Type='Text'>${contentType}</Value>
+                </Eq>
+                <And>
+                    <Geq>
+                        <FieldRef Name='RegistrationDate'/>
+                        <Value Type='DateTime'>${fromDate.toISOString()}</Value>
+                    </Geq>
+                    <Leq>
+                        <FieldRef Name='RegistrationDate'/>
+                        <Value Type='DateTime'>${toDate.toISOString()}</Value>
+                    </Leq>
+                </And>
+            </And>
+        </Where>
+    </Query>
+</View>
+`;
+
+    try {
+        let items = await getSP().web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).getItemsByCAMLQuery({ ViewXml: camlQuery });
+        console.log('items found for report');
+        console.log(items);
+
+        return items;
+    } catch (error) {
+        alert('ERROR!  Failed to complete query.  Please refresh your page and try again.');
+        console.error(error);
+        return null;
+    }
+};
 //#endregion
