@@ -37,8 +37,8 @@ export default class FuneralHomeInvoiceReport extends React.Component<any, IFune
   public render(): React.ReactElement<any> {
     return (
       <div style={{ marginLeft: '10px', marginRight: '10px' }}>
-        <h1 style={{ marginBottom: '0' }}>Death/ Still Birth Registration Report</h1>
-        <Stack horizontal >
+        <h1 style={{ marginBottom: '0' }}>{this.state.selectedReport === VitalStatsContentTypeIDs.DeathRegistration ? "Death" : "Still Birth"} Registration Report</h1>
+        <Stack horizontal tokens={{ childrenGap: 'l1', padding: 'l1' }}>
           <Stack.Item grow={3}>
             <SpinButton
               label="Select Year"

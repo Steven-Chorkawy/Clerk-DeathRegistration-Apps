@@ -10,9 +10,32 @@ export interface IFuneralHomeInvoiceTableProps {
     ContentTypeId: VitalStatsContentTypeIDs;
 }
 
-export default class FuneralHomeInvoiceTable extends React.Component<IFuneralHomeInvoiceTableProps, any> {
+export interface IFuneralHomeInvoiceTableState {
+    TotalFees: number;
+}
+
+export default class FuneralHomeInvoiceTable extends React.Component<IFuneralHomeInvoiceTableProps, IFuneralHomeInvoiceTableState> {
     constructor(props: any) {
         super(props);
+
+        let total = 0;
+        this.props.ListItems.forEach((value) => {
+            total += Number(value.Fee);
+        });
+
+        this.state = {
+            TotalFees: Number(total)
+        };
+    }
+
+    private _onRenderDetailsFooter(detailsFooterProps: any): any {
+        console.log('footer props');
+        console.log(detailsFooterProps);
+
+        // console.log(this.state?.TotalFees);
+        return <div style={{ textAlign: 'right' }}>
+            <b>TOTAL: {FormatCurrency(detailsFooterProps.totalFees)}</b>
+        </div>;
     }
 
     public render(): React.ReactElement<{}> {
@@ -119,6 +142,8 @@ export default class FuneralHomeInvoiceTable extends React.Component<IFuneralHom
                         compact={true}
                         columns={this.props.ContentTypeId === VitalStatsContentTypeIDs.DeathRegistration ? DETAIL_LIST_DEATH_REG_COLUMNS : DETAIL_LIST_STILL_BIRTH_COLUMNS}
                         selectionMode={SelectionMode.none}
+                        // onRenderDetailsFooter={this._onRenderDetailsFooter}
+                        onRenderDetailsFooter={(props: any) => this._onRenderDetailsFooter({ ...props, totalFees: this.state.TotalFees })}
                     />
                 </div>
             </div>
