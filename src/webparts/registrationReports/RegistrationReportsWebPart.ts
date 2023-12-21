@@ -7,11 +7,11 @@ import {
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
-
 import * as strings from 'RegistrationReportsWebPartStrings';
 import RegistrationReports from './components/RegistrationReports';
-
 import { getSP } from '../../MyHelperMethods/MyHelperMethods';
+import '../../Components/PrintStyles.css';
+
 
 export interface IRegistrationReportsWebPartProps {
   description: string;

@@ -1,4 +1,4 @@
-import { DatePicker, DetailsList, Dropdown, IColumn, IDropdownOption, PrimaryButton, SelectionMode, Stack } from '@fluentui/react';
+import { CommandBar, DatePicker, DetailsList, Dropdown, IColumn, IDropdownOption, PrimaryButton, SelectionMode, Stack } from '@fluentui/react';
 import * as React from 'react';
 import PackageSolutionVersion from '../../../Components/PackageSolutionVersion';
 import { GetRegistrationReport, getSP } from '../../../MyHelperMethods/MyHelperMethods';
@@ -196,8 +196,8 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
 
     return (
       <div>
-        <h1>Registration Reports</h1>
-        <div>
+        <h1 style={{ marginBottom: '0' }} className='no-print'>Registration Reports</h1>
+        <div className='no-print'>
           <Stack horizontal tokens={{ childrenGap: 'l1', padding: 'l1' }}>
             <Stack.Item grow={3}>
               <DatePicker
@@ -250,12 +250,25 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
         <div>
           {
             this.state?.itemsFound?.length > 0 &&
-            <DetailsList
-              items={this.state?.itemsFound}
-              compact={true}
-              columns={this.state.selectedReport === VitalStatsContentTypeIDs.DeathRegistration ? DETAIL_LIST_DEATH_REG_COLUMNS : DETAIL_LIST_STILL_BIRTH_COLUMNS}
-              selectionMode={SelectionMode.none}
-            />
+            <div>
+              <CommandBar
+                className='no-print'
+                items={[
+                  {
+                    key: 'print',
+                    text: 'Print',
+                    iconProps: { iconName: 'Print' },
+                    onClick: (e, item) => window.print()
+                  }
+                ]}
+              />
+              <DetailsList
+                items={this.state?.itemsFound}
+                compact={true}
+                columns={this.state.selectedReport === VitalStatsContentTypeIDs.DeathRegistration ? DETAIL_LIST_DEATH_REG_COLUMNS : DETAIL_LIST_STILL_BIRTH_COLUMNS}
+                selectionMode={SelectionMode.none}
+              />
+            </div>
           }
           <div>
             Date Printed: {new Date().toLocaleDateString()}
