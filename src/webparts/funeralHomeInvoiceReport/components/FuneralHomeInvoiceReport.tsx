@@ -48,7 +48,7 @@ export default class FuneralHomeInvoiceReport extends React.Component<any, IFune
               incrementButtonAriaLabel="Increase value by 1"
               decrementButtonAriaLabel="Decrease value by 1"
               onChange={(event, newValue) => {
-                this.setState({ selectedYear: Number(newValue) });
+                this.setState({ selectedYear: Number(newValue), itemsFoundGroupedByFuneralHome: [] });
               }}
             />
           </Stack.Item>
@@ -61,7 +61,7 @@ export default class FuneralHomeInvoiceReport extends React.Component<any, IFune
               selectedKey={this.state.selectedMonth}
               options={MY_MONTHS.map(m => { return { key: m, text: m }; })}
               onChange={(event, option: IDropdownOption) => {
-                this.setState({ selectedMonth: option.text });
+                this.setState({ selectedMonth: option.text, itemsFoundGroupedByFuneralHome: [] });
               }}
             />
           </Stack.Item>
@@ -73,7 +73,7 @@ export default class FuneralHomeInvoiceReport extends React.Component<any, IFune
               selectedKey={this.state?.selectedReport}
               options={[{ key: VitalStatsContentTypeIDs.DeathRegistration, text: 'Death Report' }, { key: VitalStatsContentTypeIDs.StillBirth, text: 'Still Birth Report' }]}
               onChange={(event, option: IDropdownOption) => {
-                this.setState({ selectedReport: option.key as VitalStatsContentTypeIDs });
+                this.setState({ selectedReport: option.key as VitalStatsContentTypeIDs, itemsFoundGroupedByFuneralHome: [] });
               }}
             />
           </Stack.Item>
