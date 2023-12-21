@@ -30,7 +30,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
         name: 'Deceased',
         fieldName: 'Title',
         minWidth: 30,
-        maxWidth: 100,
+        maxWidth: 120,
         isResizable: true,
       },
       {
@@ -38,6 +38,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
         name: 'Death Date',
         fieldName: 'DateOfDeath',
         minWidth: 30,
+        maxWidth: 100,
         isResizable: true,
         onRender: (item: IStillAndDeathRegisterListItem) => <span>{new Date(item.DateOfDeath).toLocaleDateString()}</span>
       },
@@ -54,7 +55,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
         name: 'Reg Date',
         fieldName: 'RegistrationDate',
         minWidth: 30,
-        maxWidth: 60,
+        maxWidth: 100,
         isResizable: true,
         onRender: (item: IStillAndDeathRegisterListItem) => <span>{new Date(item.RegistrationDate).toLocaleDateString()}</span>
       },
@@ -63,6 +64,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
         name: 'Reg Num',
         fieldName: 'RegistrationNumber',
         minWidth: 30,
+        maxWidth: 60,
         isResizable: true,
       },
       {
@@ -70,6 +72,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
         name: 'Sex',
         fieldName: 'Sex',
         minWidth: 30,
+        maxWidth: 60,
         isResizable: true,
       },
       {
@@ -77,6 +80,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
         name: 'Location',
         fieldName: 'DeathLocation',
         minWidth: 30,
+        maxWidth: 100,
         isResizable: true,
       },
       {
@@ -84,6 +88,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
         name: 'Cause of Death',
         fieldName: 'Cause',
         minWidth: 30,
+        maxWidth: 100,
         isResizable: true,
       },
       {
@@ -91,6 +96,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
         name: "Doctor",
         fieldName: "DoctorsInformation",
         minWidth: 30,
+        maxWidth: 100,
         isResizable: true,
       },
       {
@@ -98,6 +104,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
         name: "Informant",
         fieldName: "InformantsInformation",
         minWidth: 30,
+        maxWidth: 100,
         isResizable: true,
       },
       {
@@ -105,6 +112,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
         name: "Funeral Home",
         fieldName: "FuneralHome",
         minWidth: 30,
+        maxWidth: 100,
         isResizable: true,
         onRender: (item: IStillAndDeathRegisterListItem) => {
           return <div>
@@ -195,7 +203,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
     ];
 
     return (
-      <div>
+      <div style={{ marginLeft: '10px', marginRight: '10px' }}>
         <h1 style={{ marginBottom: '0' }} className='no-print'>Registration Reports</h1>
         <div className='no-print'>
           <Stack horizontal tokens={{ childrenGap: 'l1', padding: 'l1' }}>
