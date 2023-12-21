@@ -14,6 +14,21 @@ import { VitalStatsContentTypeIDs } from "./VitalStatsContentTypes";
 export const DEATH_REGISTRATION_CONTENT_TYPE_ID = "0x0100DA81DCD717B72D499724C0023271F50C00D36BB2C588D851418CF8CEDFA4ED7036";
 export const DEATH_REGISTRATION_LIST_ID = "05310795-3642-4f5f-b71f-47254e1108be";
 export const DEATH_REGISTRATION_LIST_TITLE = "Death Registration";
+// This is used to help iterate through months using the SharePoint month parser/formatter.
+export const MY_MONTHS = [
+    "01-January",
+    "02-February",
+    "03-March",
+    "04-April",
+    "05-May",
+    "06-June",
+    "07-July",
+    "08-August",
+    "09-September",
+    "10-October",
+    "11-November",
+    "12-December"
+];
 //#endregion
 
 let _sp: SPFI = null;
@@ -81,6 +96,15 @@ export const MyDateFormat1 = (i: string): string => {
 export const MyDateFormat2 = (i: string): string => {
     return new Date(i).toISOString().slice(0, 10);
 }
+
+/**
+ * https://stackoverflow.com/a/62765924
+ */
+export const GroupBy = <T, K extends keyof any>(arr: T[], key: (i: T) => K) =>
+    arr.reduce((groups, item) => {
+        (groups[key(item)] ||= []).push(item);
+        return groups;
+    }, {} as Record<K, T[]>);
 //#endregion
 
 //#region Read Methods
@@ -174,8 +198,6 @@ export const GetRegistrationReport = async (fromDate: Date, toDate: Date, conten
 
     try {
         let items = await getSP().web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).getItemsByCAMLQuery({ ViewXml: camlQuery });
-        console.log('items found for report');
-        console.log(items);
 
         return items;
     } catch (error) {
@@ -184,4 +206,11 @@ export const GetRegistrationReport = async (fromDate: Date, toDate: Date, conten
         return null;
     }
 };
+
+export const GetRegistrationReportByMonth = async (year: number, contentType: VitalStatsContentTypeIDs) => {
+    const YEAR_START_DATE: Date = new Date(year, 0, 1);
+    const YEAR_END_DATE: Date = new Date(year, 11, 31);
+    let output = await GetRegistrationReport(YEAR_START_DATE, YEAR_END_DATE, contentType);
+    return output;
+}
 //#endregion
