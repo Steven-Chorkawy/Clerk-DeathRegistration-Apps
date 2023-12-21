@@ -27,7 +27,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
         <h1>Registration Reports</h1>
         <div>
           <Stack horizontal tokens={{ childrenGap: 'l1', padding: 'l1' }}>
-            <Stack.Item>
+            <Stack.Item grow={3}>
               <DatePicker
                 placeholder="Select a From Registration Date..."
                 ariaLabel="Select a From Registration Date"
@@ -37,7 +37,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
                 onSelectDate={(date: Date) => { this.setState({ fromDate: date }); }}
               />
             </Stack.Item>
-            <Stack.Item>
+            <Stack.Item grow={3}>
               <DatePicker
                 placeholder="Select a To Registration Date..."
                 ariaLabel="Select a To Registration Date"
@@ -47,7 +47,7 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
                 onSelectDate={(date: Date) => { this.setState({ toDate: date }); }}
               />
             </Stack.Item>
-            <Stack.Item>
+            <Stack.Item grow={3}>
               <Dropdown
                 placeholder="Select a Report"
                 label="Select Report"
