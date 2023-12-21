@@ -10,7 +10,7 @@ import { IReadonlyTheme } from '@microsoft/sp-component-base';
 
 import * as strings from 'MonthlyDeathReportsWebPartStrings';
 import MonthlyDeathReports from './components/MonthlyDeathReports';
-import { IMonthlyDeathReportsProps } from './components/IMonthlyDeathReportsProps';
+import { getSP } from '../../MyHelperMethods/MyHelperMethods';
 
 export interface IMonthlyDeathReportsWebPartProps {
   description: string;
@@ -18,18 +18,11 @@ export interface IMonthlyDeathReportsWebPartProps {
 
 export default class MonthlyDeathReportsWebPart extends BaseClientSideWebPart<IMonthlyDeathReportsWebPartProps> {
 
-  private _isDarkTheme: boolean = false;
-  private _environmentMessage: string = '';
-
   public render(): void {
-    const element: React.ReactElement<IMonthlyDeathReportsProps> = React.createElement(
+    const element: React.ReactElement<any> = React.createElement(
       MonthlyDeathReports,
       {
-        description: this.properties.description,
-        isDarkTheme: this._isDarkTheme,
-        environmentMessage: this._environmentMessage,
-        hasTeamsContext: !!this.context.sdks.microsoftTeams,
-        userDisplayName: this.context.pageContext.user.displayName
+        props: 'props'
       }
     );
 
@@ -37,38 +30,9 @@ export default class MonthlyDeathReportsWebPart extends BaseClientSideWebPart<IM
   }
 
   protected onInit(): Promise<void> {
-    return this._getEnvironmentMessage().then(message => {
-      this._environmentMessage = message;
-    });
-  }
-
-
-
-  private _getEnvironmentMessage(): Promise<string> {
-    if (!!this.context.sdks.microsoftTeams) { // running in Teams, office.com or Outlook
-      return this.context.sdks.microsoftTeams.teamsJs.app.getContext()
-        .then(context => {
-          let environmentMessage: string = '';
-          switch (context.app.host.name) {
-            case 'Office': // running in Office
-              environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOffice : strings.AppOfficeEnvironment;
-              break;
-            case 'Outlook': // running in Outlook
-              environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOutlook : strings.AppOutlookEnvironment;
-              break;
-            case 'Teams': // running in Teams
-            case 'TeamsModern':
-              environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentTeams : strings.AppTeamsTabEnvironment;
-              break;
-            default:
-              environmentMessage = strings.UnknownEnvironment;
-          }
-
-          return environmentMessage;
-        });
-    }
-
-    return Promise.resolve(this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentSharePoint : strings.AppSharePointEnvironment);
+    super.onInit();
+    getSP(this.context);
+    return Promise.resolve();
   }
 
   protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {
@@ -76,7 +40,6 @@ export default class MonthlyDeathReportsWebPart extends BaseClientSideWebPart<IM
       return;
     }
 
-    this._isDarkTheme = !!currentTheme.isInverted;
     const {
       semanticColors
     } = currentTheme;
