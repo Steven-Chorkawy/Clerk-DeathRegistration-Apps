@@ -33,6 +33,14 @@
           "manifest": "./src/webparts/monthlyDeathReports/MonthlyDeathReportsWebPart.manifest.json"
         }
       ]
+    },
+    "funeral-home-invoice-report-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/funeralHomeInvoiceReport/FuneralHomeInvoiceReportWebPart.js",
+          "manifest": "./src/webparts/funeralHomeInvoiceReport/FuneralHomeInvoiceReportWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
@@ -41,6 +49,7 @@
     "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js",
     "StillBirthFormFormCustomizerStrings": "lib/extensions/stillBirthForm/loc/{locale}.js",
     "RegistrationReportsWebPartStrings": "lib/webparts/registrationReports/loc/{locale}.js",
-    "MonthlyDeathReportsWebPartStrings": "lib/webparts/monthlyDeathReports/loc/{locale}.js"
+    "MonthlyDeathReportsWebPartStrings": "lib/webparts/monthlyDeathReports/loc/{locale}.js",
+    "FuneralHomeInvoiceReportWebPartStrings": "lib/webparts/funeralHomeInvoiceReport/loc/{locale}.js"
   }
 }
