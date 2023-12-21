@@ -105,6 +105,10 @@ export const GroupBy = <T, K extends keyof any>(arr: T[], key: (i: T) => K) =>
         (groups[key(item)] ||= []).push(item);
         return groups;
     }, {} as Record<K, T[]>);
+
+export const FormatCurrency = (i:number): string => {
+    return i.toLocaleString('en-US', { style: 'currency', currency: 'USD', });
+}
 //#endregion
 
 //#region Read Methods

@@ -3,6 +3,7 @@ import * as React from 'react';
 import { VitalStatsContentTypeIDs } from '../../../MyHelperMethods/VitalStatsContentTypes';
 import { GetRegistrationReport, GroupBy, MY_MONTHS } from '../../../MyHelperMethods/MyHelperMethods';
 import PackageSolutionVersion from '../../../Components/PackageSolutionVersion';
+import FuneralHomeInvoiceTable from '../../../Components/FuneralHomeInvoiceTable';
 
 export interface IFuneralHomeInvoiceReportState {
   selectedYear: number;
@@ -79,7 +80,7 @@ export default class FuneralHomeInvoiceReport extends React.Component<any, IFune
         </Stack>
         <PrimaryButton
           text='Click to View Report'
-          style={{ width: '100%', paddingTop: '5px', paddingBottom: '5px' }}
+          style={{ width: '100%', marginTop: '5px', marginBottom: '5px' }}
           onClick={() => this._runReport()}
         />
         <hr />
@@ -87,12 +88,14 @@ export default class FuneralHomeInvoiceReport extends React.Component<any, IFune
           this.state?.itemsFoundGroupedByFuneralHome &&
           <div>
             {
-              Object.keys(this.state.itemsFoundGroupedByFuneralHome).map((value: string, index: number) => {
-                return <div>
-                  {value} - {index}
-                  <div>Items for this home: {this.state.itemsFoundGroupedByFuneralHome[value]?.length}</div>
-                </div>;
-              })
+              Object.keys(this.state.itemsFoundGroupedByFuneralHome)
+                .map((value: string, index: number) => {
+                  return <FuneralHomeInvoiceTable
+                    FuneralHomeName={value}
+                    ListItems={this.state.itemsFoundGroupedByFuneralHome[value]}
+                    ContentTypeId={this.state.selectedReport}
+                  />;
+                })
             }
           </div>
         }
