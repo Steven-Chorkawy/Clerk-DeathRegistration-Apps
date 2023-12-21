@@ -146,39 +146,42 @@ export const GetNextRegistrationNumber = async (contentType: VitalStatsContentTy
 }
 
 export const GetRegistrationReport = async (fromDate: Date, toDate: Date, contentType: VitalStatsContentTypeIDs) => {
-    console.log('Starting:GetRegistrationReport');
-    console.log(contentType);
-    console.log(fromDate);
-    console.log(toDate);
+    const camlQuery =
+        `
+<View>
+    <Query>
+        <Where>
+            <And>
+                <Eq>
+                    <FieldRef Name='ContentTypeId'/>
+                    <Value Type='Text'>${contentType}</Value>
+                </Eq>
+                <And>
+                    <Geq>
+                        <FieldRef Name='RegistrationDate'/>
+                        <Value Type='DateTime'>${fromDate.toISOString()}</Value>
+                    </Geq>
+                    <Leq>
+                        <FieldRef Name='RegistrationDate'/>
+                        <Value Type='DateTime'>${toDate.toISOString()}</Value>
+                    </Leq>
+                </And>
+            </And>
+        </Where>
+    </Query>
+</View>
+`;
 
-    // const camlQuery =
-    //     `<View><Query>
-    //         <Where>
-    //             <And>              
-    //     <Eq>
-    //     <FieldRef Name="ContentTypeId"/>
-    //     <Value Type="Text">${contentType}</Value>
-    // </Eq>  
-    //             </And>
-    //         </Where>
-    //     </Query></View>`;
+    try {
+        let items = await getSP().web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).getItemsByCAMLQuery({ ViewXml: camlQuery });
+        console.log('items found for report');
+        console.log(items);
 
-    //     <Geq>
-    //     <FieldRef Name="RegistrationDate" />
-    //     <Value Type="DateTime">${fromDate}</Value>
-    // </Geq>
-    // <Leq>
-    //     <FieldRef Name="RegistrationDate" />
-    //     <Value Type="DateTime">${toDate}</Value>
-    // </Leq>
-
-    // let items = await getSP().web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).getItemsByCAMLQuery({ ViewXml: camlQuery });
-
-    let items = await getSP().web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).items.filter(`ContentTypeId eq '${contentType}' and RegistrationDate eq ${new Date()}`).getAll();
-
-    console.log('items found for report');
-    console.log(items);
-
-    return items;
+        return items;
+    } catch (error) {
+        alert('ERROR!  Failed to complete query.  Please refresh your page and try again.');
+        console.error(error);
+        return null;
+    }
 };
 //#endregion

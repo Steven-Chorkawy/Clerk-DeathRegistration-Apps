@@ -4,17 +4,20 @@ import * as React from 'react';
 import PackageSolutionVersion from '../../../Components/PackageSolutionVersion';
 import { GetRegistrationReport, getSP } from '../../../MyHelperMethods/MyHelperMethods';
 import { VitalStatsContentTypeIDs } from '../../../MyHelperMethods/VitalStatsContentTypes';
+import IStillAndDeathRegisterListItem from '../../../MyHelperMethods/IStillAndDeathRegisterListItem';
 
 export interface IRegistrationReportsState {
   fromDate?: Date;
   toDate?: Date;
   selectedReport?: VitalStatsContentTypeIDs;
+  itemsFound: IStillAndDeathRegisterListItem[];
 }
 
 export default class RegistrationReports extends React.Component<any, IRegistrationReportsState> {
   constructor(props: any) {
     super(props);
     getSP(this.props.context);
+    this.state = { itemsFound: [] }
   }
 
   private _EnableReportButton(): boolean {
@@ -64,7 +67,13 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
             onClick={() => {
               GetRegistrationReport(this.state.fromDate, this.state.toDate, this.state.selectedReport)
                 .then(value => {
-                  alert(`${value.length} items found!`);
+                  this.setState({ itemsFound: value });
+                })
+                .catch((reason: any) => {
+                  console.log('Reason:');
+                  console.error(reason);
+                  console.log(reason);
+                  this.setState({ itemsFound: null });
                 });
             }}
           />
@@ -86,6 +95,14 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
             ariaLabelForSelectAllCheckbox="Toggle selection for all items"
             checkButtonAriaLabel="select row"
           /> */}
+        </div>
+        <div>
+          {
+            this.state?.itemsFound && this.state.itemsFound
+              .forEach((value: IStillAndDeathRegisterListItem) => {
+                return <div>{JSON.stringify(value)}<hr /></div>;
+              })
+          }
         </div>
         <hr />
         <PackageSolutionVersion />
