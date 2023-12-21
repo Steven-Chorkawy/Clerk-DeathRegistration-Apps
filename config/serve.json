@@ -86,5 +86,5 @@
       }
     }
   },
-  "initialPage": "https://claringtonnet.sharepoint.com/sites/Clerk/_layouts/workbench.aspx"
+  "initialPage": "https://{tenantDomain}/_layouts/workbench.aspx"
 }

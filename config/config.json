@@ -25,6 +25,14 @@
           "manifest": "./src/webparts/registrationReports/RegistrationReportsWebPart.manifest.json"
         }
       ]
+    },
+    "monthly-death-reports-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/monthlyDeathReports/MonthlyDeathReportsWebPart.js",
+          "manifest": "./src/webparts/monthlyDeathReports/MonthlyDeathReportsWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
@@ -32,6 +40,7 @@
     "DeathRegisterFormFormCustomizerStrings": "lib/extensions/deathRegisterForm/loc/{locale}.js",
     "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js",
     "StillBirthFormFormCustomizerStrings": "lib/extensions/stillBirthForm/loc/{locale}.js",
-    "RegistrationReportsWebPartStrings": "lib/webparts/registrationReports/loc/{locale}.js"
+    "RegistrationReportsWebPartStrings": "lib/webparts/registrationReports/loc/{locale}.js",
+    "MonthlyDeathReportsWebPartStrings": "lib/webparts/monthlyDeathReports/loc/{locale}.js"
   }
 }
