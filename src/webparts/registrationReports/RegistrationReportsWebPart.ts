@@ -45,6 +45,7 @@ export default class RegistrationReportsWebPart extends BaseClientSideWebPart<IR
   }
 
   protected onInit(): Promise<void> {
+    super.onInit();
     getSP(this.context);
     return Promise.resolve();
   }
