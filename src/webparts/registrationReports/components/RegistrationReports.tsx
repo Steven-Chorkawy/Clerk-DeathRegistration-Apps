@@ -278,12 +278,14 @@ export default class RegistrationReports extends React.Component<any, IRegistrat
                   }
                 ]}
               />
-              <DetailsList
-                items={this.state?.itemsFound}
-                compact={true}
-                columns={this.state.selectedReport === VitalStatsContentTypeIDs.DeathRegistration ? DETAIL_LIST_DEATH_REG_COLUMNS : DETAIL_LIST_STILL_BIRTH_COLUMNS}
-                selectionMode={SelectionMode.none}
-              />
+              <div className='printable-page'>
+                <DetailsList
+                  items={this.state?.itemsFound}
+                  compact={true}
+                  columns={this.state.selectedReport === VitalStatsContentTypeIDs.DeathRegistration ? DETAIL_LIST_DEATH_REG_COLUMNS : DETAIL_LIST_STILL_BIRTH_COLUMNS}
+                  selectionMode={SelectionMode.none}
+                />
+              </div>
             </div>
           }
           <div>

@@ -30,17 +30,21 @@ export default class FuneralHomeInvoiceReport extends React.Component<any, IFune
 
     // Because 'GetRegistrationReport' is getting reused and it does not filter for Fees I will manually remove any results that do not have a fee here.
     let itemsWithFees = itemsFound.filter((f: any) => { return Number(f.Fee) !== 0 });
-    
+
     // DispName is the name of the Funeral Home.
     let itemsFoundGroupedByFuneralHome = GroupBy(itemsWithFees, (v: any) => v.DispName);
 
     this.setState({ itemsFoundGroupedByFuneralHome: itemsFoundGroupedByFuneralHome });
   }
 
+  private _EnableReportButton(): boolean {
+    return (this.state?.selectedReport) ? false : true;
+  }
+
   public render(): React.ReactElement<any> {
     return (
       <div style={{ marginLeft: '10px', marginRight: '10px' }}>
-        <h1 style={{ marginBottom: '0' }}>{this.state.selectedReport === VitalStatsContentTypeIDs.DeathRegistration ? "Death" : "Still Birth"} Registration Report</h1>
+        <h1 style={{ marginBottom: '0' }}>{this.state.selectedReport === VitalStatsContentTypeIDs.StillBirth ? "Still Birth" : "Death"} Registration Report</h1>
         <Stack horizontal tokens={{ childrenGap: 'l1', padding: 'l1' }}>
           <Stack.Item grow={3}>
             <SpinButton
@@ -85,6 +89,7 @@ export default class FuneralHomeInvoiceReport extends React.Component<any, IFune
           text='Click to View Report'
           style={{ width: '100%', marginTop: '5px', marginBottom: '5px' }}
           onClick={() => this._runReport()}
+          disabled={this._EnableReportButton()}
         />
         <hr />
         {
