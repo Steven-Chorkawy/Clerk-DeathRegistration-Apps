@@ -180,10 +180,16 @@ export const GetRegistrationReport = async (fromDate: Date, toDate: Date, conten
     <Query>
         <Where>
             <And>
-                <Eq>
-                    <FieldRef Name='ContentTypeId'/>
-                    <Value Type='Text'>${contentType}</Value>
-                </Eq>
+                <And>
+                    <Eq>
+                        <FieldRef Name='ContentTypeId'/>
+                        <Value Type='Text'>${contentType}</Value>
+                    </Eq>
+                    <Neq>
+                        <FieldRef Name='Duplicate'/>
+                        <Value Type='Boolean'>1</Value>
+                    </Neq>
+                </And>                
                 <And>
                     <Geq>
                         <FieldRef Name='RegistrationDate'/>
