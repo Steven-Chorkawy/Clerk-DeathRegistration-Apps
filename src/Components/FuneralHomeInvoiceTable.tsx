@@ -29,10 +29,6 @@ export default class FuneralHomeInvoiceTable extends React.Component<IFuneralHom
     }
 
     private _onRenderDetailsFooter(detailsFooterProps: any): any {
-        console.log('footer props');
-        console.log(detailsFooterProps);
-
-        // console.log(this.state?.TotalFees);
         return <div style={{ textAlign: 'right' }}>
             <b>TOTAL: {FormatCurrency(detailsFooterProps.totalFees)}</b>
         </div>;

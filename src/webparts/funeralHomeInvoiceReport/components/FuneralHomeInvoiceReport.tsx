@@ -27,10 +27,10 @@ export default class FuneralHomeInvoiceReport extends React.Component<any, IFune
     const LAST_DAY_OF_MONTH = new Date(this.state.selectedYear, Number(this.state.selectedMonth.toString().substring(0, 2)), 0);
 
     let itemsFound = await GetRegistrationReport(FIRST_DAY_OF_MONTH, LAST_DAY_OF_MONTH, this.state.selectedReport)
-    console.log(itemsFound);
+
     // DispName is the name of the Funeral Home.
     let itemsFoundGroupedByFuneralHome = GroupBy(itemsFound, (v: any) => v.DispName);
-    console.log(itemsFoundGroupedByFuneralHome);
+  
     this.setState({ itemsFoundGroupedByFuneralHome: itemsFoundGroupedByFuneralHome });
   }
 
