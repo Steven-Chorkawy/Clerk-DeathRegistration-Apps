@@ -41,7 +41,7 @@ export default class FuneralHomeInvoiceTable extends React.Component<IFuneralHom
                 key: 'columnTitle',
                 name: 'Deceased',
                 fieldName: 'Title',
-                minWidth: 90,
+                minWidth: 30,
             },
             {
                 key: 'columnDateOfDeath',
@@ -77,7 +77,7 @@ export default class FuneralHomeInvoiceTable extends React.Component<IFuneralHom
                 key: 'columnTitle',
                 name: 'Child',
                 fieldName: 'Title',
-                minWidth: 90,
+                minWidth: 30,
             },
             {
                 key: 'columnDateOfDeath',
@@ -110,7 +110,7 @@ export default class FuneralHomeInvoiceTable extends React.Component<IFuneralHom
         //#endregion
 
         return (
-            <div>
+            <div style={{ maxWidth: '900px', marginRight: 'auto', marginLeft: 'auto' }}>
                 <h3 style={{ marginBottom: '0' }}>{this.props.FuneralHomeName}</h3>
                 <div style={{ marginBottom: '10px' }}>
                     <DetailsList
