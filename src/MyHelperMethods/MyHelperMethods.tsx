@@ -106,7 +106,7 @@ export const GroupBy = <T, K extends keyof any>(arr: T[], key: (i: T) => K) =>
         return groups;
     }, {} as Record<K, T[]>);
 
-export const FormatCurrency = (i:number): string => {
+export const FormatCurrency = (i: number): string => {
     return i.toLocaleString('en-US', { style: 'currency', currency: 'USD', });
 }
 //#endregion
@@ -143,14 +143,20 @@ export const GetNextRegistrationNumber = async (contentType: VitalStatsContentTy
         <Query>
             <Where>
                 <And>
-                    <Eq>
-                        <FieldRef Name="Year"/>
-                        <Value Type="Text">${new Date().getFullYear()}</Value>
-                    </Eq>
-                    <Eq>
-                        <FieldRef Name="ContentTypeId"/>
-                        <Value Type="Text">${contentType}</Value>
-                    </Eq>
+                    <And>
+                        <Eq>
+                            <FieldRef Name="Year"/>
+                            <Value Type="Text">${new Date().getFullYear()}</Value>
+                        </Eq>
+                        <Eq>
+                            <FieldRef Name="ContentTypeId"/>
+                            <Value Type="Text">${contentType}</Value>
+                        </Eq>
+                    </And>
+                    <Neq>
+                        <FieldRef Name='Duplicate'/>
+                        <Value Type='Boolean'>1</Value>
+                    </Neq>
                 </And>
             </Where>
             <OrderBy>
@@ -160,9 +166,7 @@ export const GetNextRegistrationNumber = async (contentType: VitalStatsContentTy
         <RowLimit>1</RowLimit>
     </View>`;
 
-    const currentDeathRegistrations = await _sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).getItemsByCAMLQuery({
-        ViewXml: camlQuery,
-    });
+    const currentDeathRegistrations = await _sp.web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).getItemsByCAMLQuery({ ViewXml: camlQuery });
 
     if (!currentDeathRegistrations)
         throw Error("Could not fetch next registration number.");
