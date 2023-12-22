@@ -105,6 +105,10 @@ export const GroupBy = <T, K extends keyof any>(arr: T[], key: (i: T) => K) =>
         (groups[key(item)] ||= []).push(item);
         return groups;
     }, {} as Record<K, T[]>);
+
+export const FormatCurrency = (i:number): string => {
+    return i.toLocaleString('en-US', { style: 'currency', currency: 'USD', });
+}
 //#endregion
 
 //#region Read Methods
@@ -176,10 +180,16 @@ export const GetRegistrationReport = async (fromDate: Date, toDate: Date, conten
     <Query>
         <Where>
             <And>
-                <Eq>
-                    <FieldRef Name='ContentTypeId'/>
-                    <Value Type='Text'>${contentType}</Value>
-                </Eq>
+                <And>
+                    <Eq>
+                        <FieldRef Name='ContentTypeId'/>
+                        <Value Type='Text'>${contentType}</Value>
+                    </Eq>
+                    <Neq>
+                        <FieldRef Name='Duplicate'/>
+                        <Value Type='Boolean'>1</Value>
+                    </Neq>
+                </And>                
                 <And>
                     <Geq>
                         <FieldRef Name='RegistrationDate'/>

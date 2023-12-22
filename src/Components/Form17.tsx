@@ -8,8 +8,6 @@ import { VitalStatsContentTypeIDs } from '../MyHelperMethods/VitalStatsContentTy
 export default class Form17 extends React.Component<IDeathRegisterFormProps, IForm17State> {
     constructor(props: any) {
         super(props);
-        console.log('Form17 props');
-        console.log(props);
         this.state = {
             registrationDivision: '',
             addressOfDeceased: ''
