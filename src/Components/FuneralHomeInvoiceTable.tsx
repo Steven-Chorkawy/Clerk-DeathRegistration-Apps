@@ -45,44 +45,34 @@ export default class FuneralHomeInvoiceTable extends React.Component<IFuneralHom
                 key: 'columnTitle',
                 name: 'Deceased',
                 fieldName: 'Title',
-                minWidth: 30,
-                maxWidth: 120,
-                isResizable: true,
+                minWidth: 90,
             },
             {
                 key: 'columnDateOfDeath',
                 name: 'Death Date',
                 fieldName: 'DateOfDeath',
-                minWidth: 30,
-                maxWidth: 100,
-                isResizable: true,
+                minWidth: 120,
                 onRender: (item: IStillAndDeathRegisterListItem_FromList) => <span>{new Date(item.DateOfDeath).toLocaleDateString()}</span>
             },
             {
                 key: 'columnRegistrationDate',
                 name: 'Registration Date',
                 fieldName: 'RegistrationDate',
-                minWidth: 30,
-                maxWidth: 100,
-                isResizable: true,
+                minWidth: 120,
                 onRender: (item: IStillAndDeathRegisterListItem_FromList) => <span>{new Date(item.RegistrationDate).toLocaleDateString()}</span>
             },
             {
                 key: 'columnRegistrationNumber',
                 name: 'Registration Num',
                 fieldName: 'RegistrationNumber',
-                minWidth: 30,
-                maxWidth: 60,
-                isResizable: true,
+                minWidth: 120,
             },
             {
                 key: 'columnFee',
                 name: "Cost",
                 fieldName: "Fee",
-                minWidth: 30,
-                maxWidth: 100,
-                isResizable: true,
-                onRender: (item: IStillAndDeathRegisterListItem_FromList) => <span>{FormatCurrency(Number(item.Fee))}</span>
+                minWidth: 90,
+                onRender: (item: IStillAndDeathRegisterListItem_FromList) => <span style={{ paddingRight: '30px' }}>{FormatCurrency(Number(item.Fee))}</span>
             },
         ];
 
@@ -91,44 +81,34 @@ export default class FuneralHomeInvoiceTable extends React.Component<IFuneralHom
                 key: 'columnTitle',
                 name: 'Child',
                 fieldName: 'Title',
-                minWidth: 30,
-                maxWidth: 120,
-                isResizable: true,
+                minWidth: 90,
             },
             {
                 key: 'columnDateOfDeath',
                 name: 'Date of Birth',
                 fieldName: 'DateOfDeath',
-                minWidth: 30,
-                maxWidth: 100,
-                isResizable: true,
+                minWidth: 120,
                 onRender: (item: IStillAndDeathRegisterListItem_FromList) => <span>{new Date(item.DateOfDeath).toLocaleDateString()}</span>
             },
             {
                 key: 'columnRegistrationDate',
                 name: 'Registration Date',
                 fieldName: 'RegistrationDate',
-                minWidth: 30,
-                maxWidth: 100,
-                isResizable: true,
+                minWidth: 120,
                 onRender: (item: IStillAndDeathRegisterListItem_FromList) => <span>{new Date(item.RegistrationDate).toLocaleDateString()}</span>
             },
             {
                 key: 'columnRegistrationNumber',
                 name: 'Registration Num',
                 fieldName: 'RegistrationNumber',
-                minWidth: 30,
-                maxWidth: 60,
-                isResizable: true,
+                minWidth: 120,
             },
             {
                 key: 'columnFee',
                 name: "Cost",
                 fieldName: "Fee",
-                minWidth: 30,
-                maxWidth: 100,
-                isResizable: true,
-                onRender: (item: IStillAndDeathRegisterListItem_FromList) => <span>{FormatCurrency(Number(item.Fee))}</span>
+                minWidth: 90,
+                onRender: (item: IStillAndDeathRegisterListItem_FromList) => <span style={{ paddingRight: '30px' }}>{FormatCurrency(Number(item.Fee))}</span>
             },
         ];
         //#endregion
@@ -142,7 +122,6 @@ export default class FuneralHomeInvoiceTable extends React.Component<IFuneralHom
                         compact={true}
                         columns={this.props.ContentTypeId === VitalStatsContentTypeIDs.DeathRegistration ? DETAIL_LIST_DEATH_REG_COLUMNS : DETAIL_LIST_STILL_BIRTH_COLUMNS}
                         selectionMode={SelectionMode.none}
-                        // onRenderDetailsFooter={this._onRenderDetailsFooter}
                         onRenderDetailsFooter={(props: any) => this._onRenderDetailsFooter({ ...props, totalFees: this.state.TotalFees })}
                     />
                 </div>
