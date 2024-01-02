@@ -147,7 +147,7 @@ export default class StillBirthRegistrationNewForm extends React.Component<IStil
                                 <div>Next for this year: {this.state.nextRegistrationNumber}</div>
                             }
                             {
-                                <a href={`https://claringtonnet.sharepoint.com/sites/Clerk/Lists/DeathRegistration?FilterField1=Year&FilterValue1=${new Date().getFullYear()}&FilterType1=Text&sortField=RegistrationNumber&isAscending=false`} target='_blank' rel="noreferrer">
+                                <a href={`https://claringtonnet.sharepoint.com/sites/Clerk/Lists/DeathRegistration/All%20Still%20Birth%20Items.aspx?FilterField1=Year&FilterValue1=${new Date().getFullYear()}&FilterType1=Text&sortField=RegistrationNumber&isAscending=false`} target='_blank' rel="noreferrer">
                                     Click to View {new Date().getFullYear()} Still Birth Registrations
                                 </a>
                             }
