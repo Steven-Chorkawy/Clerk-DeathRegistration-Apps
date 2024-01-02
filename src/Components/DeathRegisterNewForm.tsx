@@ -157,7 +157,7 @@ export default class DeathRegisterNewForm extends React.Component<IDeathRegister
                                 <div>Next for this year: {this.state.nextRegistrationNumber}</div>
                             }
                             {
-                                <a href={`https://claringtonnet.sharepoint.com/sites/Clerk/Lists/DeathRegistration?FilterField1=Year&FilterValue1=${new Date().getFullYear()}&FilterType1=Text&sortField=RegistrationNumber&isAscending=false`} target='_blank' rel="noreferrer">
+                                <a href={`https://claringtonnet.sharepoint.com/sites/Clerk/Lists/DeathRegistration/All%20Death%20Registration%20Records.aspx?FilterField1=Year&FilterValue1=${new Date().getFullYear()}&FilterType1=Text&sortField=RegistrationNumber&isAscending=false`} target='_blank' rel="noreferrer">
                                     Click to View {new Date().getFullYear()} Death Registrations
                                 </a>
                             }
