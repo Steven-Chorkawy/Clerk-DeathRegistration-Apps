@@ -3,7 +3,7 @@
   "solution": {
     "name": "clerk-death-register-custom-form-client-side-solution",
     "id": "9bfdc2d4-0927-49c6-bed1-ebc2c4f78690",
-    "version": "5.0.0.16",
+    "version": "6.0.0.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,

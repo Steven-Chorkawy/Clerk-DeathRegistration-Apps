@@ -1,7 +1,7 @@
 import * as React from 'react';
 import IDeathRegisterFormProps from '../MyHelperMethods/IRegisterFormProps';
 import { Stack, Text } from '@fluentui/react';
-import { MyDateFormat2 } from '../MyHelperMethods/MyHelperMethods';
+import { FormatDeathLocation, MyDateFormat2 } from '../MyHelperMethods/MyHelperMethods';
 // import { getSP } from '../MyHelperMethods/MyHelperMethods';
 
 export default class DeathRegisterListItemDetails extends React.Component<IDeathRegisterFormProps, any> {
@@ -29,7 +29,7 @@ export default class DeathRegisterListItemDetails extends React.Component<IDeath
                     {this.MyStack('Sex', this.props.registerItem.Sex)}
                     {this.MyStack('Date of Death', MyDateFormat2(this.props.registerItem.DateOfDeath))}
                     {this.MyStack('Age', this.props.registerItem.Age)}
-                    {this.MyStack('Death Location', this.props.registerItem.DeathLocation)}
+                    {this.MyStack('Death Location', FormatDeathLocation(this.props.registerItem))}
                     {this.MyStack('Registration Date', MyDateFormat2(this.props.registerItem.RegistrationDate))}
                     {this.MyStack('Registration Number', this.props.registerItem.RegistrationNumber)}
                     {this.MyStack('Cause', this.props.registerItem.Cause)}

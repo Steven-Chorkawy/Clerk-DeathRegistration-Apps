@@ -109,6 +109,10 @@ export const GroupBy = <T, K extends keyof any>(arr: T[], key: (i: T) => K) =>
 export const FormatCurrency = (i: number): string => {
     return i.toLocaleString('en-US', { style: 'currency', currency: 'USD', });
 }
+
+export const FormatDeathLocation = (input: IStillAndDeathRegisterListItem) => {
+    return (input.DeathLocation === "Other" && input.OtherDeathLocation !== null) ? input.OtherDeathLocation : input.DeathLocation
+}
 //#endregion
 
 //#region Read Methods
