@@ -12,6 +12,7 @@ export default interface IStillAndDeathRegisterListItem {
     Sex?: string;
     DateOfDeath?: string;
     DeathLocation?: string;
+    OtherDeathLocation?:string;
     RegistrationDate?: string;
     RegistrationNumber?: number;
     Cause?: string;
