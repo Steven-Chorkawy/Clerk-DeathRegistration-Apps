@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Stack, Text } from '@fluentui/react';
-import { MyDateFormat2 } from '../MyHelperMethods/MyHelperMethods';
+import { FormatDeathLocation, MyDateFormat2 } from '../MyHelperMethods/MyHelperMethods';
 import IRegisterFormProps from '../MyHelperMethods/IRegisterFormProps';
 
 export default class StillBirthrListItemDetails extends React.Component<IRegisterFormProps, any> {
@@ -26,7 +26,7 @@ export default class StillBirthrListItemDetails extends React.Component<IRegiste
                     {this.MyStack('Middle Name', this.props.registerItem.MiddleName)}
                     {this.MyStack('Sex', this.props.registerItem.Sex)}
                     {this.MyStack('Date of Birth', MyDateFormat2(this.props.registerItem.DateOfDeath))}
-                    {this.MyStack('Death Location', this.props.registerItem.DeathLocation)}
+                    {this.MyStack('Death Location', FormatDeathLocation(this.props.registerItem))}
                     {this.MyStack('Registration Date', MyDateFormat2(this.props.registerItem.RegistrationDate))}
                     {this.MyStack('Registration Number', this.props.registerItem.RegistrationNumber)}
                     {this.MyStack('Cause', this.props.registerItem.Cause)}
