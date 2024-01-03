@@ -126,6 +126,16 @@ export default class StillBirthRegistrationNewForm extends React.Component<IStil
                                 allowFreeInput={true}
                                 options={this.state.deathLocationOptions ? this.state.deathLocationOptions.map(f => { return { key: f, text: f }; }) : []}
                             />
+                            {
+                                formRenderProps.valueGetter('DeathLocation') === "Other" &&
+                                <Field
+                                    id={'OtherDeathLocation'}
+                                    name={'OtherDeathLocation'}
+                                    label={'Other Birth Location'}
+                                    component={MyTextField}
+                                    required={true}
+                                />
+                            }
                             <Field
                                 id={"RegistrationDate"}
                                 name={"RegistrationDate"}
