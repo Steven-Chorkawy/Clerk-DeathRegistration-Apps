@@ -2,7 +2,7 @@ import * as React from 'react';
 import IDeathRegisterFormProps from '../MyHelperMethods/IRegisterFormProps';
 import { Stack, Text, TextField } from '@fluentui/react';
 import { IForm17State } from '../MyHelperMethods/IDeathFormState';
-import { FormatTitle, MyDateFormat1 } from '../MyHelperMethods/MyHelperMethods';
+import { FormatDeathLocation, FormatTitle, MyDateFormat1 } from '../MyHelperMethods/MyHelperMethods';
 import { VitalStatsContentTypeIDs } from '../MyHelperMethods/VitalStatsContentTypes';
 
 export default class Form17 extends React.Component<IDeathRegisterFormProps, IForm17State> {
@@ -73,7 +73,7 @@ export default class Form17 extends React.Component<IDeathRegisterFormProps, IFo
                     <Text><b>3. Sex:</b> {this.props.registerItem.Sex}</Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
-                    <Text><b>4. Place of Death:</b> {this.props.registerItem.DeathLocation}</Text>
+                    <Text><b>4. Place of Death:</b> {FormatDeathLocation(this.props.registerItem)}</Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
                     <Text>
