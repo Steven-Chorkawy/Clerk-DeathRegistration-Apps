@@ -111,7 +111,7 @@ export const FormatCurrency = (i: number): string => {
 }
 
 export const FormatDeathLocation = (input: IStillAndDeathRegisterListItem) => {
-    return (input.DeathLocation === "Other" && input.OtherDeathLocation.length > 0) ? input.OtherDeathLocation : input.DeathLocation
+    return (input.DeathLocation === "Other" && input.OtherDeathLocation !== null) ? input.OtherDeathLocation : input.DeathLocation
 }
 //#endregion
 
