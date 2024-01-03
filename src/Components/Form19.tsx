@@ -1,7 +1,7 @@
 import * as React from 'react';
 import IRegisterFormProps from '../MyHelperMethods/IRegisterFormProps';
 import { Stack, Text } from '@fluentui/react';
-import { FormatTitle, ordinal_suffix_of } from '../MyHelperMethods/MyHelperMethods';
+import { FormatDeathLocation, FormatTitle, ordinal_suffix_of } from '../MyHelperMethods/MyHelperMethods';
 import IDeathFormState from '../MyHelperMethods/IDeathFormState';
 
 export default class Form19 extends React.Component<IRegisterFormProps, IDeathFormState> {
@@ -46,7 +46,7 @@ export default class Form19 extends React.Component<IRegisterFormProps, IDeathFo
                     <br />
                 </Stack>
                 <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
-                    <Text variant='mediumPlus' style={bold_font_style}>{this.props.registerItem.DeathLocation}</Text>
+                    <Text variant='mediumPlus' style={bold_font_style}>{FormatDeathLocation(this.props.registerItem)}</Text>
                 </Stack>
                 <br />
                 <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
