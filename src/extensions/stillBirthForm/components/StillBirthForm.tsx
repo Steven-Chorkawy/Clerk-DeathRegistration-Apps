@@ -32,6 +32,6 @@ export default class StillBirthForm extends React.Component<IStillBirthFormProps
       return <StillBirthDisplayForm {...this.props} />
     }
 
-    return <div>hello world default!</div>;
+    return <div>Something went wrong! Please contact helpdesk@clarington.net!</div>;
   }
 }
