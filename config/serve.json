@@ -89,7 +89,7 @@
       "pageUrl": "https://claringtonnet.sharepoint.com/sites/Clerk/Lists/DeathRegistration",
       "customActions": {
         "c08ea4bd-2aef-480d-ac33-00ca70653ad5": {
-          "location": "ClientSideExtension.ListViewCommandSet.CommandBar",
+          "location": "ClientSideExtension.ListViewCommandSet",
           "properties": {
             "sampleTextOne": "One item is selected in the list",
             "sampleTextTwo": "This command is always visible."
