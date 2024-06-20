@@ -3,7 +3,7 @@ import { Stack, Text } from '@fluentui/react';
 import { FormatDeathLocation, MyDateFormat2 } from '../MyHelperMethods/MyHelperMethods';
 import IRegisterFormProps from '../MyHelperMethods/IRegisterFormProps';
 
-export default class StillBirthrListItemDetails extends React.Component<IRegisterFormProps, any> {
+export default class StillBirthListItemDetails extends React.Component<IRegisterFormProps, any> {
     constructor(props: any) {
         super(props);
     }
