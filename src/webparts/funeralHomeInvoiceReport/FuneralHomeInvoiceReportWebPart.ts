@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import { Version } from '@microsoft/sp-core-library';
 import {
   type IPropertyPaneConfiguration,
   PropertyPaneTextField
@@ -55,10 +54,6 @@ export default class FuneralHomeInvoiceReportWebPart extends BaseClientSideWebPa
 
   protected onDispose(): void {
     ReactDom.unmountComponentAtNode(this.domElement);
-  }
-
-  protected get dataVersion(): Version {
-    return Version.parse('1.0');
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
