@@ -86,7 +86,7 @@
       }
     },
     "deathRegistrationDisplayForm": {
-      "pageUrl": "https://{tenantDomain}/SitePages/myPage.aspx",
+      "pageUrl": "https://claringtonnet.sharepoint.com/sites/Clerk/Lists/DeathRegistration",
       "customActions": {
         "c08ea4bd-2aef-480d-ac33-00ca70653ad5": {
           "location": "ClientSideExtension.ListViewCommandSet.CommandBar",
