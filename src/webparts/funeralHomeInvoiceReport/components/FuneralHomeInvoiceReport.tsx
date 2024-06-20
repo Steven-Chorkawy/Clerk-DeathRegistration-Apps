@@ -26,13 +26,13 @@ export default class FuneralHomeInvoiceReport extends React.Component<any, IFune
     const FIRST_DAY_OF_MONTH = new Date(this.state.selectedYear, Number(this.state.selectedMonth.toString().substring(0, 2)) - 1, 1);
     const LAST_DAY_OF_MONTH = new Date(this.state.selectedYear, Number(this.state.selectedMonth.toString().substring(0, 2)), 0);
 
-    let itemsFound = await GetRegistrationReport(FIRST_DAY_OF_MONTH, LAST_DAY_OF_MONTH, this.state.selectedReport)
+    const itemsFound = await GetRegistrationReport(FIRST_DAY_OF_MONTH, LAST_DAY_OF_MONTH, this.state.selectedReport)
 
     // Because 'GetRegistrationReport' is getting reused and it does not filter for Fees I will manually remove any results that do not have a fee here.
-    let itemsWithFees = itemsFound.filter((f: any) => { return Number(f.Fee) !== 0 });
+    const itemsWithFees = itemsFound.filter((f: any) => { return Number(f.Fee) !== 0 });
 
     // DispName is the name of the Funeral Home.
-    let itemsFoundGroupedByFuneralHome = GroupBy(itemsWithFees, (v: any) => v.DispName);
+    const itemsFoundGroupedByFuneralHome = GroupBy(itemsWithFees, (v: any) => v.DispName);
 
     this.setState({ itemsFoundGroupedByFuneralHome: itemsFoundGroupedByFuneralHome });
   }
