@@ -30,7 +30,13 @@
         "title": "clerk-death-register-custom-form Feature",
         "description": "The feature that activates elements of the clerk-death-register-custom-form solution.",
         "id": "c045dd4a-7308-49d2-a15e-f0008790037c",
-        "version": "1.0.0.0"
+        "version": "1.0.0.0",
+        "assets": {
+          "elementManifests": [
+            "elements.xml",
+            "ClientSideInstance.xml"
+          ]
+        }
       }
     ]
   },

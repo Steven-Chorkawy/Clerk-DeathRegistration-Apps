@@ -16,6 +16,7 @@
     "solutionShortDescription": "clerk-death-register-custom-form description",
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
-    "componentType": "webpart"
+    "componentType": "extension",
+    "extensionType": "ListViewCommandSet"
   }
 }
