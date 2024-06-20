@@ -52,7 +52,6 @@ export default class StillBirthFormFormCustomizer
   }
 
   private _onSave = (): void => {
-
     // You MUST call this.formSaved() after you save the form.
     this.formSaved();
   }

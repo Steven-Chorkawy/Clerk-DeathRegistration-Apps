@@ -3,7 +3,7 @@
   "solution": {
     "name": "clerk-death-register-custom-form-client-side-solution",
     "id": "9bfdc2d4-0927-49c6-bed1-ebc2c4f78690",
-    "version": "6.0.0.1",
+    "version": "7.0.0.1",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
@@ -30,7 +30,13 @@
         "title": "clerk-death-register-custom-form Feature",
         "description": "The feature that activates elements of the clerk-death-register-custom-form solution.",
         "id": "c045dd4a-7308-49d2-a15e-f0008790037c",
-        "version": "1.0.0.0"
+        "version": "1.0.0.0",
+        "assets": {
+          "elementManifests": [
+            "elements.xml",
+            "ClientSideInstance.xml"
+          ]
+        }
       }
     ]
   },

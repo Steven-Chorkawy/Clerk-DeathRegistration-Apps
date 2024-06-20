@@ -5,7 +5,7 @@ import Form19 from './Form19';
 import Form17 from './Form17';
 import PackageSolutionVersion from './PackageSolutionVersion';
 import Form3 from './Form3';
-import StillBirthrListItemDetails from './StillBirthListItemDetails';
+import StillBirthListItemDetails from './StillBirthListItemDetails';
 
 export interface IStillBirthDisplayFormProps extends IStillBirthFormProps {
 }
@@ -49,7 +49,7 @@ export default class StillBirthDisplayForm extends React.Component<IStillBirthDi
                             'data-title': 'My Files Title',
                         }}
                     >
-                        <StillBirthrListItemDetails registerItem={this.props.context._item} />
+                        <StillBirthListItemDetails registerItem={this.props.context._item} />
                     </PivotItem>
                     <PivotItem headerText="Burial Permit" className='no-print-pivot'>
                         <Form19 registerItem={this.props.context._item} />

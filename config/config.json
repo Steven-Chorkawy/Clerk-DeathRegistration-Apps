@@ -41,6 +41,14 @@
           "manifest": "./src/webparts/funeralHomeInvoiceReport/FuneralHomeInvoiceReportWebPart.manifest.json"
         }
       ]
+    },
+    "death-registration-display-form-command-set": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/deathRegistrationDisplayForm/DeathRegistrationDisplayFormCommandSet.js",
+          "manifest": "./src/extensions/deathRegistrationDisplayForm/DeathRegistrationDisplayFormCommandSet.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
@@ -50,6 +58,7 @@
     "StillBirthFormFormCustomizerStrings": "lib/extensions/stillBirthForm/loc/{locale}.js",
     "RegistrationReportsWebPartStrings": "lib/webparts/registrationReports/loc/{locale}.js",
     "MonthlyDeathReportsWebPartStrings": "lib/webparts/monthlyDeathReports/loc/{locale}.js",
-    "FuneralHomeInvoiceReportWebPartStrings": "lib/webparts/funeralHomeInvoiceReport/loc/{locale}.js"
+    "FuneralHomeInvoiceReportWebPartStrings": "lib/webparts/funeralHomeInvoiceReport/loc/{locale}.js",
+    "DeathRegistrationDisplayFormCommandSetStrings": "lib/extensions/deathRegistrationDisplayForm/loc/{locale}.js"
   }
 }

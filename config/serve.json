@@ -67,7 +67,7 @@
         "componentId": "6f582ea6-50cb-4792-995d-86b9badd7f21",
         "PageType": 6,
         "RootFolder": "/sites/Clerk/Lists/DeathRegistration",
-        "ID":96,
+        "ID": 96,
         "properties": {
           "sampleText": "Value"
         }
@@ -82,6 +82,18 @@
         "ID": 96,
         "properties": {
           "sampleText": "Value"
+        }
+      }
+    },
+    "deathRegistrationDisplayForm": {
+      "pageUrl": "https://claringtonnet.sharepoint.com/sites/Clerk/Lists/DeathRegistration",
+      "customActions": {
+        "c08ea4bd-2aef-480d-ac33-00ca70653ad5": {
+          "location": "ClientSideExtension.ListViewCommandSet",
+          "properties": {
+            "sampleTextOne": "One item is selected in the list",
+            "sampleTextTwo": "This command is always visible."
+          }
         }
       }
     }
