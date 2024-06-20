@@ -100,7 +100,7 @@ export const MyDateFormat2 = (i: string): string => {
 /**
  * https://stackoverflow.com/a/62765924
  */
-export const GroupBy = <T, K extends keyof any>(arr: T[], key: (i: T) => K) =>
+export const GroupBy = <T, K extends keyof any>(arr: T[], key: (i: T) => K): any =>
     arr.reduce((groups, item) => {
         (groups[key(item)] ||= []).push(item);
         return groups;
@@ -110,7 +110,7 @@ export const FormatCurrency = (i: number): string => {
     return i.toLocaleString('en-US', { style: 'currency', currency: 'USD', });
 }
 
-export const FormatDeathLocation = (input: IStillAndDeathRegisterListItem) => {
+export const FormatDeathLocation = (input: IStillAndDeathRegisterListItem): any => {
     return (input.DeathLocation === "Other" && input.OtherDeathLocation !== null) ? input.OtherDeathLocation : input.DeathLocation
 }
 //#endregion
@@ -181,7 +181,7 @@ export const GetNextRegistrationNumber = async (contentType: VitalStatsContentTy
     return nextRegistrationNumber;
 }
 
-export const GetRegistrationReport = async (fromDate: Date, toDate: Date, contentType: VitalStatsContentTypeIDs) => {
+export const GetRegistrationReport = async (fromDate: Date, toDate: Date, contentType: VitalStatsContentTypeIDs): Promise<any> => {
     const camlQuery =
         `
 <View>
@@ -215,7 +215,7 @@ export const GetRegistrationReport = async (fromDate: Date, toDate: Date, conten
 `;
 
     try {
-        let items = await getSP().web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).getItemsByCAMLQuery({ ViewXml: camlQuery });
+        const items = await getSP().web.lists.getByTitle(DEATH_REGISTRATION_LIST_TITLE).getItemsByCAMLQuery({ ViewXml: camlQuery });
 
         return items;
     } catch (error) {
@@ -225,10 +225,10 @@ export const GetRegistrationReport = async (fromDate: Date, toDate: Date, conten
     }
 };
 
-export const GetRegistrationReportByMonth = async (year: number, contentType: VitalStatsContentTypeIDs) => {
+export const GetRegistrationReportByMonth = async (year: number, contentType: VitalStatsContentTypeIDs): Promise<any> => {
     const YEAR_START_DATE: Date = new Date(year, 0, 1);
     const YEAR_END_DATE: Date = new Date(year, 11, 31);
-    let output = await GetRegistrationReport(YEAR_START_DATE, YEAR_END_DATE, contentType);
+    const output = await GetRegistrationReport(YEAR_START_DATE, YEAR_END_DATE, contentType);
     return output;
 }
 //#endregion
