@@ -29,8 +29,8 @@ export default class Form19 extends React.Component<IRegisterFormProps, IDeathFo
                     <br />
                     <Text variant='mediumPlus' style={bold_font_style}>{this.props.registerItem.FuneralDirectorName}</Text>
                     <Text variant='mediumPlus' style={bold_font_style}>{JSON.parse(this.props.registerItem.FuneralHome)?.DisplayName}</Text>
-                    <Text variant='mediumPlus' style={bold_font_style}>{JSON.parse(this.props.registerItem.FuneralHome)?.Address.Street}</Text>
-                    <Text variant='mediumPlus' style={bold_font_style}>{JSON.parse(this.props.registerItem.FuneralHome)?.Address.City}, {JSON.parse(this.props.registerItem.FuneralHome)?.Address.State}  {JSON.parse(this.props.registerItem.FuneralHome)?.Address.PostalCode}</Text>
+                    <Text variant='mediumPlus' style={bold_font_style}>{JSON.parse(this.props.registerItem.FuneralHome)?.Address?.Street}</Text>
+                    <Text variant='mediumPlus' style={bold_font_style}>{JSON.parse(this.props.registerItem.FuneralHome)?.Address?.City}, {JSON.parse(this.props.registerItem.FuneralHome)?.Address?.State}  {JSON.parse(this.props.registerItem.FuneralHome)?.Address?.PostalCode}</Text>
                 </Stack>
                 <Stack horizontalAlign="center" style={{ textAlign: 'center' }}>
                     <br />
