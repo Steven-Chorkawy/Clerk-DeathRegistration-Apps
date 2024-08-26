@@ -86,7 +86,7 @@ export default class Form17 extends React.Component<IDeathRegisterFormProps, IFo
                         }
                         {
                             this.props.registerItem.ContentTypeId === VitalStatsContentTypeIDs.StillBirth &&
-                            <Text> {JSON.parse(this.props.registerItem.MotherAddress)?.Address.Street}, {JSON.parse(this.props.registerItem.MotherAddress)?.Address.City}, {JSON.parse(this.props.registerItem.MotherAddress)?.Address.State}  {JSON.parse(this.props.registerItem.MotherAddress)?.Address.PostalCode}</Text>
+                            <Text> {JSON.parse(this.props.registerItem.MotherAddress)?.Address?.Street}, {JSON.parse(this.props.registerItem.MotherAddress)?.Address?.City}, {JSON.parse(this.props.registerItem.MotherAddress)?.Address?.State}  {JSON.parse(this.props.registerItem.MotherAddress)?.Address?.PostalCode}</Text>
                         }
                     </Text>
                 </Stack>
@@ -103,7 +103,7 @@ export default class Form17 extends React.Component<IDeathRegisterFormProps, IFo
                         this.props.registerItem.ContentTypeId === VitalStatsContentTypeIDs.StillBirth &&
                         <Stack>
                             <Text>{this.props.registerItem.MotherName}</Text>
-                            <Text> {JSON.parse(this.props.registerItem.MotherAddress)?.Address.Street}, {JSON.parse(this.props.registerItem.MotherAddress)?.Address.City}, {JSON.parse(this.props.registerItem.MotherAddress)?.Address.State}  {JSON.parse(this.props.registerItem.MotherAddress)?.Address.PostalCode}</Text>
+                            <Text> {JSON.parse(this.props.registerItem.MotherAddress)?.Address?.Street}, {JSON.parse(this.props.registerItem.MotherAddress)?.Address?.City}, {JSON.parse(this.props.registerItem.MotherAddress)?.Address?.State}  {JSON.parse(this.props.registerItem.MotherAddress)?.Address?.PostalCode}</Text>
                         </Stack>
                     }
                 </Stack>
@@ -115,7 +115,7 @@ export default class Form17 extends React.Component<IDeathRegisterFormProps, IFo
                     <Text><b>9. Name and Address of Funeral Director</b></Text>
                     <Text>{this.props.registerItem.FuneralDirectorName}</Text>
                     <Text>{JSON.parse(this.props.registerItem.FuneralHome)?.DisplayName}</Text>
-                    <Text>{JSON.parse(this.props.registerItem.FuneralHome)?.Address.Street}, {JSON.parse(this.props.registerItem.FuneralHome)?.Address.City}, {JSON.parse(this.props.registerItem.FuneralHome)?.Address.State}  {JSON.parse(this.props.registerItem.FuneralHome)?.Address.PostalCode}</Text>
+                    <Text>{JSON.parse(this.props.registerItem.FuneralHome)?.Address?.Street}, {JSON.parse(this.props.registerItem.FuneralHome)?.Address?.City}, {JSON.parse(this.props.registerItem.FuneralHome)?.Address?.State}  {JSON.parse(this.props.registerItem.FuneralHome)?.Address?.PostalCode}</Text>
                 </Stack>
                 <Stack style={borderStackStyle}>
                     <Text><b>10. Date of Registration:</b> {MyDateFormat1(this.props.registerItem.RegistrationDate)}</Text>
